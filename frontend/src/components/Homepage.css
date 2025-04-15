@@ -1,19 +1,15 @@
-/* Example: Recreate a pink-to-blue gradient background */
 body {
-  /* Fallback color (in case gradients aren’t supported): */
+  /* Culoare in caz ca pica gradientul */
   background-color: #2c003e; 
 
-  /* Modern gradient syntax */
   background: linear-gradient(
-    20deg,      /* The angle of the gradient; change to suit your taste */
-    #700450 17%,  /* Start color (approx. pink) */
-    #022b7e 80% /* End color (dark blue/purple) */
+    20deg,      
+    #700450 17%,  
+    #022b7e 80% 
   );
 
-  /* Optionally, make it fixed so it doesn’t scroll with the content: */
   background-attachment: fixed;
 
-  /* Ensure it covers the entire view: */
   background-size: cover;
   background-repeat: no-repeat;
   margin: 0;
@@ -25,36 +21,9 @@ body {
   padding: 2rem;
 }
 
-.homepage h1 {
-  font-size: 2.5rem;
-  color: #646cff;
-}
-
-.homepage p {
-  font-size: 1.2rem;
-  color: #888;
-}
-
-.burger-menu {
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  color:black;
-  padding: 0.5rem;
-}
-
+.burger-menu,
 .menu {
-  position: absolute;
-  top: 3rem;
-  left: 1rem;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 1rem;
+  display: none;
 }
 
 .menu ul {
@@ -70,4 +39,101 @@ body {
 .menu a {
   text-decoration: none;
   color: #646cff;
+}
+
+.welcome {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 40px;
+  font-family: "Roboto Mono", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  
+  /* Gradient text effect */
+  background: linear-gradient(
+    45deg, /* Diagonal gradient */
+    #08D0FE 0%,
+    #FF007B 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* Optional enhancements */
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  font-weight: 700; /* Bold text shows gradient better */
+  animation: gradientShift 4s ease infinite;
+  -webkit-text-stroke: 1.5px #ffffff; /* Adds a small border to the letters */
+  
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* Changed from absolute */
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  height: auto;
+  padding: 20px 0;
+  z-index: 1000; /* Ensure it stays on top of other content */
+  background: transparent; /* Add if you want transparency */
+}
+
+.title img {
+  max-width: 90%; /* Make image responsive */
+  height: auto; /* Maintain aspect ratio */
+  margin: 0 auto; /* Center image */
+  display: block;
+  padding-right: 90px;
+  padding-top: 40px;
+}
+
+@media (max-width: 768px) {
+  .title {
+    padding: 12px 0;
+  }
+  .title img {
+    max-width: 85%;
+    padding-top: 69px;
+  }
+}
+
+@media (max-width: 640px) {
+  .title {
+    padding: 10px 0;
+  }
+  .title img {
+    max-width: 85%;
+    padding-right: 50px;
+    padding-top: 69px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title img {
+    max-width: 85%;
+    padding-right: 40px;
+    padding-top: 69px;
+  }
+}
+
+@media (max-width: 360px) {
+  .title img {
+    max-width: 85%;
+    padding-top: 69px;
+  }
 }
