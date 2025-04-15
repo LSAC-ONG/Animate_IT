@@ -1,0 +1,73 @@
+/* Example: Recreate a pink-to-blue gradient background */
+body {
+  /* Fallback color (in case gradients aren’t supported): */
+  background-color: #2c003e; 
+
+  /* Modern gradient syntax */
+  background: linear-gradient(
+    20deg,      /* The angle of the gradient; change to suit your taste */
+    #700450 17%,  /* Start color (approx. pink) */
+    #022b7e 80% /* End color (dark blue/purple) */
+  );
+
+  /* Optionally, make it fixed so it doesn’t scroll with the content: */
+  background-attachment: fixed;
+
+  /* Ensure it covers the entire view: */
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+}
+
+.homepage {
+  text-align: center;
+  padding: 2rem;
+}
+
+.homepage h1 {
+  font-size: 2.5rem;
+  color: #646cff;
+}
+
+.homepage p {
+  font-size: 1.2rem;
+  color: #888;
+}
+
+.burger-menu {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color:black;
+  padding: 0.5rem;
+}
+
+.menu {
+  position: absolute;
+  top: 3rem;
+  left: 1rem;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  margin: 0.5rem 0;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #646cff;
+}
