@@ -4,8 +4,8 @@ body {
 
   background: linear-gradient(
     20deg,      
-    #700450 17%,  
-    #022b7e 80% 
+    #FF00B3 17%,  
+    #0056FF 80% 
   );
 
   background-attachment: fixed;
@@ -94,7 +94,7 @@ body {
 }
 
 .title img {
-  max-width: 90%; /* Make image responsive */
+  max-width: 85%; /* Reduced from 90% */
   height: auto; /* Maintain aspect ratio */
   margin: 0 auto; /* Center image */
   display: block;
@@ -107,7 +107,7 @@ body {
     padding: 12px 0;
   }
   .title img {
-    max-width: 85%;
+    max-width: 80%; /* Reduced from 85% */
     padding-top: 69px;
   }
 }
@@ -117,7 +117,7 @@ body {
     padding: 10px 0;
   }
   .title img {
-    max-width: 85%;
+    max-width: 80%; /* Reduced from 85% */
     padding-right: 50px;
     padding-top: 69px;
   }
@@ -125,7 +125,7 @@ body {
 
 @media (max-width: 480px) {
   .title img {
-    max-width: 85%;
+    max-width: 80%; /* Reduced from 85% */
     padding-right: 40px;
     padding-top: 69px;
   }
@@ -133,7 +133,7 @@ body {
 
 @media (max-width: 360px) {
   .title img {
-    max-width: 85%;
+    max-width: 80%; /* Reduced from 85% */
     padding-top: 69px;
   }
 }
