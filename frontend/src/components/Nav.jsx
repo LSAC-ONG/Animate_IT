@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom"; // <- importă Link
 import "./Nav.css";
 
 function Nav() {
@@ -12,9 +13,9 @@ function Nav() {
       </button>
       {open && (
         <div className="menu">
-          <p>Home</p>
-          <p>About</p>
-          <p>Contact</p>
+          <Link to="/" onClick={() => setOpen(false)}>Home</Link>
+          <Link to="/about" onClick={() => setOpen(false)}>About</Link>
+          <Link to="/contact" onClick={() => setOpen(false)}>Contact</Link>
         </div>
       )}
     </div>

@@ -1,10 +1,18 @@
-import Home from "./components/Home";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Nav from './components/Nav'; // <- importa meniul tău
+import Home from './components/Home';
+
 
 function App() {
   return (
-    <div className="min-h-screen w-full">
-      <Home />
-    </div>
+    <Router>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<Home />} />
+        <Route path="/contact" element={<Home />} />
+      </Routes>
+    </Router>
   );
 }
 
