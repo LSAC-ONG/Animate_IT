@@ -43,6 +43,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #f0f0f0; /* Set your desired background color */
 }
 
 h1 {
@@ -79,5 +80,29 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  h1 {
+    font-size: 2.5em;
+  }
+  button {
+    font-size: 0.9em;
+    padding: 0.5em 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2em;
+  }
+  button {
+    font-size: 0.8em;
+    padding: 0.4em 0.8em;
   }
 }
