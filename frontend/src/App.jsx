@@ -2,11 +2,11 @@ import { useState } from 'react'
 import './App.css'
 import Homepage from './components/Homepage'
 import { Routes, Route } from 'react-router-dom'
-import Backgrounds from './components/Backgrounds'
-import Buttons from './components/Buttons'
-import Cursors from './components/Cursors'
-import Text from './components/Text'
-import Forms from './components/Forms'
+import Backgrounds from './components/Backgrounds/Backgrounds'
+import Buttons from './components/Buttons/Buttons'
+import Cursors from './components/Cursors/Cursors'
+import Text from './components/Text/Text'
+import Forms from './components/Forms/Forms'
 
 function App() {
   const [count, setCount] = useState(0)

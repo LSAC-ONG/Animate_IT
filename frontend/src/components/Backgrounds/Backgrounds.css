@@ -1,0 +1,98 @@
+.title {
+	font-size: 4rem;
+	text-align: left;
+	display: inline-block;
+	margin-left: 3rem;
+	margin-top: 10rem;
+	font-family: "Roboto Mono", monospace;
+
+	background: -webkit-linear-gradient(#08D0FE, #FF007B);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-webkit-text-stroke: 0.1rem #ffffff;
+}
+
+.slider{
+	overflow: hidden;
+	position: relative;
+	margin-top:10rem;
+	width: 60rem;
+	height: 25rem;
+	background-color:rgb(0, 0, 0, 0.5);
+	border: 0.3rem solid;
+	border-image: linear-gradient(to right, #08D0FE, #FF007B) 1;
+}
+
+.prev {
+	position: absolute;
+	left: calc(50% - 38rem);
+	top: calc(50% + 4.75rem);
+	transform: translateY(-50%);
+	background:none;
+	border:none;
+	color: #08D0FE;
+	font-size: 2rem;
+	text-align: center;
+	border: 0.3rem solid #08D0FE;
+}
+
+.prev:hover {
+	border: 0.3rem solid #08D0FE;
+	box-shadow: 0 0.2rem 0.5rem #FF007B,0 0.2rem 0.5rem #FF007B;
+}
+
+.next {
+	position: absolute;
+	right: calc(50% - 38rem);
+	top: calc(50% + 4.75rem);
+	transform: translateY(-50%);
+	background:none;
+	border:none;
+	color: #08D0FE;
+	font-size: 2rem;
+	text-align: center;
+	border: 0.3rem solid #08D0FE;
+}
+
+.next:hover {
+	border: 0.3rem solid #08D0FE;
+	box-shadow: 0 0.2rem 0.5rem #FF007B,0 0.2rem 0.5rem #FF007B;
+}
+
+.animation {
+	width: 100%;
+	height: 100%;
+	transition: all 1s ease-in-out;
+}
+
+  /* Example animation styles (replace with your own) */
+  .bckAnimation1 {
+	background: linear-gradient(to right, #08D0FE, #FF007B);
+	animation: slideIn 3s infinite alternate;
+  }
+
+  .bckAnimation2 {
+	background: linear-gradient(to left, #FF007B, #08D0FE);
+	animation: rotate 5s infinite linear;
+  }
+
+  .bckAnimation3 {
+	background: #FF9E00;
+	animation: bounce 2s infinite ease-in-out;
+  }
+
+  @keyframes slideIn {
+	0% { transform: translateX(-100%); }
+	100% { transform: translateX(0); }
+  }
+
+  @keyframes rotate {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+  }
+
+  @keyframes bounce {
+	0%, 100% { transform: translateY(0); }
+	50% { transform: translateY(-20px); }
+  }
+

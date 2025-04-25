@@ -1,0 +1,27 @@
+/*
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: #121212;
+    font-family: 'Arial', sans-serif;
+}
+*/
+
+.shadow-dance-text {
+    font-size: 4rem;
+    color: #fff;
+    text-shadow: 5px 5px 0 #ff005e, 10px 10px 0 #00d4ff;
+    animation: shadow-dance 2s infinite;
+}
+
+@keyframes shadow-dance {
+    0%, 100% {
+        text-shadow: 5px 5px 0 #ff005e, 10px 10px 0 #00d4ff;
+    }
+    50% {
+        text-shadow: -5px -5px 0 #00d4ff, -10px -10px 0 #ff005e;
+    }
+}
