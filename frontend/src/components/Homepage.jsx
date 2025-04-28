@@ -12,7 +12,7 @@ function Homepage() {
           </h1>
         </div>
       </div>
-    
+
       <div className="welcome">
         <p>Pick a category suitable for your project!</p>
       </div>
