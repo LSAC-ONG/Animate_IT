@@ -14,8 +14,11 @@ function Nav() {
       {open && (
         <div className="menu">
           <Link to="/" onClick={() => setOpen(false)}>Home</Link>
-          <Link to="/about" onClick={() => setOpen(false)}>About</Link>
-          <Link to="/contact" onClick={() => setOpen(false)}>Contact</Link>
+          <Link to="/backgrounds" onClick={() => setOpen(false)}>Backgrounds</Link>
+          <Link to="/buttons" onClick={() => setOpen(false)}>Buttons</Link>
+          <Link to="/cursors" onClick={() => setOpen(false)}>Cursors</Link>
+          <Link to="/text" onClick={() => setOpen(false)}>Text</Link>
+          <Link to="/forms" onClick={() => setOpen(false)}>Forms</Link>
         </div>
       )}
     </div>

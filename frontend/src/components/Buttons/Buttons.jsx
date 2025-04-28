@@ -1,5 +1,6 @@
 import './Buttons.css';
 import { useState } from 'react';
+import Nav from "../Nav";
 
 const animations = [
   'buttonAnimation1',
@@ -20,6 +21,7 @@ function Buttons() {
 
   return (
     <div className="buttonsPage">
+      <Nav />
       <h1 className="title">Buttons</h1>
 
       <div className="slider">

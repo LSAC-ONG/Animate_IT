@@ -1,9 +1,12 @@
 import './Homepage.css'
 import title from '../assets/title_new.png'
+import Nav from "./Nav";
 
 function Homepage() {
   return (
     <div className="homepage">
+      <Nav />
+
       <div className="title" style={{ display: 'flex', alignItems: 'center' }}>
         <img src={title} alt="Title" />
         <div className="center">

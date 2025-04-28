@@ -1,5 +1,6 @@
 import './Cursors.css';
 import { useState } from 'react';
+import Nav from "../Nav";
 
 const animations = [
   'cursorAnimation1',
@@ -20,6 +21,7 @@ function Cursors() {
 
   return (
     <div className="cursorsPage">
+      <Nav />
       <h1 className="title">Cursors</h1>
 
       <div className="slider">

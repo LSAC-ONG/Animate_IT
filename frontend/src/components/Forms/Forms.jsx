@@ -1,5 +1,6 @@
 import './Forms.css';
 import { useState } from 'react';
+import Nav from "../Nav";
 
 const animations = [
   'formsAnimation1',
@@ -20,6 +21,7 @@ function Forms() {
 
   return (
     <div className="formsPage">
+      <Nav />
       <h1 className="title">Forms</h1>
 
       <div className="slider">
