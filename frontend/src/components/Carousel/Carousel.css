@@ -1,0 +1,60 @@
+.carousel-nav {
+    display: flex;
+    overflow-x: hidden;
+    width: 80vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 25vh;
+    padding: 13px;
+    gap: 30px;                  /* trebuie să fie exact GAP_PX */
+    scrollbar-width: none;      /* Firefox */
+  }
+  .carousel-nav::-webkit-scrollbar {
+    display: none;              /* Chrome, Edge, Safari */
+  }
+  
+  .slide {
+    flex: 0 0 calc((100% - (5 - 1) * 30px) / 5);
+    width: 20%;
+    aspect-ratio: 1/1;
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+  }
+  
+  .frame {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    outline: 2px solid #fff;
+    outline-offset: 12px;
+  }
+  
+  .frame img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .label {
+    color: #fff;
+    font-size: 1.7rem;
+    font-weight: 400;
+    text-align: center;
+    user-select: none;
+  }
+  .carousel-nav {
+    cursor: grab;
+  }
+  .carousel-nav.dragging {
+    cursor: grabbing;
+  }
