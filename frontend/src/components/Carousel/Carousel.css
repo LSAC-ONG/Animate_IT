@@ -26,6 +26,8 @@
   /* previne “bounce”-ul pe mobile */
   scroll-snap-type: none;
   -webkit-overflow-scrolling: touch;
+  padding-left: 15px;
+  padding-right: 15px;
   padding-top: 20px;
   padding-bottom: 20px;
   gap: 30px;

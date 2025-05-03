@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect } from 'react';
+import React, { useRef, useState, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import './Carousel.css';
@@ -16,6 +16,7 @@ const slides = [
 
 
 export default function Carousel({ VISIBLE, MAX_HEIGHT }) {
+  const [resize, setResize] = useState(0);
   const containerRef = useRef(null);
   const slideRefs = useRef([]);
   const snapTween = useRef(null);
@@ -74,6 +75,7 @@ export default function Carousel({ VISIBLE, MAX_HEIGHT }) {
 
   useLayoutEffect(() => {
     containerRef.current.style.maxHeight = MAX_HEIGHT;
+    containerRef.current.style.width = '90vw';
     adjustWidth();
     const { cont, spacing, totalWidth, minScroll, maxScroll } = calc();
     cont.scrollLeft = minScroll;
@@ -135,12 +137,13 @@ export default function Carousel({ VISIBLE, MAX_HEIGHT }) {
 
     // Resize handler
     const onResize = () => {
-      const { cont: c, spacing: s, minScroll: min } = calc();
-      const offset = c.scrollLeft - min;
-      const idx = Math.round(offset / s);
-      c.scrollLeft = min + idx * s;
-      adjustWidth();
-      updateScales();
+      // const { cont: c, spacing: s, minScroll: min } = calc();
+      // const offset = c.scrollLeft - min;
+      // const idx = Math.round(offset / s);
+      // c.scrollLeft = min + idx * s;
+      // adjustWidth();
+      // updateScales();
+      setResize(resize + 1);
     };
     
     // Atașăm evenimente
@@ -157,7 +160,7 @@ export default function Carousel({ VISIBLE, MAX_HEIGHT }) {
       cont.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', onResize);
     };
-  }, []);
+  }, [VISIBLE, resize]);
 
   // Render cu clonele front/back
   const pre = slides.slice(-VISIBLE);
