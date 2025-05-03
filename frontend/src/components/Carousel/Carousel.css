@@ -1,60 +1,124 @@
+
+.carousel-test {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  gap: 5vh;
+  overflow: hidden;
+  position: relative;
+}
+
 .carousel-nav {
-    display: flex;
-    overflow-x: hidden;
-    width: 80vw;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    margin-top: 25vh;
-    padding: 13px;
-    gap: 30px;                  /* trebuie să fie exact GAP_PX */
-    scrollbar-width: none;      /* Firefox */
-  }
-  .carousel-nav::-webkit-scrollbar {
-    display: none;              /* Chrome, Edge, Safari */
-  }
-  
-  .slide {
-    flex: 0 0 calc((100% - (5 - 1) * 30px) / 5);
-    width: 20%;
-    aspect-ratio: 1/1;
-    flex-shrink: 0;
-    scroll-snap-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    user-select: none;
-  }
-  
-  .frame {
-    width: 100%;
-    height: 100%;
-    border: 2px solid #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    outline: 2px solid #fff;
-    outline-offset: 12px;
-  }
-  
-  .frame img {
-    width: 60px;
-    height: 60px;
-  }
-  
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  will-change: scroll-position;
+  position: relative;
+  overscroll-behavior-x: contain;
+  /* previne “bounce”-ul pe mobile */
+  scroll-snap-type: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 13px;
+  gap: 30px;
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.carousel-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-slide {
+  /* lățime fixă astfel încât 5 carousel-slide + 4 gap-uri = 100% */
+  flex-basis: calc((100% - 4 * 30px) / 5);
+  min-width: calc((100% - 4 * 30px) / 5);
+  max-width: calc((100% - 4 * 30px) / 5);
+  box-sizing: border-box;
+  aspect-ratio: 1/1;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+}
+
+.frame {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5%;
+  align-items: center;
+  outline: 2px solid #fff;
+  outline-offset: 12px;
+}
+
+.link-carousel {
+  height: 50%;
+  display: flex;
+  user-select: none;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+  justify-content: center;
+  width: auto;
+}
+.link-carousel-text {
+  transition: all 0.3s ease-in-out;
+}
+.link-carousel:hover,.link-carousel-text:hover {
+  transform: scale(1.1);
+}
+
+.link-carousel img {
+  height: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+
+.label {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-align: center;
+  user-select: none;
+}
+
+.carousel-nav {
+  cursor: grab;
+}
+
+.carousel-nav.dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+@media screen and (max-width: 1100px) {
   .label {
-    color: #fff;
-    font-size: 1.7rem;
-    font-weight: 400;
-    text-align: center;
-    user-select: none;
+    font-size: 1.2rem;
   }
-  .carousel-nav {
-    cursor: grab;
+}
+
+@media screen and (max-width: 880px) {
+  .label {
+    font-size: 1rem;
   }
-  .carousel-nav.dragging {
-    cursor: grabbing;
+
+  .frame {
+    outline: 1px solid #fff;
+    outline-offset: 8px;
+    border: 1px solid #fff;
   }
+}
