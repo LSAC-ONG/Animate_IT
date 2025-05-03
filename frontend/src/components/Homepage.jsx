@@ -13,7 +13,7 @@ function Homepage() {
           </h1>
         </div>
       </div>
-      <Carousel />
+      <Carousel VISIBLE={5} MAX_HEIGHT={'40vh'} />
       <div className="welcome">
         <p>Pick a category suitable for your project!</p>
       </div>

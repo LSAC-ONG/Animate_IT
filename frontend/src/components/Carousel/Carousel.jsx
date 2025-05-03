@@ -14,12 +14,32 @@ const slides = [
   { src: '/carousel_images/forms.png', alt: 'Forms', label: 'forms!', link: '/forms' },
 ];
 
-const VISIBLE = 5;
 
-export default function Carousel() {
+export default function Carousel({ VISIBLE, MAX_HEIGHT }) {
   const containerRef = useRef(null);
   const slideRefs = useRef([]);
   const snapTween = useRef(null);
+  const widthCalc = `min(calc((100% - ${VISIBLE - 1} * 30px) / ${VISIBLE}))`;
+
+  // Ajustează lățimea containerului
+  const adjustWidth = () => {
+    const width = slideRefs.current[0].offsetWidth;
+    const height = slideRefs.current[0].offsetHeight;
+    console.log('width', width, 'height', height);
+    console.log('containerRef', containerRef.current.offsetWidth - 1)
+    if (width !== height) {
+      const newWidth = (width - height)*VISIBLE;
+      containerRef.current.style.width = `${containerRef.current.offsetWidth - newWidth}px`;
+    }
+  };
+
+  // Ajustează stilul slide-urilor
+  const slideStyle = {
+    flexBasis:  widthCalc,
+    minWidth:   widthCalc,
+    maxWidth:   widthCalc,
+    willChange: 'transform',
+  };
 
   const calc = () => {
     const cont = containerRef.current;
@@ -53,6 +73,8 @@ export default function Carousel() {
   };
 
   useLayoutEffect(() => {
+    containerRef.current.style.maxHeight = MAX_HEIGHT;
+    adjustWidth();
     const { cont, spacing, totalWidth, minScroll, maxScroll } = calc();
     cont.scrollLeft = minScroll;
     updateScales();
@@ -73,7 +95,7 @@ export default function Carousel() {
       updateScales();
     };
 
-    // Mouse handlers
+    // Mouse down handler
     const onMouseDown = e => {
       isDown = true;
       if (snapTween.current) snapTween.current.kill();
@@ -82,6 +104,7 @@ export default function Carousel() {
       scrollStart = cont.scrollLeft;
     };
 
+    // Mouse move handler
     const onMouseMove = e => {
       if (!isDown) return;
       e.preventDefault();
@@ -94,6 +117,7 @@ export default function Carousel() {
       updateScales();
     };
 
+    // Mouse up handler
     const onMouseUp = () => {
       if (!isDown) return;
       isDown = false;
@@ -108,14 +132,17 @@ export default function Carousel() {
         ease: 'power3.out',
       });
     };
+
     // Resize handler
     const onResize = () => {
       const { cont: c, spacing: s, minScroll: min } = calc();
       const offset = c.scrollLeft - min;
       const idx = Math.round(offset / s);
       c.scrollLeft = min + idx * s;
+      adjustWidth();
       updateScales();
     };
+    
     // Atașăm evenimente
     cont.addEventListener('mousedown', onMouseDown);
     window.addEventListener('mousemove', onMouseMove);
@@ -142,10 +169,9 @@ export default function Carousel() {
       {all.map((s, i) => (
 
         <div
-          className="carousel-slide"
+          className="carousel-slide" style={slideStyle}
           key={i}
           ref={el => (slideRefs.current[i] = el)}
-          style={{ willChange: 'transform' }}
         >
           <div className="frame">
             <Link className='link-carousel' to={s.link} draggable={false}

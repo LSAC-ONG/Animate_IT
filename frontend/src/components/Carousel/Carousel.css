@@ -26,7 +26,8 @@
   /* previne “bounce”-ul pe mobile */
   scroll-snap-type: none;
   -webkit-overflow-scrolling: touch;
-  padding: 13px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   gap: 30px;
   scrollbar-width: none;
   /* Firefox */
@@ -38,9 +39,11 @@
 
 .carousel-slide {
   /* lățime fixă astfel încât 5 carousel-slide + 4 gap-uri = 100% */
-  flex-basis: calc((100% - 4 * 30px) / 5);
-  min-width: calc((100% - 4 * 30px) / 5);
-  max-width: calc((100% - 4 * 30px) / 5);
+  /* flex-basis: calc((100% - 4 * 30px) / 5);
+  min-width: calc((100% - 4 * 30px) / 5);      
+  max-width: calc((100% - 4 * 30px) / 5); */
+  /* o sa pun in javacrpt style ul asta pentru ca sa setez in functie de variabila VISIBLE
+  (cate slide-uri sunt vizibile) */
   box-sizing: border-box;
   aspect-ratio: 1/1;
   flex-shrink: 0;
