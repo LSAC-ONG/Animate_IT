@@ -19,6 +19,7 @@ function Buttons() {
   };
 
   return (
+    
     <div className="buttonsPage">
       <h1 className="title">Buttons</h1>
 

@@ -21,6 +21,7 @@ function Text() {
   };
 
   return (
+    
     <div className="textPage">
       <h1 className="title">Text</h1>
 

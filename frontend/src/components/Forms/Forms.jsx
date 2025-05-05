@@ -19,6 +19,7 @@ function Forms() {
   };
 
   return (
+    
     <div className="formsPage">
       <h1 className="title">Forms</h1>
 

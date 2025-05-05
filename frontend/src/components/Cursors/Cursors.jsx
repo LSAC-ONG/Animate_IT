@@ -19,6 +19,7 @@ function Cursors() {
   };
 
   return (
+    
     <div className="cursorsPage">
       <h1 className="title">Cursors</h1>
 
