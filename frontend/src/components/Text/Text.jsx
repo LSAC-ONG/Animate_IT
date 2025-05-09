@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import DancingShadow from './TextAnimations/DancingShadow/DancingShadow';
 import MatrixGlitch from './TextAnimations/MatrixGlitch/MatrixGlitch';
-
+ 
 const animations = [
   'DancingShadow',
   'MatrixGlitch'
@@ -21,7 +21,7 @@ function Text() {
   };
 
   return (
-    
+
     <div className="textPage">
       <h1 className="title">Text</h1>
 
