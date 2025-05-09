@@ -1,5 +1,6 @@
 import './Homepage.css'
 import title from '../assets/title_new.png'
+import Nav from "./Nav";
 import Carousel from './Carousel/Carousel'
 
 function Homepage() {
