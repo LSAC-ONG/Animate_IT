@@ -20,6 +20,7 @@ function Forms() {
   };
 
   return (
+    
     <div className="formsPage">
       <Nav />
       <h1 className="title">Forms</h1>

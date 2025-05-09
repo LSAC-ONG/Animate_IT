@@ -7,6 +7,7 @@ import Buttons from './components/Buttons/Buttons'
 import Cursors from './components/Cursors/Cursors'
 import Text from './components/Text/Text'
 import Forms from './components/Forms/Forms'
+import CarouselTest from './components/Carousel/CarouselTest'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,6 +20,7 @@ function App() {
       <Route path="/cursors" element={<Cursors />} />
       <Route path="/text" element={<Text />} />
       <Route path="/forms" element={<Forms />} />
+      <Route path="/carousel-test" element={<CarouselTest />} />
     </Routes>
   )
 }

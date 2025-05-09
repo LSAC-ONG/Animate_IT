@@ -22,6 +22,7 @@ function Text() {
   };
 
   return (
+    
     <div className="textPage">
       <Nav />
       <h1 className="title">Text</h1>

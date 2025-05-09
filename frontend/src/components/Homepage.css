@@ -1,4 +1,6 @@
-body {
+body,html {
+  margin: 0 auto !important; 
+  padding: 0 !important;
   background-color: rgb(0, 0, 0);
   background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 2px),
@@ -8,8 +10,17 @@ body {
 }
 
 .homepage {
+  position: relative;
+  top: 0;
   text-align: center;
-  padding: 2rem;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  overflow: hidden;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  width: 100vw;
+  height: 94vh;
 }
 
 .burger-menu,
@@ -33,18 +44,11 @@ body {
 }
 
 .welcome {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
-  margin-bottom: 40px;
   font-family: "Roboto Mono", sans-serif;
   font-size: 35px;
-  font-weight: 700;
   background: linear-gradient(45deg, #08D0FE 0%, #FF007B 100%);
   background-clip: text;
   -webkit-background-clip: text;
@@ -60,19 +64,17 @@ body {
   50% { background-position: 100% 50%; }
 }
 
-.title {
+.title-home {
+  margin-top: 0 !important;
+  padding: 0 !important;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  top: -50px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
   height: auto;
 }
 
 .center {
+  height: auto;
   position: relative;
 }
 
@@ -86,6 +88,8 @@ body {
 }
 
 .center h1 {
+  padding: 0 !important;
+  margin: 0 !important;
   font-size: 145px;
   color: white;
   background: repeating-linear-gradient(-45deg, red 0%, yellow 7.14%, rgb(0, 255, 0) 14.28%, rgb(0, 255, 255) 21.4%, cyan 28.56%, blue 35.7%, magenta 42.84%, red 50%);
@@ -97,17 +101,19 @@ body {
   padding-bottom: 20px;
 }
 
-.title img {
-  max-width: 27%;
-  padding-top: 1rem;
+.title-home img {
+  max-width: 24%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 @media (max-width: 768px) {
-  .title {
+  .title-home {
     flex-direction: row;
     padding: 12px 0;
   }
-  .title img {
+  .title-home img {
     max-width: 70%;
     padding: 0;
   }
@@ -117,10 +123,10 @@ body {
 }
 
 @media (max-width: 640px) {
-  .title {
+  .title-home {
     padding: 10px 0;
   }
-  .title img {
+  .title-home img {
     max-width: 65%;
   }
   .center h1 {
@@ -130,7 +136,7 @@ body {
 }
 
 @media (max-width: 480px) {
-  .title img {
+  .title-home img {
     max-width: 60%;
   }
   .center h1 {
@@ -140,7 +146,7 @@ body {
 }
 
 @media (max-width: 360px) {
-  .title img {
+  .title-home img {
     max-width: 55%;
   }
   .center h1 {
