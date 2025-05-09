@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import DancingShadow from './TextAnimations/DancingShadow/DancingShadow';
 import MatrixGlitch from './TextAnimations/MatrixGlitch/MatrixGlitch';
+import Nav from "../Nav";
 
 const animations = [
   'DancingShadow',
@@ -23,6 +24,7 @@ function Text() {
   return (
     
     <div className="textPage">
+      <Nav />
       <h1 className="title">Text</h1>
 
       <div className="slider">

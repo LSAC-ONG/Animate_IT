@@ -1,5 +1,6 @@
 import './Backgrounds.css';
 import { useState } from 'react';
+import Nav from "../Nav";
 
 const animations = [
   'bckAnimation1',
@@ -20,6 +21,7 @@ function Backgrounds() {
 
   return (
     <div className="backgroundsPage">
+      <Nav />
       <h1 className="title">Backgrounds</h1>
 
       <div className="slider">
