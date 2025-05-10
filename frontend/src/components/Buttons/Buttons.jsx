@@ -1,4 +1,4 @@
-import './Buttons.css';
+import './Buttons.scss';
 import { useState } from 'react';
 import Nav from "../Nav";
 
@@ -21,7 +21,7 @@ function Buttons() {
 
   return (
     
-    <div className="buttonsPage">
+    <div className="buttons-container">
       <Nav />
       <h1 className="title">Buttons</h1>
 

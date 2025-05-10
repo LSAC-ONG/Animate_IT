@@ -1,7 +1,7 @@
 import React, { useRef, useState, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
-import './Carousel.css';
+import './Carousel.scss';
 import { Link } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollToPlugin);

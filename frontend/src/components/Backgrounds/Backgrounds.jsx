@@ -1,4 +1,4 @@
-import './Backgrounds.css';
+import './Backgrounds.scss';
 import { useState } from 'react';
 import Nav from "../Nav";
 
@@ -20,7 +20,7 @@ function Backgrounds() {
   };
 
   return (
-    <div className="backgroundsPage">
+    <div className="backgrounds-container">
       <Nav />
       <h1 className="title">Backgrounds</h1>
 

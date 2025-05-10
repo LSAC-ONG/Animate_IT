@@ -1,4 +1,4 @@
-import './Forms.css';
+import './Forms.scss';
 import { useState } from 'react';
 import Nav from "../Nav";
 
@@ -21,7 +21,7 @@ function Forms() {
 
   return (
     
-    <div className="formsPage">
+    <div className="forms-container">
       <Nav />
       <h1 className="title">Forms</h1>
 

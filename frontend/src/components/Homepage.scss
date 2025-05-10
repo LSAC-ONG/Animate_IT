@@ -1,0 +1,159 @@
+body,html {
+  margin: 0 auto !important; 
+  padding: 0 !important;
+  background-color: rgb(0, 0, 0);
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 2px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 3px),
+    linear-gradient(20deg, rgba(255, 0, 179, 0.25) 17%, rgba(0, 86, 255, 0.25) 100%);
+  background-size: 60px 60px, 60px 60px, cover;
+}
+
+.homepage-container {
+  position: relative;
+  top: 0;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  overflow: hidden;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  width: 100vw;
+  height: 94vh;
+
+  .welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Roboto Mono", sans-serif;
+    font-size: 35px;
+    background: linear-gradient(45deg, #08D0FE 0%, #FF007B 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-weight: 700;
+    animation: gradientShift 4s ease infinite;
+    -webkit-text-stroke: 1.5px #ffffff;
+  }
+
+  .title {
+    margin-top: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+
+    @media (max-width: 768px) {
+      flex-direction: row;
+      padding: 12px 0;
+    }
+
+    @media (max-width: 640px) {
+      padding: 10px 0;
+    }
+
+    img {
+      max-width: 24%;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+
+      @media (max-width: 768px) {
+        max-width: 70%;
+        padding: 0;
+      }
+
+      @media (max-width: 640px) {
+        max-width: 65%;
+      }
+
+      @media (max-width: 480px) {
+        max-width: 60%;
+      }
+
+      @media (max-width: 360px) {
+        max-width: 55%;
+        
+      }
+    }
+
+    .center {
+      height: auto;
+      position: relative;
+
+      h1 {
+        padding: 0 !important;
+        margin: 0 !important;
+        font-size: 145px;
+        color: white;
+        background: repeating-linear-gradient(-45deg, red 0%, yellow 7.14%, rgb(0, 255, 0) 14.28%, rgb(0, 255, 255) 21.4%, cyan 28.56%, blue 35.7%, magenta 42.84%, red 50%);
+        animation: slide 2s linear infinite forwards;
+        background-size: 600vw 600vw;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        animation: slide 10s linear infinite forwards;
+        padding-bottom: 20px;
+
+        @media (max-width: 768px) {
+          font-size: 170px;
+        }
+
+        @media (max-width: 640px) {
+          font-size: 130px;
+          padding-bottom: 8px;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 100px;
+          padding-bottom: 10px;
+        }
+
+        @media (max-width: 360px) {
+          font-size: 80px;
+          padding-bottom: 8px;
+        }
+      }
+      
+    }
+  }
+}
+
+.burger-menu {
+  display: none;
+}
+
+.menu {
+  display: none;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    margin: 0.5rem 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: #646cff;
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes slide {
+  0% {
+    background-position-x: 0%;
+  }
+  100% {
+    background-position-x: 600vw;
+  }
+}
