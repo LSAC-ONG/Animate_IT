@@ -1,0 +1,145 @@
+$mobile-breakpoint: 880px;
+$tablet-breakpoint: 1100px;
+
+.carousel-test {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  gap: 5vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-nav {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  will-change: scroll-position;
+  position: relative;
+  overscroll-behavior-x: contain;
+  /* previne “bounce”-ul pe mobile */
+  scroll-snap-type: none;
+  -webkit-overflow-scrolling: touch;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  gap: 30px;
+  
+  scrollbar-width: none;
+  cursor: grab;
+  /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &.dragging {
+    cursor: grabbing;
+    user-select: none;
+  }
+  
+
+  .carousel-slide {
+    /* lățime fixă astfel încât 5 carousel-slide + 4 gap-uri = 100% */
+    /* flex-basis: calc((100% - 4 * 30px) / 5);
+    min-width: calc((100% - 4 * 30px) / 5);      
+    max-width: calc((100% - 4 * 30px) / 5); */
+    /* o sa pun in javacrpt style ul asta pentru ca sa setez in functie de variabila VISIBLE
+    (cate slide-uri sunt vizibile) */
+    box-sizing: border-box;
+    aspect-ratio: 1/1;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+
+    .frame {
+      width: 100%;
+      height: 100%;
+      border: 2px solid #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5%;
+      align-items: center;
+      outline: 2px solid #fff;
+      outline-offset: 12px;
+
+      @media screen and (max-width: 880px) {
+        outline: 1px solid #fff;
+        outline-offset: 8px;
+        border: 1px solid #fff;
+      }
+
+      .link-carousel {
+        height: 50%;
+        display: flex;
+        user-select: none;
+        flex-direction: column;
+        align-items: center;
+        transition: all 0.3s ease-in-out;
+        justify-content: center;
+        width: auto;
+        
+
+        &:hover {
+          transform: scale(1.1);
+        }
+
+        img {
+          height: 100%;
+          user-select: none;
+          -webkit-user-select: none;
+          -webkit-user-drag: none;
+          -webkit-touch-callout: none;
+        }
+      }
+
+      .link-carousel-text {
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+
+        .label {
+          color: #fff;
+          font-size: 1.5rem;
+          font-weight: 400;
+          text-align: center;
+          user-select: none;
+
+          @media screen and (max-width: $tablet-breakpoint) {
+            font-size: 1.2rem;
+          }
+
+          @media screen and (max-width: $mobile-breakpoint) {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
