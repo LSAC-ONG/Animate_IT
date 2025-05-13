@@ -1,4 +1,4 @@
-import './Text.css';
+import './Text.scss';
 import { useState } from 'react';
 
 import DancingShadow from './TextAnimations/DancingShadow/DancingShadow';
@@ -21,8 +21,7 @@ function Text() {
   };
 
   return (
-
-    <div className="textPage">
+    <div className="text-container">
       <Nav />
       <h1 className="title">Text</h1>
 

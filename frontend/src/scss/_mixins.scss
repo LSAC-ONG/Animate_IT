@@ -1,0 +1,49 @@
+@mixin buttons-style($side) {
+	position: absolute;
+	top: calc(50% + 4.75rem);
+	transform: translateY(-50%);
+	background:none;
+	border:none;
+	color: #08D0FE;
+	font-size: 2rem;
+	text-align: center;
+	border: 0.3rem solid #08D0FE;
+
+	@if $side == 'prev' {
+		left: calc(50% - 38rem);
+	  } @else if $side == 'next' {
+		right: calc(50% - 38rem);
+	  } @else {
+		@error "Invalid side value. Use either 'left' or 'right'";
+	  }
+
+	&:hover {
+		border: 0.3rem solid #08D0FE;
+		box-shadow: 0 0.2rem 0.5rem #FF007B,0 0.2rem 0.5rem #FF007B;
+	}
+}
+
+@mixin subpage-format {
+		.title {
+			font-size: 4rem;
+			text-align: left;
+			display: inline-block;
+			margin-left: 3rem;
+			margin-top: 0;
+			font-family: "Roboto Mono", monospace;
+		
+			background: -webkit-linear-gradient(#08D0FE, #FF007B);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			-webkit-text-stroke: 0.1rem #ffffff;
+		}
+
+	
+		.prev {
+			@include buttons-style('prev');
+		}
+	
+		.next {
+			@include buttons-style('next');
+		}
+}

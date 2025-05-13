@@ -1,4 +1,4 @@
-import './Cursors.css';
+import './Cursors.scss';
 import { useState } from 'react';
 import Nav from "../Nav";
 
@@ -21,7 +21,7 @@ function Cursors() {
 
   return (
     
-    <div className="cursorsPage">
+    <div className="cursors-container">
       <Nav />
       <h1 className="title">Cursors</h1>
 

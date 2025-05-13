@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './App.css'
+import './App.scss'
 import Homepage from './components/Homepage'
 import { Routes, Route } from 'react-router-dom'
 import Backgrounds from './components/Backgrounds/Backgrounds'
