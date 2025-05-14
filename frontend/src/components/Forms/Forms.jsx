@@ -5,7 +5,7 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import copyIcon from '../../assets/copy_simbol.png';
 import Nav from "../Nav";
 
-// Add your animation imports here when available
+// Uncomment and import your animations and code when available
 // import FormsAnim1 from './FormsAnimations/FormsAnim1/FormsAnim1';
 // import FormsAnim2 from './FormsAnimations/FormsAnim2/FormsAnim2';
 // import FormsAnim3 from './FormsAnimations/FormsAnim3/FormsAnim3';
@@ -109,16 +109,18 @@ function Forms() {
               </>
             )}
           </div>
+          <div className="arrows-row">
+            <button className="prev" onClick={prevSlide}>❮</button>
+            <button className="code-btn" onClick={handleCodeClick}>
+              {isDoubled ? 'ANIMATION' : 'CODE'}
+            </button>
+            <button className="next" onClick={nextSlide}>❯</button>
+          </div>
         </div>
-        <button className="prev" onClick={prevSlide}>❮</button>
-        <button className="next" onClick={nextSlide}>❯</button>
       </div>
-      <button className="code-btn" onClick={handleCodeClick}>
-        {isDoubled ? 'ANIMATION' : 'CODE'}
-      </button>
       <div
         ref={codeRef}
-        className="code-squares-wrapper"
+        className={`code-squares-wrapper${isDoubled ? ' open' : ''}`}
         style={{
           maxHeight: isDoubled ? '1000px' : '0',
           opacity: isDoubled ? 1 : 0,

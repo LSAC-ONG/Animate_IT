@@ -13,7 +13,6 @@ import DancingShadowCss from './TextAnimations/DancingShadow/DancingShadow.css?r
 import MatrixGlitchCode from './TextAnimations/MatrixGlitch/MatrixGlitch.jsx?raw';
 import MatrixGlitchCss from './TextAnimations/MatrixGlitch/MatrixGlitch.css?raw';
 
-// --- Animation Data ---
 const animations = [
   'DancingShadow',
   'MatrixGlitch'
@@ -24,7 +23,6 @@ const animationCodes = [
   { jsx: MatrixGlitchCode, css: MatrixGlitchCss }
 ];
 
-// --- Component ---
 function Text() {
   const [currentAnimation, setCurrentAnimation] = useState(0);
   const [isDoubled, setIsDoubled] = useState(false);
@@ -32,7 +30,6 @@ function Text() {
   const animationRef = useRef(null);
   const codeRef = useRef(null);
 
-  // --- Handlers ---
   const prevSlide = () => {
     setCurrentAnimation((prev) => (prev - 1 + animations.length) % animations.length);
     setIsDoubled(false);
@@ -78,7 +75,6 @@ function Text() {
     window.alert('Text copied!');
   };
 
-  // --- Render ---
   return (
     <>
       <div ref={animationRef} className="text-container">
@@ -90,22 +86,23 @@ function Text() {
             {animations[currentAnimation] === 'MatrixGlitch' && <MatrixGlitch />}
           </div>
         </div>
-        <button className="prev" onClick={prevSlide}>❮</button>
-        <button className="next" onClick={nextSlide}>❯</button>
+        <div className="arrows-row">
+          <button className="prev" onClick={prevSlide}>❮</button>
+          <button className="code-btn" onClick={handleCodeClick}>
+            {isDoubled ? 'ANIMATION' : 'CODE'}
+          </button>
+          <button className="next" onClick={nextSlide}>❯</button>
+        </div>
       </div>
-
-      <button className="code-btn" onClick={handleCodeClick}>
-        {isDoubled ? 'ANIMATION' : 'CODE'}
-      </button>
 
       <div
         ref={codeRef}
-        className="code-squares-wrapper"
+        className={`code-squares-wrapper${isDoubled ? ' open' : ''}`}
         style={{
-          maxHeight: isDoubled ? '1000px' : '0',
-          opacity: isDoubled ? 1 : 0,
-          overflow: 'hidden',
-          transition: 'max-height 0.6s cubic-bezier(0.4,0,0.2,1), opacity 0.4s'
+            maxHeight: isDoubled ? '3000px' : '0',
+            opacity: isDoubled ? 1 : 0,
+            overflow: 'hidden',
+            transition: 'max-height 0.6s cubic-bezier(0.4,0,0.2,1), opacity 0.4s'
         }}
       >
         {isDoubled && (

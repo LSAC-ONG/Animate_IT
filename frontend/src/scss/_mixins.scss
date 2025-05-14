@@ -1,6 +1,6 @@
 @mixin buttons-style($side) {
   position: absolute;
-  top: 50% - 5;
+  top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
@@ -21,31 +21,62 @@
     border: 0.3rem solid #08D0FE;
     box-shadow: 0 0.2rem 0.5rem #FF007B, 0 0.2rem 0.5rem #FF007B;
   }
+
+  // Responsive: rectangle, centered, not absolute
+  @media (max-width: 900px) {
+    position: static !important;
+    display: inline-block;
+    margin: 0 1.2rem 0 1.2rem;
+    transform: none !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    background: none;
+    border: none;
+    color: #08D0FE;
+    font-size: 1.5rem;
+    border: 0.3rem solid #08D0FE;
+    cursor: pointer;
+    &:hover {
+    border: 0.3rem solid #08D0FE;
+    box-shadow: 0 0.2rem 0.5rem #FF007B, 0 0.2rem 0.5rem #FF007B;
+  }
+  }
 }
 
 @mixin subpage-format {
-		.title {
-			font-size: 4rem;
-			text-align: left;
-			display: inline-block;
-			margin-left: 3rem;
-			margin-top: 0;
-			font-family: "Roboto Mono", monospace;
+  .title {
+    font-size: 4rem;
+    text-align: left;
+    display: inline-block;
+    margin-left: 3rem;
+    margin-top: 0;
+    font-family: "Roboto Mono", monospace;
+    background: -webkit-linear-gradient(#08D0FE, #FF007B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.1rem #ffffff;
 
-			background: -webkit-linear-gradient(#08D0FE, #FF007B);
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
-			-webkit-text-stroke: 0.1rem #ffffff;
-		}
+    @media (max-width: 700px) {
+      font-size: 4rem;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 2.2rem auto 0.5rem auto;
+      min-height: 3.5rem;
+    }
+  }
 
+  .prev {
+    @include buttons-style('prev');
+  }
 
-		.prev {
-			@include buttons-style('prev');
-		}
-
-		.next {
-			@include buttons-style('next');
-		}
+  .next {
+    @include buttons-style('next');
+  }
 }
 
 @mixin code-btn-style {
@@ -65,7 +96,6 @@
   &:hover {
     background: darkorange;
   }
-
 }
 
 @mixin code-square-style($gradient) {
@@ -87,23 +117,23 @@
     font-weight: bold;
     margin-bottom: 1rem;
     letter-spacing: 0.1em;
-    color: #08D0FE; // blue title
+    color: #08D0FE;
     text-align: left;
-    border-bottom: 2px solid #08D0FE; // blue separator line
+    border-bottom: 2px solid #08D0FE;
     padding-bottom: 0.5rem;
   }
 
   pre {
     margin: 0;
     flex: 1;
-    overflow-y: auto;      // vertical scroll
-    overflow-x: hidden;    // no horizontal scroll
+    overflow-y: auto;
+    overflow-x: hidden;
     color: #fff;
     font-size: 1.1rem;
     font-family: "Fira Mono", "Roboto Mono", monospace;
     background: transparent;
     border: none;
-    white-space: pre-wrap; // allow wrapping
+    white-space: pre-wrap;
     word-break: break-word;
   }
 }

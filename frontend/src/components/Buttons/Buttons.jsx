@@ -5,7 +5,7 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import copyIcon from '../../assets/copy_simbol.png';
 import Nav from "../Nav";
 
-// Add your animation imports here when available
+// Uncomment and import your animations and code when available
 // import ButtonAnim1 from './ButtonAnimations/ButtonAnim1/ButtonAnim1';
 // import ButtonAnim2 from './ButtonAnimations/ButtonAnim2/ButtonAnim2';
 // import ButtonAnim3 from './ButtonAnimations/ButtonAnim3/ButtonAnim3';
@@ -109,16 +109,18 @@ function Buttons() {
               </>
             )}
           </div>
+          <div className="arrows-row">
+            <button className="prev" onClick={prevSlide}>❮</button>
+            <button className="code-btn" onClick={handleCodeClick}>
+              {isDoubled ? 'ANIMATION' : 'CODE'}
+            </button>
+            <button className="next" onClick={nextSlide}>❯</button>
+          </div>
         </div>
-        <button className="prev" onClick={prevSlide}>❮</button>
-        <button className="next" onClick={nextSlide}>❯</button>
       </div>
-      <button className="code-btn" onClick={handleCodeClick}>
-        {isDoubled ? 'ANIMATION' : 'CODE'}
-      </button>
       <div
         ref={codeRef}
-        className="code-squares-wrapper"
+        className={`code-squares-wrapper${isDoubled ? ' open' : ''}`}
         style={{
           maxHeight: isDoubled ? '1000px' : '0',
           opacity: isDoubled ? 1 : 0,
