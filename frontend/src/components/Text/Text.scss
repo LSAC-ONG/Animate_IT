@@ -3,11 +3,12 @@
 .text-container {
 
 	.slider{
+		position: relative;
 		overflow: hidden;
 		margin-left: auto;
 		margin-right: auto;
 		position: relative;
-		margin-top: auto;
+		margin-top: 1.5rem;
 		margin-bottom: auto;
 		width: 60rem;
 		height: 25rem;
@@ -27,4 +28,28 @@
 	@include subpage-format();
 }
 
+.code-btn {
+	@include code-btn-style;
+}
+
+.code-squares-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 3rem 0 2rem 0;
+  overflow: hidden;
+  transition: max-height 0.6s cubic-bezier(0.4,0,0.2,1), opacity 0.4s;
+}
+
+.code-square.css {
+  @include code-square-style(linear-gradient(to right, #08D0FE, #FF007B));
+}
+
+.code-square.jsx {
+  @include code-square-style(linear-gradient(to right, #FF007B, #08D0FE));
+}
+
+.copy-btn {
+  @include copy-btn-style;
+}
 

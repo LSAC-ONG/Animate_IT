@@ -1,26 +1,26 @@
 @mixin buttons-style($side) {
-	position: absolute;
-	top: calc(50% + 4.75rem);
-	transform: translateY(-50%);
-	background:none;
-	border:none;
-	color: #08D0FE;
-	font-size: 2rem;
-	text-align: center;
-	border: 0.3rem solid #08D0FE;
+  position: absolute;
+  top: 50% - 5;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #08D0FE;
+  font-size: 2rem;
+  text-align: center;
+  border: 0.3rem solid #08D0FE;
 
-	@if $side == 'prev' {
-		left: calc(50% - 38rem);
-	  } @else if $side == 'next' {
-		right: calc(50% - 38rem);
-	  } @else {
-		@error "Invalid side value. Use either 'left' or 'right'";
-	  }
+  @if $side == 'prev' {
+    left: calc(50% - 38rem);
+  } @else if $side == 'next' {
+    right: calc(50% - 38rem);
+  } @else {
+    @error "Invalid side value. Use either 'left' or 'right'";
+  }
 
-	&:hover {
-		border: 0.3rem solid #08D0FE;
-		box-shadow: 0 0.2rem 0.5rem #FF007B,0 0.2rem 0.5rem #FF007B;
-	}
+  &:hover {
+    border: 0.3rem solid #08D0FE;
+    box-shadow: 0 0.2rem 0.5rem #FF007B, 0 0.2rem 0.5rem #FF007B;
+  }
 }
 
 @mixin subpage-format {
@@ -31,19 +31,109 @@
 			margin-left: 3rem;
 			margin-top: 0;
 			font-family: "Roboto Mono", monospace;
-		
+
 			background: -webkit-linear-gradient(#08D0FE, #FF007B);
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 			-webkit-text-stroke: 0.1rem #ffffff;
 		}
 
-	
+
 		.prev {
 			@include buttons-style('prev');
 		}
-	
+
 		.next {
 			@include buttons-style('next');
 		}
+}
+
+@mixin code-btn-style {
+  display: block;
+  margin: 2rem auto 0 auto;
+  padding: 0.75rem 2.5rem;
+  background: orange;
+  font-size: 1.5rem;
+  font-family: "Montserrat", monospace;
+  font-weight: 900;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 0.2rem 0.6rem rgba(255, 140, 0, 0.3);
+
+  &:hover {
+    background: darkorange;
+  }
+
+}
+
+@mixin code-square-style($gradient) {
+  background: #111;
+  border: 0.3rem solid;
+  border-image: $gradient 1;
+  width: 42rem;
+  height: 35rem;
+  border-radius: 1rem;
+  padding: 1.5rem 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  box-shadow: 0 0.2rem 0.5rem #222;
+
+  .code-title {
+    font-size: 1.5rem;
+    font-family: "Roboto Mono", monospace;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+    color: #08D0FE; // blue title
+    text-align: left;
+    border-bottom: 2px solid #08D0FE; // blue separator line
+    padding-bottom: 0.5rem;
+  }
+
+  pre {
+    margin: 0;
+    flex: 1;
+    overflow-y: auto;      // vertical scroll
+    overflow-x: hidden;    // no horizontal scroll
+    color: #fff;
+    font-size: 1.1rem;
+    font-family: "Fira Mono", "Roboto Mono", monospace;
+    background: transparent;
+    border: none;
+    white-space: pre-wrap; // allow wrapping
+    word-break: break-word;
+  }
+}
+
+@mixin copy-btn-style {
+  background: orange;
+  border: none;
+  border-radius: 50%;
+  padding: 0.5rem;
+  margin-left: 1rem;
+  position: relative;
+  top: -0.2rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+
+  img {
+    width: 1.2rem;
+    height: 1.2rem;
+    display: block;
+    margin: 0 auto;
+  }
+
+  &:hover {
+    background: darkorange;
+  }
+
+  &:active {
+    transform: scale(0.90);
+  }
 }
