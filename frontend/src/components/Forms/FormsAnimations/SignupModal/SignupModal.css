@@ -1,0 +1,78 @@
+.signup-modal {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-modal span {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 4px;
+  background: #2c4766;
+  border-radius: 8px;
+  transform-origin: 120px;
+  transform: scale(1.8) rotate(calc(var(--i) * (360deg / 50)));
+  animation: animateBlink 3s linear infinite;
+  animation-delay: calc(var(--i) * (3s / 50));
+  z-index: 0;
+}
+
+@keyframes animateBlink {
+  0% { background: #0ef; }
+  25% { background: #2c4766; }
+}
+
+.signup-form {
+  position: relative;
+  width: 320px;
+  background: #1e1e2f;
+  padding: 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(8, 208, 254, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  z-index: 1;
+}
+
+.input-box {
+  position: relative;
+  margin: 12px 0;
+}
+
+.input-box input {
+  height: 40px;
+  padding: 0 15px;
+  font-size: 0.85em;
+  border: 1.5px solid #2c4766;
+}
+
+.input-box label {
+  font-size: 0.85em;
+  left: 15px;
+  transform: translateY(-50%);
+  padding: 0 4px;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+  font-size: 0.75em;
+  top: 0;
+  background: #1e1e2f;
+}
+
+.btn {
+  height: 40px;
+  font-size: 0.9em;
+  margin-top: 0.5rem;
+}
+
+.signup-form h2 {
+  font-size: 1.6em;
+  margin-bottom: 0.2rem;
+}

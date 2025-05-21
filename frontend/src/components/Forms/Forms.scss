@@ -3,7 +3,7 @@
 .forms-container {
   .slider {
     position: relative;
-    overflow: hidden;
+    overflow: visible; // Changed from hidden to visible
     margin-left: auto;
     margin-right: auto;
     margin-top: 1.5rem;
@@ -42,14 +42,31 @@
   width: 100%;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1000; // Added z-index
+
+  button {
+    color: #08D0FE !important;
+    background: transparent !important;
+    border: 2px solid #08D0FE !important;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: #08D0FE !important;
+      color: #1f293a !important;
+    }
+  }
 }
 
 .code-btn {
   @include code-btn-style;
-  margin: 2rem auto 0 auto;
-  display: block;
-  align-self: center;
-  line-height: 1.5;
+  margin: 0 !important; // Override previous margin
+  padding: 0.5rem 1.5rem !important;
+  font-size: 1.1rem !important;
 }
 
 .code-squares-wrapper {

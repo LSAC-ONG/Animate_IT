@@ -1,0 +1,177 @@
+:root {
+  --bg-body: #212121;
+  --bg-gradient: linear-gradient(
+    90deg,
+    rgba(2,0,36,1) 0%,
+    rgba(52,9,121,1) 37%,
+    rgba(0,212,255,1) 94%
+  );
+  --bg-gradient-last: rgba(0,212,255,1);
+}
+
+.form-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-body);
+  color: #fff;
+  font-family: monospace, serif;
+  letter-spacing: 0.05em;
+}
+
+.form {
+  width: 300px;
+  padding: 64px 15px 24px;
+  position: relative;
+}
+
+h1 {
+  font-size: 23px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.control {
+  margin: 0 0 24px;
+  position: relative;
+}
+
+input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-family: monospace, serif;
+  letter-spacing: 0.05em;
+  font-size: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+input:focus,
+input:hover {
+  outline: none;
+  border: 0;
+}
+
+.btn {
+  width: 100%;
+  padding: 14px 16px;
+  background: transparent;
+  outline: none;
+  border: 0;
+  color: #fff;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Cube effects */
+.block-cube {
+  position: relative;
+}
+
+.block-cube .bg-top {
+  position: absolute;
+  height: 10px;
+  background: var(--bg-gradient);
+  bottom: 100%;
+  left: 5px;
+  right: -5px;
+  transform: skew(-45deg, 0);
+  margin: 0;
+}
+
+.block-cube .bg-top .bg-inner,
+.block-cube .bg-right .bg-inner,
+.block-cube .bg .bg-inner {
+  transition: all 0.2s ease-in-out;
+}
+
+.block-cube .bg-right {
+  position: absolute;
+  background: var(--bg-gradient-last);
+  top: -5px;
+  z-index: 0;
+  bottom: 5px;
+  width: 10px;
+  left: 100%;
+  transform: skew(0, -45deg);
+}
+
+.block-cube .bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-gradient);
+}
+
+.block-cube .bg-inner {
+  background: var(--bg-body);
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  right: 2px;
+  bottom: 2px;
+}
+
+.block-input input:focus ~ .bg-right .bg-inner,
+.block-input input:focus ~ .bg-top .bg-inner,
+.block-input input:focus ~ .bg .bg-inner {
+  top: 100%;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.block-input .bg-top,
+.block-input .bg-right,
+.block-input .bg {
+  background: rgba(255, 255, 255, 0.5);
+  transition: background 0.2s ease-in-out;
+}
+
+.block-input:hover .bg-top,
+.block-input:hover .bg-right,
+.block-input:hover .bg,
+.block-input:focus .bg-top,
+.block-input:focus .bg-right,
+.block-input:focus .bg {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.block-cube-hover:hover .bg .bg-inner,
+.block-cube-hover:focus .bg .bg-inner {
+  top: 100%;
+}
+
+.text {
+  position: relative;
+  z-index: 2;
+}
+
+.credits {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 15px;
+  width: 100%;
+  text-align: center;
+}
+
+.credits a {
+  opacity: 0.6;
+  color: #fff;
+  font-size: 11px;
+  text-decoration: none;
+}
+
+.credits a:hover {
+  opacity: 1;
+}

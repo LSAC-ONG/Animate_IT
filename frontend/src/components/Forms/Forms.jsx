@@ -5,27 +5,33 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import copyIcon from '../../assets/copy_simbol.png';
 import Nav from "../Nav";
 
-// Uncomment and import your animations and code when available
-// import FormsAnim1 from './FormsAnimations/FormsAnim1/FormsAnim1';
-// import FormsAnim2 from './FormsAnimations/FormsAnim2/FormsAnim2';
-// import FormsAnim3 from './FormsAnimations/FormsAnim3/FormsAnim3';
-// import FormsAnim1Code from './FormsAnimations/FormsAnim1/FormsAnim1.jsx?raw';
-// import FormsAnim1Css from './FormsAnimations/FormsAnim1/FormsAnim1.css?raw';
-// import FormsAnim2Code from './FormsAnimations/FormsAnim2/FormsAnim2.jsx?raw';
-// import FormsAnim2Css from './FormsAnimations/FormsAnim2/FormsAnim2.css?raw';
-// import FormsAnim3Code from './FormsAnimations/FormsAnim3/FormsAnim3.jsx?raw';
-// import FormsAnim3Css from './FormsAnimations/FormsAnim3/FormsAnim3.css?raw';
+import SignupModal from './FormsAnimations/SignupModal/SignupModal';
+import WavyLogin from './FormsAnimations/WavyLogin/WavyLogin';
+import SimpleRegistrationForm from './FormsAnimations/SimpleRegistrationForm/SimpleRegistrationForm';
+import BlockyForm from './FormsAnimations/BlockyForm/BlockyForm';
+
+import SignupModalCode from './FormsAnimations/SignupModal/SignupModal.jsx?raw';
+import WavyLoginCode from './FormsAnimations/WavyLogin/WavyLogin.jsx?raw';
+import SignupModalCss from './FormsAnimations/SignupModal/SignupModal.css?raw';
+import WavyLoginCss from './FormsAnimations/WavyLogin/WavyLogin.css?raw';
+import SimpleRegistrationFormCode from './FormsAnimations/SimpleRegistrationForm/SimpleRegistrationForm.jsx?raw';
+import SimpleRegistrationFormCss from './FormsAnimations/SimpleRegistrationForm/SimpleRegistrationForm.css?raw';
+import BlockyFormCode from './FormsAnimations/BlockyForm/BlockyForm.jsx?raw';
+import BlockyFormCss from './FormsAnimations/BlockyForm/BlockyForm.css?raw';
 
 const animations = [
-  // 'FormsAnim1',
-  // 'FormsAnim2',
-  // 'FormsAnim3'
+  'WavyLogin',
+  'SignupModal',
+  'BlockyForm',
+  'SimpleRegistrationForm'
+  // Add more animations here
 ];
 
 const animationCodes = [
-  // { jsx: FormsAnim1Code, css: FormsAnim1Css },
-  // { jsx: FormsAnim2Code, css: FormsAnim2Css },
-  // { jsx: FormsAnim3Code, css: FormsAnim3Css }
+  { jsx: SignupModalCode, css: SignupModalCss },
+  { jsx: WavyLoginCode, css: WavyLoginCss },
+  { jsx: SimpleRegistrationFormCode, css: SimpleRegistrationFormCss },
+  { jsx: BlockyFormCode, css: BlockyFormCss }
 ];
 
 function Forms() {
@@ -103,9 +109,11 @@ function Forms() {
               </div>
             ) : (
               <>
-                {/* {animations[currentAnimation] === 'FormsAnim1' && <FormsAnim1 />} */}
-                {/* {animations[currentAnimation] === 'FormsAnim2' && <FormsAnim2 />} */}
-                {/* {animations[currentAnimation] === 'FormsAnim3' && <FormsAnim3 />} */}
+                {animations[currentAnimation] === 'SignupModal' && <SignupModal />}
+                {animations[currentAnimation] === 'WavyLogin' && <WavyLogin />}
+                {animations[currentAnimation] === 'BlockyForm' && <BlockyForm />}
+                {animations[currentAnimation] === 'SimpleRegistrationForm' && <SimpleRegistrationForm />}
+                {/* Add more animations here */}
               </>
             )}
           </div>
