@@ -5,14 +5,11 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import copyIcon from '../../assets/copy_simbol.png';
 import Nav from "../Nav";
 
-import SignupModal from './FormsAnimations/SignupModal/SignupModal';
 import WavyLogin from './FormsAnimations/WavyLogin/WavyLogin';
 import SimpleRegistrationForm from './FormsAnimations/SimpleRegistrationForm/SimpleRegistrationForm';
 import BlockyForm from './FormsAnimations/BlockyForm/BlockyForm';
 
-import SignupModalCode from './FormsAnimations/SignupModal/SignupModal.jsx?raw';
 import WavyLoginCode from './FormsAnimations/WavyLogin/WavyLogin.jsx?raw';
-import SignupModalCss from './FormsAnimations/SignupModal/SignupModal.css?raw';
 import WavyLoginCss from './FormsAnimations/WavyLogin/WavyLogin.css?raw';
 import SimpleRegistrationFormCode from './FormsAnimations/SimpleRegistrationForm/SimpleRegistrationForm.jsx?raw';
 import SimpleRegistrationFormCss from './FormsAnimations/SimpleRegistrationForm/SimpleRegistrationForm.css?raw';
@@ -21,14 +18,12 @@ import BlockyFormCss from './FormsAnimations/BlockyForm/BlockyForm.css?raw';
 
 const animations = [
   'WavyLogin',
-  'SignupModal',
   'BlockyForm',
   'SimpleRegistrationForm'
   // Add more animations here
 ];
 
 const animationCodes = [
-  { jsx: SignupModalCode, css: SignupModalCss },
   { jsx: WavyLoginCode, css: WavyLoginCss },
   { jsx: SimpleRegistrationFormCode, css: SimpleRegistrationFormCss },
   { jsx: BlockyFormCode, css: BlockyFormCss }
@@ -109,7 +104,6 @@ function Forms() {
               </div>
             ) : (
               <>
-                {animations[currentAnimation] === 'SignupModal' && <SignupModal />}
                 {animations[currentAnimation] === 'WavyLogin' && <WavyLogin />}
                 {animations[currentAnimation] === 'BlockyForm' && <BlockyForm />}
                 {animations[currentAnimation] === 'SimpleRegistrationForm' && <SimpleRegistrationForm />}

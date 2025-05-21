@@ -6,7 +6,7 @@ function SimpleRegistrationForm() {
       <form className="login">
         <input type="text" placeholder="Username" />
         <input type="password" placeholder="Password" />
-        <button>Login</button>
+        <button disabled>Login</button>
       </form>
     </div>
   );
