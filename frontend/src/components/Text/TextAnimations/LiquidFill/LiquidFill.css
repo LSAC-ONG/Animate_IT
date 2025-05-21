@@ -1,0 +1,32 @@
+.liquid-text {
+  position: relative;
+  display: inline-block;
+  font-size: 3em;
+  color: white;
+  background-color: black;
+  padding: 0.3em 0.6em;
+  overflow: hidden;
+  border-radius: 5px;
+  z-index: 0;
+}
+
+.liquid-text::before {
+  content: '';
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, #00f2ff, #00ffd0);
+  box-shadow: 0 0 20px #0ef, 0 0 60px #0ef;
+  z-index: -1;
+  transition: bottom 0.5s ease-in-out;
+}
+
+.liquid-text:hover::before {
+  bottom: 0;
+}
+.liquid-text:hover {
+  color: transparent;
+  text-shadow: 0 0 20px #0ef, 0 0 60px #0ef;
+}
