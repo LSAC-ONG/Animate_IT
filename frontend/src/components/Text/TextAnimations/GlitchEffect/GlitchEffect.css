@@ -1,0 +1,28 @@
+.glitch-text {
+  position: relative;
+  color: white;
+  font-size: 3em;
+  font-weight: bold;
+  animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 0 red;
+  }
+  20% {
+    text-shadow: -2px 0 blue;
+  }
+  40% {
+    text-shadow: 2px 0 green;
+  }
+  60% {
+    text-shadow: -2px 0 yellow;
+  }
+  80% {
+    text-shadow: 2px 0 purple;
+  }
+  100% {
+    text-shadow: -2px 0 orange;
+  }
+}

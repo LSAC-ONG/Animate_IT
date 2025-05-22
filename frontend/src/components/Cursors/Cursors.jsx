@@ -110,14 +110,14 @@ function Cursors() {
               </>
             )}
           </div>
-          <div className="arrows-row">
+        </div>
+        <div className="arrows-row">
             <button className="prev" onClick={prevSlide}>❮</button>
             <button className="code-btn" onClick={handleCodeClick}>
               {isDoubled ? 'ANIMATION' : 'CODE'}
             </button>
             <button className="next" onClick={nextSlide}>❯</button>
           </div>
-        </div>
       </div>
       <div
         ref={codeRef}

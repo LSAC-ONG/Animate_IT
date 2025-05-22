@@ -1,0 +1,159 @@
+.shooting-stars-container {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, #0b0b2b, #1b2735 70%, #090a0f);
+    overflow: hidden;
+}
+
+/* stele statice: punte de bază 2px × 2px, fără blur la box-shadow */
+.stars {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    z-index: 10;
+    /* x y blur(0!) color */
+    box-shadow:
+        2vw 5vh 0 white,
+        10vw 8vh 0 white,
+        15vw 15vh 0 white,
+        22vw 22vh 0 white,
+        28vw 12vh 0 white,
+        32vw 32vh 0 white,
+        38vw 18vh 0 white,
+        42vw 35vh 0 white,
+        48vw 25vh 0 white,
+        53vw 42vh 0 white,
+        58vw 15vh 0 white,
+        63vw 38vh 0 white,
+        68vw 28vh 0 white,
+        73vw 45vh 0 white,
+        78vw 32vh 0 white,
+        83vw 48vh 0 white,
+        88vw 20vh 0 white,
+        93vw 52vh 0 white,
+        98vw 35vh 0 white,
+        5vw 60vh 0 white,
+        12vw 65vh 0 white,
+        18vw 72vh 0 white,
+        25vw 78vh 0 white,
+        30vw 85vh 0 white,
+        35vw 68vh 0 white,
+        40vw 82vh 0 white,
+        45vw 92vh 0 white,
+        50vw 75vh 0 white,
+        55vw 88vh 0 white,
+        60vw 95vh 0 white,
+        65vw 72vh 0 white,
+        70vw 85vh 0 white,
+        75vw 78vh 0 white,
+        80vw 92vh 0 white,
+        85vw 82vh 0 white,
+        90vw 88vh 0 white,
+        95vw 75vh 0 white;
+    animation: twinkle 8s infinite linear;
+}
+
+/* pseudo-element pentru un al doilea strat de twinkle */
+.stars::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    z-index: 10;
+    box-shadow:
+        8vw 12vh 0 white,
+        16vw 18vh 0 white,
+        24vw 25vh 0 white,
+        33vw 15vh 0 white,
+        41vw 28vh 0 white,
+        49vw 35vh 0 white,
+        57vw 22vh 0 white,
+        65vw 42vh 0 white,
+        73vw 28vh 0 white,
+        81vw 48vh 0 white,
+        89vw 32vh 0 white,
+        97vw 45vh 0 white,
+        3vw 68vh 0 white,
+        11vw 75vh 0 white,
+        19vw 82vh 0 white,
+        27vw 88vh 0 white,
+        35vw 72vh 0 white,
+        43vw 85vh 0 white,
+        51vw 92vh 0 white,
+        59vw 78vh 0 white;
+    animation: twinkle 6s infinite linear reverse;
+}
+
+/* stele căzătoare */
+.shooting-star {
+    position: absolute;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, white, transparent);
+    animation: shoot 3s infinite ease-in;
+}
+
+.shooting-star:nth-child(1) {
+    top: 20%;
+    left: -120px;
+    animation-delay: 0s;
+}
+
+.shooting-star:nth-child(2) {
+    top: 35%;
+    left: -120px;
+    animation-delay: 1s;
+}
+
+.shooting-star:nth-child(3) {
+    top: 50%;
+    left: -120px;
+    animation-delay: 2s;
+}
+
+.shooting-star:nth-child(4) {
+    top: 65%;
+    left: -120px;
+    animation-delay: 3s;
+}
+
+.shooting-star:nth-child(5) {
+    top: 80%;
+    left: -120px;
+    animation-delay: 4s;
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+@keyframes shoot {
+    0% {
+        transform: translateX(0) translateY(0) rotate(25deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(120vw) translateY(50vh) rotate(25deg);
+        opacity: 0;
+    }
+}
+
+.shooting-stars-container .center {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
