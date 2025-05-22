@@ -1,0 +1,21 @@
+.gooey-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #000;
+  filter: url(#goo);
+}
+
+.gooey-text {
+  font-size: 5rem;
+  font-weight: bold;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+  position: relative;
+  transition: letter-spacing 0.3s ease;
+}
+
+.gooey-text:hover {
+  letter-spacing: 10px;
+}

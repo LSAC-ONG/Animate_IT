@@ -1,0 +1,91 @@
+:root {
+  --green-seaweed: rgba(2, 128, 144, 1);
+  --blue-queen: rgba(69, 105, 144, 1);
+  --red-fire: rgba(244, 91, 105, 1);
+}
+
+.login-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--red-fire);
+  font-family: 'Asap', sans-serif;
+  overflow: hidden;
+}
+
+.login {
+  position: relative;
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 5px 10px 10px rgba(2, 128, 144, 0.2);
+  z-index: 2;
+}
+
+.login input {
+  display: block;
+  width: 100%;
+  margin: 15px 0;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.login button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--red-fire);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-top: 15px;
+}
+
+.login button:hover {
+  background-color: rgba(244, 91, 105, 0.9);
+}
+
+.login-container::before,
+.login-container::after {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 45%;
+  background-color: rgba(255, 255, 255, 0.15);
+  animation: wawes 20s infinite linear;
+  bottom: -150px;
+}
+
+.login-container::before {
+  left: -100px;
+  animation-duration: 25s;
+}
+
+.login-container::after {
+  left: -50px;
+  animation-duration: 30s;
+  opacity: 0.7;
+}
+
+@keyframes wawes {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.login-container a {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 12px;
+}
