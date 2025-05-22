@@ -7,24 +7,25 @@ import Nav from "../Nav";
 
 // Uncomment and import your animations and code when available
 import DotTrail from './CursorAnimations/DotTrail/DotTrail';
-// import CursorAnim2 from './CursorAnimations/CursorAnim2/CursorAnim2';
+import ColorCircles from './CursorAnimations/ColorCircles/ColorCircles';
 // import CursorAnim3 from './CursorAnimations/CursorAnim3/CursorAnim3';
 import DotTrailCode from './CursorAnimations/DotTrail/DotTrail.jsx?raw';
 import DotTrailCss from './CursorAnimations/DotTrail/DotTrail.scss?raw';
-// import CursorAnim2Code from './CursorAnimations/CursorAnim2/CursorAnim2.jsx?raw';
-// import CursorAnim2Css from './CursorAnimations/CursorAnim2/CursorAnim2.css?raw';
+import ColorCirclesCode from './CursorAnimations/ColorCircles/ColorCircles.jsx?raw';
+import ColorCirclesCss from './CursorAnimations/ColorCircles/ColorCircles.scss?raw';
 // import CursorAnim3Code from './CursorAnimations/CursorAnim3/CursorAnim3.jsx?raw';
 // import CursorAnim3Css from './CursorAnimations/CursorAnim3/CursorAnim3.css?raw';
 
 const animations = [
   'DotTrail',
-  // 'CursorAnim2',
+  'ColorCircles',
+  
   // 'CursorAnim3'
 ];
 
 const animationCodes = [
+  { jsx: ColorCirclesCode, css: ColorCirclesCss },
   { jsx: DotTrailCode, css: DotTrailCss },
-  // { jsx: CursorAnim2Code, css: CursorAnim2Css },
   // { jsx: CursorAnim3Code, css: CursorAnim3Css }
 ];
 
@@ -103,8 +104,8 @@ function Cursors() {
               </div>
             ) : (
               <>
+                {animations[currentAnimation] === 'ColorCircles' && <ColorCircles />}
                 {animations[currentAnimation] === 'DotTrail' && <DotTrail />}
-                {/* {animations[currentAnimation] === 'CursorAnim2' && <CursorAnim2 />} */}
                 {/* {animations[currentAnimation] === 'CursorAnim3' && <CursorAnim3 />} */}
               </>
             )}

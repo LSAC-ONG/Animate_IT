@@ -3,7 +3,7 @@
 .cursors-container {
   .slider {
     position: relative;
-    overflow: hidden;
+    // overflow: hidden;
     margin-left: auto;
     margin-right: auto;
     margin-top: 1.5rem;
@@ -34,15 +34,29 @@
 }
 
 .arrows-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 1.2rem;
-  width: 100%;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
+  button {
+    background: transparent;
+    border: none;
+    color: white;            
+    font-size: 2.5rem;       
+    padding: 0.2em 0.5em;     
+    cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #08D0FE;        // or any accent color you like
+    }
+
+    &.code-btn {
+      font-size: 1.1rem;     // match your other code-button sizing
+      padding: 0.5rem 1.2rem; 
+      border-radius: 0.3rem;
+      border: 1px solid white;
+      background: rgba(255,255,255,0.1);
+    }
+  }
 }
+
 
 .code-btn {
   @include code-btn-style;
