@@ -6,25 +6,25 @@ import copyIcon from '../../assets/copy_simbol.png';
 import Nav from "../Nav";
 
 // Uncomment and import your animations and code when available
-// import ButtonAnim1 from './ButtonAnimations/ButtonAnim1/ButtonAnim1';
-// import ButtonAnim2 from './ButtonAnimations/ButtonAnim2/ButtonAnim2';
+import SnakeEdge from './ButtonAnimations/SnakeEdge/SnakeEdge';
+import CursorAware from './ButtonAnimations/CursorAware/CursorAware';
 // import ButtonAnim3 from './ButtonAnimations/ButtonAnim3/ButtonAnim3';
-// import ButtonAnim1Code from './ButtonAnimations/ButtonAnim1/ButtonAnim1.jsx?raw';
-// import ButtonAnim1Css from './ButtonAnimations/ButtonAnim1/ButtonAnim1.css?raw';
-// import ButtonAnim2Code from './ButtonAnimations/ButtonAnim2/ButtonAnim2.jsx?raw';
-// import ButtonAnim2Css from './ButtonAnimations/ButtonAnim2/ButtonAnim2.css?raw';
+import SnakeEdgeCode from './ButtonAnimations/SnakeEdge/SnakeEdge.jsx?raw';
+import SnakeEdgeCss from './ButtonAnimations/SnakeEdge/SnakeEdge.scss?raw';
+import CursorAwareCode from './ButtonAnimations/CursorAware/CursorAware.jsx?raw';
+import CursorAwareCss from './ButtonAnimations/CursorAware/CursorAware.scss?raw';
 // import ButtonAnim3Code from './ButtonAnimations/ButtonAnim3/ButtonAnim3.jsx?raw';
 // import ButtonAnim3Css from './ButtonAnimations/ButtonAnim3/ButtonAnim3.css?raw';
 
 const animations = [
-  // 'ButtonAnim1',
-  // 'ButtonAnim2',
+  'CursorAware',
+  'SnakeEdge',
   // 'ButtonAnim3'
 ];
 
 const animationCodes = [
-  // { jsx: ButtonAnim1Code, css: ButtonAnim1Css },
-  // { jsx: ButtonAnim2Code, css: ButtonAnim2Css },
+  { jsx: CursorAwareCode, css: CursorAwareCss },
+  { jsx: SnakeEdgeCode, css: SnakeEdgeCss },
   // { jsx: ButtonAnim3Code, css: ButtonAnim3Css }
 ];
 
@@ -103,8 +103,8 @@ function Buttons() {
               </div>
             ) : (
               <>
-                {/* {animations[currentAnimation] === 'ButtonAnim1' && <ButtonAnim1 />} */}
-                {/* {animations[currentAnimation] === 'ButtonAnim2' && <ButtonAnim2 />} */}
+                {animations[currentAnimation] === 'CursorAware' && <CursorAware />}
+                {animations[currentAnimation] === 'SnakeEdge' && <SnakeEdge />}
                 {/* {animations[currentAnimation] === 'ButtonAnim3' && <ButtonAnim3 />} */}
               </>
             )}

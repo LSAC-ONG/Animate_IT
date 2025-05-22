@@ -6,24 +6,24 @@ import copyIcon from '../../assets/copy_simbol.png';
 import Nav from "../Nav";
 
 // Uncomment and import your animations and code when available
-// import CursorAnim1 from './CursorAnimations/CursorAnim1/CursorAnim1';
+import DotTrail from './CursorAnimations/DotTrail/DotTrail';
 // import CursorAnim2 from './CursorAnimations/CursorAnim2/CursorAnim2';
 // import CursorAnim3 from './CursorAnimations/CursorAnim3/CursorAnim3';
-// import CursorAnim1Code from './CursorAnimations/CursorAnim1/CursorAnim1.jsx?raw';
-// import CursorAnim1Css from './CursorAnimations/CursorAnim1/CursorAnim1.css?raw';
+import DotTrailCode from './CursorAnimations/DotTrail/DotTrail.jsx?raw';
+import DotTrailCss from './CursorAnimations/DotTrail/DotTrail.scss?raw';
 // import CursorAnim2Code from './CursorAnimations/CursorAnim2/CursorAnim2.jsx?raw';
 // import CursorAnim2Css from './CursorAnimations/CursorAnim2/CursorAnim2.css?raw';
 // import CursorAnim3Code from './CursorAnimations/CursorAnim3/CursorAnim3.jsx?raw';
 // import CursorAnim3Css from './CursorAnimations/CursorAnim3/CursorAnim3.css?raw';
 
 const animations = [
-  // 'CursorAnim1',
+  'DotTrail',
   // 'CursorAnim2',
   // 'CursorAnim3'
 ];
 
 const animationCodes = [
-  // { jsx: CursorAnim1Code, css: CursorAnim1Css },
+  { jsx: DotTrailCode, css: DotTrailCss },
   // { jsx: CursorAnim2Code, css: CursorAnim2Css },
   // { jsx: CursorAnim3Code, css: CursorAnim3Css }
 ];
@@ -103,7 +103,7 @@ function Cursors() {
               </div>
             ) : (
               <>
-                {/* {animations[currentAnimation] === 'CursorAnim1' && <CursorAnim1 />} */}
+                {animations[currentAnimation] === 'DotTrail' && <DotTrail />}
                 {/* {animations[currentAnimation] === 'CursorAnim2' && <CursorAnim2 />} */}
                 {/* {animations[currentAnimation] === 'CursorAnim3' && <CursorAnim3 />} */}
               </>
