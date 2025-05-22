@@ -5,27 +5,62 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import copyIcon from '../../assets/copy_simbol.png';
 import Nav from "../Nav";
 
-// Uncomment and import your animations and code when available
-// import BckAnim1 from './BackgroundAnimations/BckAnim1/BckAnim1';
-// import BckAnim2 from './BackgroundAnimations/BckAnim2/BckAnim2';
-// import BckAnim3 from './BackgroundAnimations/BckAnim3/BckAnim3';
-// import BckAnim1Code from './BackgroundAnimations/BckAnim1/BckAnim1.jsx?raw';
-// import BckAnim1Css from './BackgroundAnimations/BckAnim1/BckAnim1.css?raw';
-// import BckAnim2Code from './BackgroundAnimations/BckAnim2/BckAnim2.jsx?raw';
-// import BckAnim2Css from './BackgroundAnimations/BckAnim2/BckAnim2.css?raw';
-// import BckAnim3Code from './BackgroundAnimations/BckAnim3/BckAnim3.jsx?raw';
-// import BckAnim3Css from './BackgroundAnimations/BckAnim3/BckAnim3.css?raw';
+import FloatingBalls from './BackgroundAnimations/FloatingBalls/FloatingBalls';
+import FloatingBallsCode from './BackgroundAnimations/FloatingBalls/FloatingBalls.jsx?raw';
+import FloatingBallsCss from './BackgroundAnimations/FloatingBalls/FloatingBalls.css?raw';
+import ShootingStars from './BackgroundAnimations/ShootingStars/ShootingStars';
+import ShootingStarsCode from './BackgroundAnimations/ShootingStars/ShootingStars.jsx?raw';
+import ShootingStarsCss from './BackgroundAnimations/ShootingStars/ShootingStars.css?raw';
+import WavyBackground from './BackgroundAnimations/WavyBackground/WavyBackground';
+import WavyBackgroundCode from './BackgroundAnimations/WavyBackground/WavyBackground.jsx?raw';
+import WavyBackgroundCss from './BackgroundAnimations/WavyBackground/WavyBackground.css?raw';
+
+import Eyes from './BackgroundAnimations/Eyes/Eyes';
+import EyesCode from './BackgroundAnimations/Eyes/Eyes.jsx?raw';
+import EyesCss from './BackgroundAnimations/Eyes/Eyes.css?raw';
+
+import SquareToOctagon from './BackgroundAnimations/SquareToOctagon/SquareToOctagon';
+import SquareToOctagonCode from './BackgroundAnimations/SquareToOctagon/SquareToOctagon.jsx?raw';
+import SquareToOctagonCss from './BackgroundAnimations/SquareToOctagon/SquareToOctagon.css?raw';
+
+import RetroStyle from './BackgroundAnimations/RetroStyle/RetroStyle';
+import RetroStyleCode from './BackgroundAnimations/RetroStyle/RetroStyle.jsx?raw';
+import RetroStyleCss from './BackgroundAnimations/RetroStyle/RetroStyle.css?raw';
+
+import Bubble from './BackgroundAnimations/Bubble/Bubble';
+import BubbleCode from './BackgroundAnimations/Bubble/Bubble.jsx?raw';
+import BubbleCss from './BackgroundAnimations/Bubble/Bubble.css?raw';
+
+import Noise from './BackgroundAnimations/Noise/Noise';
+import NoiseCode from './BackgroundAnimations/Noise/Noise.jsx?raw';
+import NoiseCss from './BackgroundAnimations/Noise/Noise.css?raw';
+
+import Shapes from './BackgroundAnimations/Shapes/Shapes';
+import ShapesCode from './BackgroundAnimations/Shapes/Shapes.jsx?raw';
+import ShapesCss from './BackgroundAnimations/Shapes/Shapes.css?raw';
 
 const animations = [
-  // 'BckAnim1',
-  // 'BckAnim2',
-  // 'BckAnim3'
+  'Shapes',
+  'RetroStyle',
+  'FloatingBalls',
+  'Noise',
+  'Bubble',
+  'ShootingStars',
+  'WavyBackground',
+  'Eyes',
+  'SquareToOctagon',
 ];
 
 const animationCodes = [
-  // { jsx: BckAnim1Code, css: BckAnim1Css },
-  // { jsx: BckAnim2Code, css: BckAnim2Css },
-  // { jsx: BckAnim3Code, css: BckAnim3Css }
+  { jsx: FloatingBallsCode, css: FloatingBallsCss },
+  { jsx: ShootingStarsCode, css: ShootingStarsCss },
+  { jsx: WavyBackgroundCode, css: WavyBackgroundCss },
+  { jsx: SquareToOctagonCode, css: SquareToOctagonCss },
+  { jsx: EyesCode, css: EyesCss },
+  { jsx: RetroStyleCode, css: RetroStyleCss },
+  { jsx: BubbleCode, css: BubbleCss },
+  { jsx: NoiseCode, css: NoiseCss },
+  { jsx: ShapesCode, css: ShapesCss }
 ];
 
 function Backgrounds() {
@@ -82,53 +117,42 @@ function Backgrounds() {
 
   return (
     <>
-      <div ref={animationRef} className="backgrounds-container">
+      <div ref={animationRef} className="text-container">
         <Nav />
         <h1 className="title">Backgrounds</h1>
         <div className="slider">
           <div className="animation-container">
-            {animations.length === 0 ? (
-              <div style={{
-                width: '100%',
-                height: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '2rem',
-                color: '#08D0FE',
-                fontFamily: '"Roboto Mono", monospace',
-                textAlign: 'center'
-              }}>
-                No animations found. Start creating!
-              </div>
-            ) : (
-              <>
-                {/* {animations[currentAnimation] === 'BckAnim1' && <BckAnim1 />} */}
-                {/* {animations[currentAnimation] === 'BckAnim2' && <BckAnim2 />} */}
-                {/* {animations[currentAnimation] === 'BckAnim3' && <BckAnim3 />} */}
-              </>
-            )}
-          </div>
-          <div className="arrows-row">
-            <button className="prev" onClick={prevSlide}>❮</button>
-            <button className="code-btn" onClick={handleCodeClick}>
-              {isDoubled ? 'ANIMATION' : 'CODE'}
-            </button>
-            <button className="next" onClick={nextSlide}>❯</button>
+            {animations[currentAnimation] === 'FloatingBalls' && <FloatingBalls />}
+            {animations[currentAnimation] === 'ShootingStars' && <ShootingStars />}
+            {animations[currentAnimation] === 'WavyBackground' && <WavyBackground />}
+            {animations[currentAnimation] === 'Eyes' && <Eyes />}
+            {animations[currentAnimation] === 'SquareToOctagon' && <SquareToOctagon />}
+            {animations[currentAnimation] === 'RetroStyle' && <RetroStyle />}
+            {animations[currentAnimation] === 'Bubble' && <Bubble />}
+            {animations[currentAnimation] === 'Noise' && <Noise />}
+            {animations[currentAnimation] === 'Shapes' && <Shapes />}
           </div>
         </div>
+        <div className="arrows-row">
+          <button className="prev" onClick={prevSlide}>❮</button>
+          <button className="code-btn" onClick={handleCodeClick}>
+            {isDoubled ? 'ANIMATION' : 'CODE'}
+          </button>
+          <button className="next" onClick={nextSlide}>❯</button>
+        </div>
       </div>
+
       <div
         ref={codeRef}
         className={`code-squares-wrapper${isDoubled ? ' open' : ''}`}
         style={{
-          maxHeight: isDoubled ? '1000px' : '0',
-          opacity: isDoubled ? 1 : 0,
-          overflow: 'hidden',
-          transition: 'max-height 0.6s cubic-bezier(0.4,0,0.2,1), opacity 0.4s'
+            maxHeight: isDoubled ? '3000px' : '0',
+            opacity: isDoubled ? 1 : 0,
+            overflow: 'hidden',
+            transition: 'max-height 0.6s cubic-bezier(0.4,0,0.2,1), opacity 0.4s'
         }}
       >
-        {isDoubled && animations.length > 0 && (
+        {isDoubled && (
           <>
             <div className="code-square css">
               <div className="code-title">

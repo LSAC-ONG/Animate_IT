@@ -1,0 +1,32 @@
+.eyes {
+    --s: 80px;
+    width: 100%;
+    height: 100%;
+    --_g: radial-gradient(#F4EAD5 31%, #0000 32%);
+    --_l: radial-gradient(#594F4F 15%, #0000 16%);
+    background: var(--_l), var(--_l), var(--_g), var(--_g), #45ADA8;
+    background-position: 0 0, var(--s) var(--s);
+    background-size: calc(2*var(--s)) calc(2*var(--s));
+    animation:
+        x 2s cubic-bezier(0.5, 92, 0.5, -92) infinite,
+        y 2s cubic-bezier(0.5, 92, 0.5, -92) infinite -.5s;
+}
+
+@keyframes x {
+    to {
+        background-position-x: -.25px, calc(var(--s) - 1px), -.5px, calc(var(--s) - .5px);
+    }
+}
+
+@keyframes y {
+    to {
+        background-position-y: -.25px, calc(var(--s) - 1px), .25px, calc(var(--s) - .5px);
+    }
+}
+.eyes .center {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
