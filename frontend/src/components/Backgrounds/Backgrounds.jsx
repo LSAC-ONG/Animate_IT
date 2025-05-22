@@ -39,11 +39,16 @@ import Shapes from './BackgroundAnimations/Shapes/Shapes';
 import ShapesCode from './BackgroundAnimations/Shapes/Shapes.jsx?raw';
 import ShapesCss from './BackgroundAnimations/Shapes/Shapes.css?raw';
 
+import FloatingDots from './BackgroundAnimations/FloatingDots/FloatingDots';
+import FloatingDotsCode from './BackgroundAnimations/FloatingDots/FloatingDots.jsx?raw';
+import FloatingDotsCss from './BackgroundAnimations/FloatingDots/FloatingDots.css?raw';
+
 const animations = [
   'Shapes',
   'RetroStyle',
   'FloatingBalls',
   'Noise',
+  'FloatingDots',
   'Bubble',
   'ShootingStars',
   'WavyBackground',
@@ -52,15 +57,16 @@ const animations = [
 ];
 
 const animationCodes = [
+  { jsx: ShapesCode, css: ShapesCss },
+  { jsx: RetroStyleCode, css: RetroStyleCss },
   { jsx: FloatingBallsCode, css: FloatingBallsCss },
+  { jsx: NoiseCode, css: NoiseCss },
+  { jsx: FloatingDotsCode, css: FloatingDotsCss },
+  { jsx: BubbleCode, css: BubbleCss },
   { jsx: ShootingStarsCode, css: ShootingStarsCss },
   { jsx: WavyBackgroundCode, css: WavyBackgroundCss },
-  { jsx: SquareToOctagonCode, css: SquareToOctagonCss },
   { jsx: EyesCode, css: EyesCss },
-  { jsx: RetroStyleCode, css: RetroStyleCss },
-  { jsx: BubbleCode, css: BubbleCss },
-  { jsx: NoiseCode, css: NoiseCss },
-  { jsx: ShapesCode, css: ShapesCss }
+  { jsx: SquareToOctagonCode, css: SquareToOctagonCss },
 ];
 
 function Backgrounds() {
@@ -131,6 +137,7 @@ function Backgrounds() {
             {animations[currentAnimation] === 'Bubble' && <Bubble />}
             {animations[currentAnimation] === 'Noise' && <Noise />}
             {animations[currentAnimation] === 'Shapes' && <Shapes />}
+            {animations[currentAnimation] === 'FloatingDots' && <FloatingDots />}
           </div>
         </div>
         <div className="arrows-row">
