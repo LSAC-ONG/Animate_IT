@@ -12,8 +12,79 @@ $tablet-breakpoint: 1100px;
   overflow: hidden;
   position: relative;
 }
-
+.carousel-wrapper {
+  position: relative;
+  width: fit-content;
+  left: 50%;
+  transform: translateX(-50%);
+  .carousel-btn {
+    box-sizing: content-box !important;
+    height: 100% !important;
+    top: 0;
+    position: absolute;
+    z-index: 10;
+    border: none;
+    color: #fff;
+    font-size: 7rem;
+    padding: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    margin: 0 !important;
+    margin-top: auto !important;
+    width: auto;
+    font-weight: 300;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
+    outline: 0 !important;
+    svg {
+      height: 60px;
+      width: 60px;
+    }
+    &.prev { left: -3rem;  }
+    &.next { right: -3rem; }
+    @media (max-width: 900px)
+    {
+      svg {
+        height: 50px;
+        width: 50px;
+      }
+      &.prev { left: -2rem;  }
+      &.next { right: -2rem; }
+    }
+    @media (max-width: 600px)
+    {
+      &.prev { left: -1.7rem;  }
+      &.next { right: -1.7rem; }
+    }
+    @media (max-width: 400px)
+    {
+      svg {
+        height: 60px;
+        width: 60px;
+      }
+      &.prev { left: -4rem;  }
+      &.next { right: -4rem; }
+    }
+    @media (max-width: 350px)
+    {
+      &.prev { left: -3.5rem;  }
+      &.next { right: -3.5rem; }
+    }
+    .flex {
+      display: flex;
+      justify-content: center;
+      align-items: center;  
+    }
+  }
+}
 .carousel-nav {
+  touch-action: pan-y;
+  position: relative;
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
@@ -47,7 +118,7 @@ $tablet-breakpoint: 1100px;
     user-select: none;
   }
   
-
+  
   .carousel-slide {
     /* lățime fixă astfel încât 5 carousel-slide + 4 gap-uri = 100% */
     /* flex-basis: calc((100% - 4 * 30px) / 5);
@@ -130,16 +201,13 @@ $tablet-breakpoint: 1100px;
       }
     }
   }
+  &.single {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70vw !important;
+    padding-left: 20%;
+    gap: 5px;
+    padding-right: 20%;
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
