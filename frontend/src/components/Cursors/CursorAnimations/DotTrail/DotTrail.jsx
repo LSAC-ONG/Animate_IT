@@ -1,52 +1,96 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './DotTrail.scss';
 
 const DotTrail = () => {
+  const cursorDotRef = useRef(null);
   const containerRef = useRef(null);
-  const dotRef = useRef(null);
-  const outlineRef = useRef(null);
+  const animationFrameIdRef = useRef(null);
+
+  const mousePositionRef = useRef({ x: -100, y: -100 });
+  const isMouseInsideRef = useRef(false); 
+  const isMouseDownRef = useRef(false);   
 
   useEffect(() => {
-    const container = containerRef.current;
-    const cursorDot = dotRef.current;
-    const cursorDotOutline = outlineRef.current;
-    if (!container || !cursorDot || !cursorDotOutline) return;
+    const currentContainer = containerRef.current;
+    const dotEl = cursorDotRef.current;
 
-    const moveCursor = (e) => {
-      const x = e.offsetX;
-      const y = e.offsetY;
-      cursorDot.style.transform = `translate(${x}px, ${y}px)`;
-      cursorDotOutline.style.transform = `translate(${x}px, ${y}px)`;
+    if (!currentContainer || !dotEl) return;
+
+    dotEl.style.transform = `translate(-200px, -200px) translate(-50%, -50%) scale(1)`;
+    dotEl.style.opacity = '0';
+
+
+    const handleMouseMove = (e) => {
+      mousePositionRef.current = { x: e.clientX, y: e.clientY };
     };
 
-    const showCursors = () => {
-      cursorDot.style.opacity = '1';
-      cursorDotOutline.style.opacity = '1';
+    const handleMouseEnter = () => {
+      isMouseInsideRef.current = true;
     };
 
-    const hideCursors = () => {
-      cursorDot.style.opacity = '0';
-      cursorDotOutline.style.opacity = '0';
+    const handleMouseLeave = () => {
+      isMouseInsideRef.current = false;
     };
 
-    container.addEventListener('mousemove', moveCursor);
-    container.addEventListener('mouseenter', showCursors);
-    container.addEventListener('mouseleave', hideCursors);
+    const handleGlobalMouseDown = (e) => {
+      if (currentContainer && currentContainer.contains(e.target) && isMouseInsideRef.current) {
+        isMouseDownRef.current = true;
+      }
+    };
 
-    hideCursors();
+    const handleGlobalMouseUp = () => {
+      if (isMouseDownRef.current) { 
+        isMouseDownRef.current = false;
+      }
+    };
+
+    currentContainer.addEventListener('mousemove', handleMouseMove);
+    currentContainer.addEventListener('mouseenter', handleMouseEnter);
+    currentContainer.addEventListener('mouseleave', handleMouseLeave);
+
+    window.addEventListener('mousedown', handleGlobalMouseDown);
+    window.addEventListener('mouseup', handleGlobalMouseUp);
+
+    const animateDot = () => {
+      if (dotEl) { 
+        const targetScale = isMouseDownRef.current ? 0.6 : 1.0;
+        const targetOpacity = isMouseInsideRef.current ? 0.85 : 0;
+
+        dotEl.style.transform = `translate(${mousePositionRef.current.x}px, ${mousePositionRef.current.y}px) translate(-50%, -50%) scale(${targetScale})`;
+        dotEl.style.opacity = targetOpacity.toString(); 
+        
+        dotEl.classList.toggle('visible', isMouseInsideRef.current);
+        dotEl.classList.toggle('pressed', isMouseDownRef.current && isMouseInsideRef.current);
+      }
+      animationFrameIdRef.current = requestAnimationFrame(animateDot);
+    };
+
+    animationFrameIdRef.current = requestAnimationFrame(animateDot);
 
     return () => {
-      container.removeEventListener('mousemove', moveCursor);
-      container.removeEventListener('mouseenter', showCursors);
-      container.removeEventListener('mouseleave', hideCursors);
+      if (currentContainer) {
+        currentContainer.removeEventListener('mousemove', handleMouseMove);
+        currentContainer.removeEventListener('mouseenter', handleMouseEnter);
+        currentContainer.removeEventListener('mouseleave', handleMouseLeave);
+      }
+      window.removeEventListener('mousedown', handleGlobalMouseDown);
+      window.removeEventListener('mouseup', handleGlobalMouseUp);
+
+      if (animationFrameIdRef.current) {
+        cancelAnimationFrame(animationFrameIdRef.current);
+      }
     };
-  }, []);
+  }, []); 
 
   return (
-    <div ref={containerRef} className="dot-trail-container">
-      <div ref={dotRef} id="cursor-dot"></div>
-      <div ref={outlineRef} id="cursor-dot-outline"></div>
-      <h1 className="dot-trail-text">Dot Trail</h1>
+    <div className="dt-container" ref={containerRef}>
+      <div
+        ref={cursorDotRef}
+        className="dt-cursor-dot"
+      ></div>
+      <h1 className="dt-text">Goofy Dot</h1>
+      <p></p>
+      <h2>Hold Click</h2>
     </div>
   );
 };

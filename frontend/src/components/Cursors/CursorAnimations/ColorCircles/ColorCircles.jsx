@@ -100,7 +100,7 @@ const ColorCircles = () => {
         circle.style.top = `${circle._y}px`;
         
         const scale = (circlesRef.current.length - index) / circlesRef.current.length;
-        circle.style.transform = `translate(-50%, -50%) scale(${Math.max(0.1, scale)})`; // Ensure scale is not too small
+        circle.style.transform = `translate(-50%, -50%) scale(${Math.max(0.1, scale)})`;
 
         circle.style.backgroundColor = colors[index % colors.length];
       });

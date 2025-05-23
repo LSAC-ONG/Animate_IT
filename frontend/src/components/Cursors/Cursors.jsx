@@ -8,23 +8,41 @@ import Nav from "../Nav";
 // Uncomment and import your animations and code when available
 import DotTrail from './CursorAnimations/DotTrail/DotTrail';
 import ColorCircles from './CursorAnimations/ColorCircles/ColorCircles';
-// import CursorAnim3 from './CursorAnimations/CursorAnim3/CursorAnim3';
+import RainbowAura from './CursorAnimations/RainbowAura/RainbowAura';
+import TrailingDots from './CursorAnimations/TrailingDots/TrailingDots';
+import RainingSquares from './CursorAnimations/RainingSquares/RainingSquares';
+
+// import CursorAnim3 from './CursorAnimation/CursorAnim3/CursorAnim3';
 import DotTrailCode from './CursorAnimations/DotTrail/DotTrail.jsx?raw';
 import DotTrailCss from './CursorAnimations/DotTrail/DotTrail.scss?raw';
+
 import ColorCirclesCode from './CursorAnimations/ColorCircles/ColorCircles.jsx?raw';
 import ColorCirclesCss from './CursorAnimations/ColorCircles/ColorCircles.scss?raw';
-// import CursorAnim3Code from './CursorAnimations/CursorAnim3/CursorAnim3.jsx?raw';
-// import CursorAnim3Css from './CursorAnimations/CursorAnim3/CursorAnim3.css?raw';
+
+import RainbowAuraCode from './CursorAnimations/RainbowAura/RainbowAura.jsx?raw';
+import RainbowAuraCss from './CursorAnimations/RainbowAura/RainbowAura.scss?raw';
+
+import TrailingDotsCode from './CursorAnimations/TrailingDots/TrailingDots.jsx?raw';
+import TrailingDotsCss from './CursorAnimations/TrailingDots/TrailingDots.scss?raw';
+
+import RainingSquaresCode from './CursorAnimations/RainingSquares/RainingSquares.jsx?raw';
+import RainingSquaresCss from './CursorAnimations/RainingSquares/RainingSquares.scss?raw';
+
 
 const animations = [
   'ColorCircles',
   'DotTrail',
-  // 'CursorAnim3'
+  'RainbowAura',
+  'TrailingDots',
+  'RainingSquares'
 ];
 
 const animationCodes = [
   { jsx: ColorCirclesCode, css: ColorCirclesCss },
   { jsx: DotTrailCode, css: DotTrailCss },
+  { jsx: RainbowAuraCode, css: RainbowAuraCss },
+  { jsx: TrailingDotsCode, css: TrailingDotsCss },
+  { jsx: RainingSquaresCode, css: RainingSquaresCss },
   // { jsx: CursorAnim3Code, css: CursorAnim3Css }
 ];
 
@@ -105,6 +123,9 @@ function Cursors() {
               <>
                 {animations[currentAnimation] === 'ColorCircles' && <ColorCircles />}
                 {animations[currentAnimation] === 'DotTrail' && <DotTrail />}
+                {animations[currentAnimation] === 'RainbowAura' && <RainbowAura />}
+                {animations[currentAnimation] === 'TrailingDots' && <TrailingDots />}
+                {animations[currentAnimation] === 'RainingSquares' && <RainingSquares />}
                 {/* {animations[currentAnimation] === 'CursorAnim3' && <CursorAnim3 />} */}
               </>
             )}

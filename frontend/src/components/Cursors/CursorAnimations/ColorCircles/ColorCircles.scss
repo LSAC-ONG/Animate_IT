@@ -7,16 +7,17 @@
     pointer-events: none;
     cursor: none;
     overflow: hidden;
+    
     .color-circles-text {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        color: #ffb56b;
         font-size: 2rem;
-        color: #ffb56b; // Using the first color from the palette
         font-family: '"Roboto Mono", monospace';
-        pointer-events: none; // Ensure text doesn't interfere with mouse events
-        z-index: 1000000; // Ensure text is above circles
+        pointer-events: none;
+        z-index: 1000000;
     }
 
     .circle {
@@ -27,7 +28,7 @@
         background-color: white;
         pointer-events: none;
         z-index: 999999;
-        will-change: transform, background-color, left, top, opacity; // Added left, top, opacity
+        will-change: transform, background-color, left, top, opacity;
         transition: background-color 0.1s ease, opacity 0.2s ease;
         opacity: 0;
 
@@ -40,6 +41,3 @@
         }
     }
 }
-
-
-
