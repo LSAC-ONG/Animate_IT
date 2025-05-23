@@ -55,6 +55,34 @@ export default function Carousel({ VISIBLE, MAX_HEIGHT }) {
     return { cont, spacing, totalWidth, minScroll, maxScroll };
   };
 
+  const navigate = (direction) => {
+    const { cont, spacing, totalWidth, minScroll, maxScroll } = calc();
+  
+    // 1) compute which “slide” we want next
+    const offset = cont.scrollLeft - minScroll;
+    const index  = Math.round(offset / spacing) + direction;
+    const rawTarget = minScroll + index * spacing;
+  
+    // 2) kill any pending tween
+    if (snapTween.current) snapTween.current.kill();
+  
+    // 3) tween with onUpdate wrap logic
+    snapTween.current = gsap.to(cont, {
+      scrollTo: { x: rawTarget },
+      duration: 0.5,
+      ease: 'power3.out',
+      onUpdate: () => {
+        // if we scrolled off one end, wrap instantly but invisibly
+        if (cont.scrollLeft < minScroll) {
+          cont.scrollLeft += totalWidth;
+        } else if (cont.scrollLeft >= maxScroll) {
+          cont.scrollLeft -= totalWidth;
+        }
+      }
+    });
+  };
+  
+  
   // Actualizează scale și zIndex
   const updateScales = () => {
     const { cont } = calc();
@@ -168,6 +196,11 @@ export default function Carousel({ VISIBLE, MAX_HEIGHT }) {
   const all = [...pre, ...slides, ...post];
 
   return (
+    <div className='carousel-wrapper'>
+      <button
+        className="carousel-btn prev"
+        onClick={() => navigate(-1)}
+      >‹</button>
     <div className="carousel-nav" ref={containerRef}>
       {all.map((s, i) => (
 
@@ -185,6 +218,11 @@ export default function Carousel({ VISIBLE, MAX_HEIGHT }) {
           </div>
         </div>
       ))}
+    </div>
+      <button
+        className="carousel-btn next"
+        onClick={() => navigate(1)}
+      ><div className='flex'>›</div></button>
     </div>
   );
 }

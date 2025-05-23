@@ -12,8 +12,65 @@ $tablet-breakpoint: 1100px;
   overflow: hidden;
   position: relative;
 }
-
+.carousel-wrapper {
+  position: relative;
+  .carousel-btn {
+    box-sizing: content-box !important;
+    height: 100% !important;
+    top: 0;
+    position: absolute;
+    z-index: 10;
+    border: none;
+    color: #fff;
+    font-size: 7rem;
+    padding: 10px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    margin: 0 !important;
+    margin-top: auto !important;
+    width: auto;
+    font-weight: 300;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
+    outline: 0 !important;
+    &.prev { left: 1.75rem;  }
+    &.next { right: 1.75rem; }
+    @media (max-width: 1100px)
+    {
+      &.prev { left: 1rem;  }
+      &.next { right: 1rem; }
+    }
+    @media (max-width: 900px)
+    {
+      &.prev { left: 0.5rem;  }
+      &.next { right: 0.5rem; }
+    }
+    @media (max-width: 700px)
+    {
+      font-size: 5rem;
+      &.prev { left: 0rem;  }
+      &.next { right: 0rem; }
+    }
+    @media (max-width: 400px)
+    {
+      font-size: 7rem;
+      &.prev { left: 1rem;  }
+      &.next { right: 1rem; }
+    }
+    @media (max-width: 350px)
+    {
+      &.prev { left: 0.5rem;  }
+      &.next { right: 0.5rem; }
+    }
+  }
+}
 .carousel-nav {
+  position: relative;
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
@@ -47,7 +104,7 @@ $tablet-breakpoint: 1100px;
     user-select: none;
   }
   
-
+  
   .carousel-slide {
     /* lățime fixă astfel încât 5 carousel-slide + 4 gap-uri = 100% */
     /* flex-basis: calc((100% - 4 * 30px) / 5);

@@ -36,6 +36,9 @@ body,html {
     font-weight: 700;
     animation: gradientShift 4s ease infinite;
     -webkit-text-stroke: 1.5px #ffffff;
+    @media (max-width: 550px) {
+      font-size: 25px;
+    }
   }
 
   .title {
