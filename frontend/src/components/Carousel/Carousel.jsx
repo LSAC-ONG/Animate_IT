@@ -125,45 +125,42 @@ export default function Carousel({ VISIBLE, MAX_HEIGHT }) {
       checkBounds();
       updateScales();
     };
-
+    
+    const getX = e =>
+      // la pointer events e.pageX există, dar păstrăm fallback
+      e.pageX ?? (e.touches && e.touches[0].pageX) ?? 0;
     // Mouse down handler
-    const onMouseDown = e => {
+    const onPointerDown = e => {
       isDown = true;
-      if (snapTween.current) snapTween.current.kill();
+      snapTween.current?.kill();
       cont.classList.add('dragging');
-      startX = e.pageX - cont.offsetLeft;
+      startX      = getX(e) - cont.offsetLeft;
       scrollStart = cont.scrollLeft;
     };
-
-    // Mouse move handler
-    const onMouseMove = e => {
+    
+    const onPointerMove = e => {
       if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - cont.offsetLeft;
-      const walk = x - startX;
-      let newScroll = scrollStart - walk;
-      if (newScroll < 0) newScroll += totalWidth;
-      if (newScroll > maxScroll) newScroll -= totalWidth;
+      e.preventDefault();                     // ✨ oprește scroll-ul nativ pe touch
+      const walk      = getX(e) - cont.offsetLeft - startX;
+      let newScroll   = scrollStart - walk;
+      if (newScroll < 0)           newScroll += totalWidth;
+      if (newScroll > maxScroll)   newScroll -= totalWidth;
       cont.scrollLeft = newScroll;
       updateScales();
     };
-
-    // Mouse up handler
-    const onMouseUp = () => {
+    
+    const onPointerUp = () => {
       if (!isDown) return;
       isDown = false;
       cont.classList.remove('dragging');
       checkBounds();
-      const offset = cont.scrollLeft - minScroll;
-      const index = Math.round(offset / spacing);
-      const target = minScroll + index * spacing;
+      const idx = Math.round((cont.scrollLeft - minScroll) / spacing);
       snapTween.current = gsap.to(cont, {
-        scrollTo: { x: target },
+        scrollTo: { x: minScroll + idx * spacing },
         duration: 0.5,
         ease: 'power3.out',
       });
     };
-
     // Resize handler
     const onResize = () => {
       // const { cont: c, spacing: s, minScroll: min } = calc();
@@ -176,16 +173,16 @@ export default function Carousel({ VISIBLE, MAX_HEIGHT }) {
     };
 
     // Atașăm evenimente
-    cont.addEventListener('mousedown', onMouseDown);
-    window.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('mouseup', onMouseUp);
+    cont.addEventListener('pointerdown', onPointerDown);
+    window.addEventListener('pointermove', onPointerMove);
+    window.addEventListener('pointerup', onPointerUp);
     cont.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', onResize);
 
     return () => {
-      cont.removeEventListener('mousedown', onMouseDown);
-      window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('mouseup', onMouseUp);
+      cont.removeEventListener('pointerdown', onPointerDown);
+      window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('pointerup', onPointerUp);
       cont.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', onResize);
     };
