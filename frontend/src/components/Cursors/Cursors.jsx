@@ -17,9 +17,8 @@ import ColorCirclesCss from './CursorAnimations/ColorCircles/ColorCircles.scss?r
 // import CursorAnim3Css from './CursorAnimations/CursorAnim3/CursorAnim3.css?raw';
 
 const animations = [
-  'DotTrail',
   'ColorCircles',
-  
+  'DotTrail',
   // 'CursorAnim3'
 ];
 
@@ -87,7 +86,7 @@ function Cursors() {
         <Nav />
         <h1 className="title">Cursors</h1>
         <div className="slider">
-          <div className="animation-container">
+          <div className="animation-container" style={{ cursor: 'none' }}>
             {animations.length === 0 ? (
               <div style={{
                 width: '100%',

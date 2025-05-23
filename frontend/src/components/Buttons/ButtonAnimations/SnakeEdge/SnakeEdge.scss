@@ -1,70 +1,74 @@
-.container {
-  width: 400px;
-  height: 400px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+$btn-width: 300px;
+$btn-height: 100px;
+$stroke-width: 2px;
 
-.center {
-  width: 180px;
-  height: 60px;
-  position: static;
-}
+$path-segment-width: $btn-width - $stroke-width;
+$path-segment-height: $btn-height - $stroke-width;
+$path-length: ($path-segment-width + $path-segment-height) * 2;
 
-.btn {
-  width: 180px;
-  height: 60px;
-  cursor: pointer;
+$bg-line-color: #91c9ff;
+$hl-line-color: #fff;
+$text-color: #fff;
+$transition-duration: 0.9s; // Adjusted for larger size
+$font-size: 20px; // Adjusted for larger size
+
+.snake-btn {
+  position: relative;
+  overflow: hidden; // Important to clip any stroke overflow if calculations are slightly off
   background: transparent;
-  border: 1px solid #91C9FF;
-  outline: none;
-  transition: 1s ease-in-out;
-}
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  width: $btn-width;
+  height: $btn-height;
+  padding: 0; // Ensure button padding doesn't interfere with SVG positioning
 
-svg {
-  position: absolute;
-  left: 0;
-  top: 0;
-  fill: none;
-  stroke: #fff;
-  stroke-dasharray: 150 480;
-  stroke-dashoffset: 150;
-  transition: 1s ease-in-out;
-}
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 
-.hl-line {
-  stroke: #fff;
-  stroke-dasharray: 150 480;
-  stroke-dashoffset: 150;
-  transition: stroke-dashoffset 1s ease-in-out;
-}
+  .bg-line,
+  .hl-line {
+    fill: none;
+    stroke-width: $stroke-width;
+    stroke-dasharray: $path-length;
+    stroke-dashoffset: $path-length; // Default offset, bg-line overrides this
+    transition: stroke-dashoffset $transition-duration ease-in-out;
+  }
 
-.bg-line {
-  stroke: #91C9FF;
-  stroke-dasharray: 150 480;
-  stroke-dashoffset: 0;
-}
+  .bg-line {
+    stroke: $bg-line-color;
+    stroke-dashoffset: 0; // This line is always visible
+  }
 
-.btn:hover {
-  transition: 1s ease-in-out;
-  background: #4F95DA;
-}
+  .hl-line {
+    stroke: $hl-line-color;
+    // stroke-dashoffset is $path-length by default, so it's initially hidden
+  }
 
-.btn:hover svg {
-  stroke-dashoffset: -480;
-}
+  // Hover state
+  &:hover {
+    .hl-line {
+      stroke-dashoffset: 0; // Animate to full visibility on hover
+    }
+  }
 
-.btn:hover .hl-line {
-  stroke-dashoffset: -480;
-}
-
-.btn span {
-  color: white;
-  font-size: 18px;
-  font-weight: 100;
+  span {
+    position: relative; // To ensure it's above the SVG lines
+    z-index: 1;        // Explicitly set stacking context
+    display: flex;     // For easy centering
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: $text-color;
+    font-size: $font-size;
+    font-family: sans-serif; // Consider using a more specific font stack
+    font-weight: 500;
+  }
 }
