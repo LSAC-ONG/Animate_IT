@@ -3,7 +3,7 @@
 .cursors-container {
   .slider {
     position: relative;
-    overflow: hidden;
+    // overflow: hidden;
     margin-left: auto;
     margin-right: auto;
     margin-top: 1.5rem;
@@ -43,6 +43,7 @@
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
 }
+
 
 .code-btn {
   @include code-btn-style;
@@ -109,32 +110,55 @@
   }
 }
 
-@media (max-width: 900px) {
-  .code-squares-wrapper {
-    position: relative;
-    overflow-x: auto;
-    overflow-y: hidden;
-    margin: 0 auto;
-    text-align: center;
-    flex-direction: column;
-    width: 97vw;
-    min-height: 0;
-    box-sizing: border-box;
-    transition: padding 0.4s, min-height 0.4s;
-    scrollbar-width: thin;
-    scrollbar-color: #08D0FE #222;
-  }
-  .code-squares-wrapper.open {
-    padding: 10rem 0 14rem 0;
-    min-height: 70rem;
-  }
-  .code-square.css,
-  .code-square.jsx {
-    margin-bottom: 0 !important;
-    min-width: 320px;
-    max-width: 97vw;
-    width: 97vw;
-    box-sizing: border-box;
-    display: inline-block;
-  }
-}
+// @media (max-width: 900px) {
+//   .code-squares-wrapper {
+//     position: relative;
+//     overflow-x: auto;
+//     overflow-y: hidden;
+//     margin: 0 auto;
+//     text-align: center;
+//     flex-direction: column;
+//     width: 97vw;
+//     min-height: 0;
+//     box-sizing: border-box;
+//     transition: padding 0.4s, min-height 0.4s;
+//     scrollbar-width: thin;
+//     scrollbar-color: #08D0FE #222;
+//   }
+//   .code-squares-wrapper.open {
+//     padding: 2rem 0 2rem 0 !important;
+//     min-height: 300rem;
+//   }
+  
+//   .code-square.css,
+//   .code-square.jsx {
+//     margin-bottom: 0 !important;
+//     margin-bottom: 0 !important;
+//     min-width: 320px;
+//     max-width: 97vw;
+//     width: 97vw;
+//     height: 140vh;
+//     max-height: none;
+//     box-sizing: border-box;
+//     display: inline-block;
+//     overflow-x: auto;
+//     overflow-y: auto;
+//     word-break: break-all;
+//     position: relative;
+//     padding-top: 3rem;
+//   }
+//   .code-title {
+//     position: sticky;
+//     top: 0;
+//     left: 0;
+//     background: inherit;
+//     z-index: 2;
+//     padding: 0.7rem 1rem 0.7rem 1.5rem;
+//     font-size: 1.2rem;
+//     text-align: left;
+//     display: flex;
+//     align-items: center;
+//     gap: 1rem;
+//     border-bottom: 1px solid rgba(8,208,254,0.2);
+//   }
+// }

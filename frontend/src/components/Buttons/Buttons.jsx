@@ -6,26 +6,42 @@ import copyIcon from '../../assets/copy_simbol.png';
 import Nav from "../Nav";
 
 // Uncomment and import your animations and code when available
-// import ButtonAnim1 from './ButtonAnimations/ButtonAnim1/ButtonAnim1';
-// import ButtonAnim2 from './ButtonAnimations/ButtonAnim2/ButtonAnim2';
-// import ButtonAnim3 from './ButtonAnimations/ButtonAnim3/ButtonAnim3';
-// import ButtonAnim1Code from './ButtonAnimations/ButtonAnim1/ButtonAnim1.jsx?raw';
-// import ButtonAnim1Css from './ButtonAnimations/ButtonAnim1/ButtonAnim1.css?raw';
-// import ButtonAnim2Code from './ButtonAnimations/ButtonAnim2/ButtonAnim2.jsx?raw';
-// import ButtonAnim2Css from './ButtonAnimations/ButtonAnim2/ButtonAnim2.css?raw';
-// import ButtonAnim3Code from './ButtonAnimations/ButtonAnim3/ButtonAnim3.jsx?raw';
-// import ButtonAnim3Css from './ButtonAnimations/ButtonAnim3/ButtonAnim3.css?raw';
+import SnakeEdge from './ButtonAnimations/SnakeEdge/SnakeEdge';
+import CursorAware from './ButtonAnimations/CursorAware/CursorAware';
+import ThinLine from './ButtonAnimations/ThinLIne/ThinLine';
+import ZoneIn from './ButtonAnimations/ZoneIn/ZoneIn';
+import LoadCheck from './ButtonAnimations/LoadCheck/LoadCheck';
+
+import SnakeEdgeCode from './ButtonAnimations/SnakeEdge/SnakeEdge.jsx?raw';
+import SnakeEdgeCss from './ButtonAnimations/SnakeEdge/SnakeEdge.scss?raw';
+
+import CursorAwareCode from './ButtonAnimations/CursorAware/CursorAware.jsx?raw';
+import CursorAwareCss from './ButtonAnimations/CursorAware/CursorAware.scss?raw';
+
+
+import ThinLineCode from './ButtonAnimations/ThinLIne/ThinLine.jsx?raw';
+import ThinLineCss from './ButtonAnimations/ThinLIne/ThinLine.scss?raw';
+
+import ZoneInCode from './ButtonAnimations/ZoneIn/ZoneIn.jsx?raw';
+import ZoneInCss from './ButtonAnimations/ZoneIn/ZoneIn.scss?raw';
+
+import LoadCheckCode from './ButtonAnimations/LoadCheck/LoadCheck.jsx?raw';
+import LoadCheckCss from './ButtonAnimations/LoadCheck/LoadCheck.scss?raw';
 
 const animations = [
-  // 'ButtonAnim1',
-  // 'ButtonAnim2',
-  // 'ButtonAnim3'
+  'CursorAware',
+  'SnakeEdge',
+  'ThinLine',
+  'ZoneIn',
+  'LoadCheck'
 ];
 
 const animationCodes = [
-  // { jsx: ButtonAnim1Code, css: ButtonAnim1Css },
-  // { jsx: ButtonAnim2Code, css: ButtonAnim2Css },
-  // { jsx: ButtonAnim3Code, css: ButtonAnim3Css }
+  { jsx: CursorAwareCode, css: CursorAwareCss },
+  { jsx: SnakeEdgeCode, css: SnakeEdgeCss },
+  { jsx: ThinLineCode, css: ThinLineCss },
+  { jsx: ZoneInCode, css: ZoneInCss },
+  { jsx: LoadCheckCode, css: LoadCheckCss }
 ];
 
 function Buttons() {
@@ -103,9 +119,11 @@ function Buttons() {
               </div>
             ) : (
               <>
-                {/* {animations[currentAnimation] === 'ButtonAnim1' && <ButtonAnim1 />} */}
-                {/* {animations[currentAnimation] === 'ButtonAnim2' && <ButtonAnim2 />} */}
-                {/* {animations[currentAnimation] === 'ButtonAnim3' && <ButtonAnim3 />} */}
+                {animations[currentAnimation] === 'CursorAware' && <CursorAware />}
+                {animations[currentAnimation] === 'SnakeEdge' && <SnakeEdge />}
+                {animations[currentAnimation] === 'ThinLine' && <ThinLine />}
+                {animations[currentAnimation] === 'ZoneIn' && <ZoneIn />}
+                {animations[currentAnimation] === 'LoadCheck' && <LoadCheck />}
               </>
             )}
           </div>

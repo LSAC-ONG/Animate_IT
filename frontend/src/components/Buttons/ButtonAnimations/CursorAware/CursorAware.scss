@@ -1,0 +1,124 @@
+$btn-bg-start: #4604fc;
+$btn-bg-end: #043efc;
+$btn-text: #ffffff;
+$btn-hover-bg: lighten($btn-bg-start, 0%);
+$btn-active-bg: lighten($btn-bg-start, 0%);
+$ripple-color-hover: rgba(255, 255, 255, 0.2);
+$ripple-color-active: rgba(255, 255, 255, 0.4);
+
+.btn-cursor-aware {
+  border: 2px solid transparent;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  padding: 2rem 4rem;
+  font-size: 2rem;
+  background: linear-gradient(135deg, $btn-bg-start, $btn-bg-end);
+  color: $btn-text;
+  border-radius: 20px 50px;
+  cursor: pointer;
+  transition: background 0.1s ease, transform 0.1s ease, border-color 0.1s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: var(--y, 50%);
+    left: var(--x, 50%);
+    width: 0;
+    height: 0;
+    background: transparent;
+    border-radius: 50%;
+    pointer-events: none;
+    transition: width 0.8s ease, height 0.8s ease, background 0.8s;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: var(--y, 50%);
+    left: var(--x, 50%);
+    width: 0;
+    height: 0;
+    border: 2px solid $btn-text;
+    border-radius: 50%;
+    pointer-events: none;
+    transition: width 0.8s ease, height 0.8s ease, opacity 0.8s ease, border-color 0.8s ease;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    opacity: 0;
+  }
+
+  &:hover {
+    border-color: transparent;
+  }
+
+  &:active {
+    background: linear-gradient(135deg, $btn-active-bg, darken($btn-bg-end, 0%));
+  }
+
+  &:hover::before {
+    width: 150px;
+    height: 150px;
+    background: $ripple-color-hover;
+  }
+
+  &:hover::after {
+    width: 150px;
+    height: 150px;
+    opacity: 0.6;
+  }
+
+  &:active::before {
+    width: 800px;
+    height: 800px;
+    background: $ripple-color-active;
+    transition: width 0.8s ease, height 0.8s ease, background 0.8s ease;
+  }
+
+  &:active::after {
+    width: 1000px;
+    height: 1000px;
+    opacity: 0;
+    transition: width 0.8s ease, height 0.8s ease, opacity 0.8s ease;
+  }
+
+  &:not(:hover)::before,
+  &:not(:hover)::after {
+    width: 0px;
+    height: 0px;
+  }
+
+
+  .border-mask {
+    --mask-radius: 0px;
+    --mask-opacity: 0;
+    content: '';
+    position: absolute;
+    pointer-events: none;
+    inset: 0;
+    border-radius: inherit;
+    border: 2px solid $btn-text;
+    mask-image: radial-gradient(circle var(--mask-radius) at var(--x, 50%) var(--y, 50%), white 100%, transparent 60%);
+    -webkit-mask-image: radial-gradient(circle var(--mask-radius) at var(--x, 50%) var(--y, 50%), white 100%, transparent 60%);
+    opacity: var(--mask-opacity);
+    transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1), --mask-opacity 2s cubic-bezier(0.4, 0, 0.2, 1), --mask-radius 2s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+  }
+
+  &:hover .border-mask {
+    --mask-radius: 75px;
+    --mask-opacity: 0.5;
+    opacity: 0.5;
+    transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1) 0.2s, --mask-opacity 2s cubic-bezier(0.4, 0, 0.2, 1) 0.2s, --mask-radius 2s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+  }
+
+  &:active .border-mask {
+    --mask-radius: 0px;
+    --mask-opacity: 0;
+    opacity: 0;
+    transition: opacity 2s ease 2s, --mask-opacity 2s ease 2s, --mask-radius 2s ease 2s;
+  }
+}

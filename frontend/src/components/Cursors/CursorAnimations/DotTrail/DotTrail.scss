@@ -1,0 +1,50 @@
+:root {
+    --color-cursor: 220, 90, 90;
+    --cursor-outline-shade: 0.3;
+    --cursor-size: 10px;
+    --cursor-outline-size: 12px;
+}
+    
+.dot-trail-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    cursor: none;
+    
+    #cursor-dot,
+    #cursor-dot-outline {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+    }
+    
+    #cursor-dot {
+        width: var(--cursor-size);
+        height: var(--cursor-size);
+        background-color: rgba(var(--color-cursor), 1);
+        box-shadow: 0 0 5px rgba(var(--color-cursor), 0.8);
+    }
+    
+    #cursor-dot-outline {
+        width: var(--cursor-outline-size);
+        height: var(--cursor-outline-size);
+        background-color: rgba(var(--color-cursor), var(--cursor-outline-shade));
+    }
+    
+    .dot-trail-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2rem;
+        font-weight: bold;
+        color: rgba(var(--color-cursor), 1);
+        pointer-events: none;
+        z-index: 9998;
+    }
+}

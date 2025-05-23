@@ -1,0 +1,88 @@
+$btn-width: 250px !default;
+$btn-height: 80px !default;
+$base-bg-color: #333745 !default;
+$text-color-initial: #f0f0f0 !default;
+
+@mixin absolute($top: null, $right: null, $bottom: null, $left: null) {
+    position: absolute;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+@mixin size($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+.zone-btn {
+    $btn-pseudo-bg: rgba(#FFF, 0.15);
+    $btn-text-hover-color: #91C9FF;
+    $transition-duration: 0.3s;
+    $delay-duration: $transition-duration;
+
+    position: relative;
+    display: inline-block;
+    @include size($btn-width, $btn-height);
+    background-color: $base-bg-color;
+    color: $text-color-initial;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    text-align: center;
+
+    span {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        font-size: 18px;
+    }
+
+    &:before,
+    &:after,
+    span:before,
+    span:after {
+        content: '';
+        @include absolute($left: 0);
+        @include size(100%, 0);
+        background-color: $btn-pseudo-bg;
+        transition: height $transition-duration ease-in-out;
+        z-index: 1;
+    }
+
+    &:before {
+        top: 0;
+    }
+    &:after {
+        bottom: 0;
+    }
+
+    span:before {
+        bottom: 0;
+        transition-delay: $delay-duration;
+    }
+    span:after {
+        top: 0;
+        transition-delay: $delay-duration;
+    }
+
+    &:hover {
+        color: $btn-text-hover-color;
+
+        &:before,
+        &:after,
+        span:before,
+        span:after {
+            height: 100%;
+        }
+    }
+
+    &:active {
+        background-color: darken($base-bg-color, 5%);
+    }
+}
