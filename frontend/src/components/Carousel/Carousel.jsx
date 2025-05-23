@@ -56,32 +56,39 @@ export default function Carousel({ VISIBLE, MAX_HEIGHT }) {
     return { cont, spacing, totalWidth, minScroll, maxScroll };
   };
 
-  const navigate = (direction) => {
-    const { cont, spacing, totalWidth, minScroll, maxScroll } = calc();
+  // înlocuiește vechea funcție navigate() cu aceasta
+const navigate = (dir) => {
+  const { cont, spacing, totalWidth, minScroll, maxScroll } = calc();
 
-    // 1) compute which “slide” we want next
-    const offset = cont.scrollLeft - minScroll;
-    const index = Math.round(offset / spacing) + direction;
-    const rawTarget = minScroll + index * spacing;
+  // 1️⃣  indicele slide-ului dorit
+  const offset  = cont.scrollLeft - minScroll;
+  const index   = Math.round(offset / spacing) + dir;
 
-    // 2) kill any pending tween
-    if (snapTween.current) snapTween.current.kill();
+  // 2️⃣  destinația „brută” (poate ieși din domeniu)
+  let dest = minScroll + index * spacing;
 
-    // 3) tween with onUpdate wrap logic
-    snapTween.current = gsap.to(cont, {
-      scrollTo: { x: rawTarget },
-      duration: 0.5,
-      ease: 'power3.out',
-      onUpdate: () => {
-        // if we scrolled off one end, wrap instantly but invisibly
-        if (cont.scrollLeft < minScroll) {
-          cont.scrollLeft += totalWidth;
-        } else if (cont.scrollLeft >= maxScroll) {
-          cont.scrollLeft -= totalWidth;
-        }
-      }
-    });
-  };
+  /* 3️⃣  dacă depășește domeniul,
+         relocăm INSTANT *și* poziția curentă, *și* destinația,
+         cu aceeași lungime de pistă (totalWidth) */
+  if (cont.scrollLeft < minScroll) {
+    dest            += totalWidth;   // mutăm ținta
+    cont.scrollLeft += totalWidth;   // mutăm conținutul la fel ⇒ invizibil
+  }
+   if (dest >= maxScroll) {
+    dest            -= totalWidth;
+    cont.scrollLeft -= totalWidth;
+  }
+
+  // 4️⃣  oprim tween-ul precedent și pornim unul nou – nu mai avem onUpdate!
+  snapTween.current?.kill();
+  snapTween.current = gsap.to(cont, {
+    scrollTo: { x: dest },
+    duration : 0.5,
+    ease     : 'power3.out',
+    onUpdate : updateScales            // doar scale/zIndex
+  });
+};
+
 
 
   // Actualizează scale și zIndex
