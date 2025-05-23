@@ -1,0 +1,133 @@
+$button-bg: #2B2D2F;
+$accent-color: #71DFBE;
+$text-color-initial: $accent-color;
+$text-color-done: $accent-color;
+$text-font: bold 1.25rem/1 Poppins, sans-serif;
+
+$text-fade-out-duration: 0.2s;
+$text-fade-in-duration: 0.3s;
+
+$progress-bar-fill-duration: 1s;
+
+$checkmark-container-fade-in-duration: 0.3s;
+$checkmark-container-fade-out-duration: 0.25s; 
+$checkmark-draw-duration: 0.5s;
+$checkmark-undraw-duration: 0.3s; 
+
+$checkmark-container-fade-in-delay: $progress-bar-fill-duration - $checkmark-container-fade-in-duration;
+$checkmark-draw-start-delay: $progress-bar-fill-duration;
+
+$progress-bar-fade-out-duration: 0.2s;
+$progress-bar-fade-out-delay: 0.1s;
+
+$checkmark-path-length: 48.3;
+
+
+.load-check-container {}
+
+.check-button {
+  background: $button-bg;
+  height: 80px;
+  width: 200px;
+  position: relative;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px auto;
+}
+
+.check-text {
+  font: $text-font;
+  color: $text-color-initial;
+  position: relative;
+  z-index: 2;
+  opacity: 1;
+  transition: opacity $text-fade-out-duration ease-in-out;
+
+  .load-check-container.is-loading & {
+    opacity: 0;
+  }
+
+  .load-check-container.is-completed & {
+    color: $text-color-done;
+    opacity: 1;
+    transition: opacity $text-fade-in-duration ease-in-out ($progress-bar-fade-out-duration + $progress-bar-fade-out-delay + 0.05s);
+  }
+}
+
+.check-progress-bar {
+  position: absolute;
+  height: 100%;
+  width: 0;
+  top: 0;
+  left: 0;
+  background: $accent-color;
+  opacity: 0;
+  z-index: 1;
+  transition: width $progress-bar-fill-duration ease-in-out,
+              opacity ($progress-bar-fill-duration / 4) ease-in-out;
+
+  .load-check-container.is-loading & {
+    width: 100%;
+    opacity: 1;
+  }
+
+  .load-check-container.is-completed & {
+    width: 100%;
+    opacity: 0;
+    transition: opacity $progress-bar-fade-out-duration ease-in-out $progress-bar-fade-out-delay;
+  }
+}
+
+.check-svg-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  opacity: 0;
+  z-index: 3;
+  transition: opacity $checkmark-container-fade-out-duration ease-in-out 0s; // Default: fade out on reset
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .load-check-container.is-loading & {
+    opacity: 1;
+    transition: opacity $checkmark-container-fade-in-duration ease-in-out $checkmark-container-fade-in-delay; // Specific for loading
+  }
+
+  .load-check-container.is-completed & {
+    opacity: 1;
+    transition: opacity 0.05s ease-in-out 0s; 
+  }
+}
+
+.check-check {
+  fill: none;
+  stroke: $button-bg;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: $checkmark-path-length;
+  stroke-dashoffset: $checkmark-path-length;
+  transition: stroke-dashoffset $checkmark-undraw-duration ease-in-out 0s; // Default: undraw on reset
+
+  .load-check-container.is-loading & {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset $checkmark-draw-duration ease-in-out $checkmark-draw-start-delay; // Specific for loading
+  }
+
+  .load-check-container.is-completed & {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.05s ease-in-out 0s; 
+  }
+}
