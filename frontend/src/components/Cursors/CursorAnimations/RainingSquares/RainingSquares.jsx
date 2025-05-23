@@ -4,17 +4,17 @@ import './RainingSquares.scss';
 const NUM_SQUARES = 30;
 const SPAWN_INTERVAL = 100;
 const SQUARE_BASE_SIZE = 8;
-const SQUARE_FALL_SPEED_MIN = 1.5;
-const SQUARE_FALL_SPEED_MAX = 3.5;
-const SQUARE_LIFESPAN = 3000;
+const SQUARE_FALL_SPEED_MIN = 1.0;
+const SQUARE_FALL_SPEED_MAX = 2.5;
+const SQUARE_LIFESPAN = 2500;
 
-const getRandomColor = () => `hsla(${Math.random() * 360}, 70%, 70%, ${0.5 + Math.random() * 0.4})`;
+const getRandomColor = () => `hsla(${170 + Math.random() * 50}, 70%, 65%, ${0.5 + Math.random() * 0.3})`;
 
 const RainingSquares = () => {
     const squaresRef = useRef(new Array(NUM_SQUARES).fill(null));
     const animationFrameIdRef = useRef(null);
     const lastSpawnTimeRef = useRef(0);
-    const mouseCoordsRef = useRef({ x: 0, y: 0 });
+    const mouseCoordsRef = useRef({ x: 0, y: 0 }); 
 
     const squaresStateRef = useRef(
         Array(NUM_SQUARES).fill(null).map(() => ({
@@ -22,47 +22,67 @@ const RainingSquares = () => {
         }))
     );
 
-    const [isMouseInsideContainer, setIsMouseInsideContainer] = useState(false);
+    const [isMouseInsideParentContainer, setIsMouseInsideParentContainer] = useState(false);
+    const parentAnimationContainerRef = useRef(null); 
+    const parentContainerBoundsRef = useRef(null); 
 
     const initSquare = useCallback((squareState) => {
         squareState.active = true;
-        squareState.x = mouseCoordsRef.current.x + (Math.random() * 40 - 20);
+        
+        squareState.x = mouseCoordsRef.current.x + (Math.random() * 10 - 5); 
         squareState.y = mouseCoordsRef.current.y;
-        squareState.size = SQUARE_BASE_SIZE + Math.random() * 8 - 4;
-        squareState.opacity = 0.8 + Math.random() * 0.2;
+        squareState.size = SQUARE_BASE_SIZE + Math.random() * 6 - 3;
+        squareState.opacity = 0.7 + Math.random() * 0.3;
         squareState.speedY = SQUARE_FALL_SPEED_MIN + Math.random() * (SQUARE_FALL_SPEED_MAX - SQUARE_FALL_SPEED_MIN);
-        squareState.rotation = Math.random() * 360;
+        squareState.rotation = Math.random() * 180 - 90;
         squareState.color = getRandomColor();
         squareState.birthTime = performance.now();
     }, []);
 
 
     useEffect(() => {
-        const parentAnimationContainer = document.querySelector('.cursors-container .animation-container');
+        parentAnimationContainerRef.current = document.querySelector('.cursors-container .animation-container');
+        const currentParentContainer = parentAnimationContainerRef.current;
 
-        const handleGlobalMouseMove = (e) => {
-            mouseCoordsRef.current = { x: e.clientX, y: e.clientY };
-        };
-
-        const handleMouseEnterAnimationArea = () => {
-            setIsMouseInsideContainer(true);
-        };
-
-        const handleMouseLeaveAnimationArea = () => {
-            setIsMouseInsideContainer(false);
-        };
-
-        window.addEventListener('mousemove', handleGlobalMouseMove);
-        if (parentAnimationContainer) {
-            parentAnimationContainer.addEventListener('mouseenter', handleMouseEnterAnimationArea);
-            parentAnimationContainer.addEventListener('mouseleave', handleMouseLeaveAnimationArea);
-        } else {
-            document.documentElement.addEventListener('mouseenter', handleMouseEnterAnimationArea);
-            document.documentElement.addEventListener('mouseleave', handleMouseLeaveAnimationArea);
+        if (!currentParentContainer) {
+            console.warn("RainingSquares: Parent '.animation-container' not found.");
+            return;
         }
+        
+        parentContainerBoundsRef.current = currentParentContainer.getBoundingClientRect();
+
+        
+        const updateBounds = () => {
+            if (currentParentContainer) {
+                parentContainerBoundsRef.current = currentParentContainer.getBoundingClientRect();
+            }
+        };
+        window.addEventListener('resize', updateBounds);
+        document.addEventListener('scroll', updateBounds, true); 
+
+
+        const handleGlobalMouseMove = (e) => { 
+            mouseCoordsRef.current = { x: e.clientX, y: e.clientY };
+
+            
+            const bounds = parentContainerBoundsRef.current;
+            if (bounds &&
+                e.clientX >= bounds.left && e.clientX <= bounds.right &&
+                e.clientY >= bounds.top && e.clientY <= bounds.bottom) {
+                if (!isMouseInsideParentContainer) setIsMouseInsideParentContainer(true);
+            } else {
+                if (isMouseInsideParentContainer) setIsMouseInsideParentContainer(false);
+            }
+        };
+
+        
+        window.addEventListener('mousemove', handleGlobalMouseMove);
+
 
         const animateSquares = (timestamp) => {
-            if (isMouseInsideContainer && timestamp - lastSpawnTimeRef.current > SPAWN_INTERVAL) {
+            const bounds = parentContainerBoundsRef.current; 
+
+            if (isMouseInsideParentContainer && timestamp - lastSpawnTimeRef.current > SPAWN_INTERVAL) {
                 lastSpawnTimeRef.current = timestamp;
                 const inactiveSquareIndex = squaresStateRef.current.findIndex(s => !s.active);
                 if (inactiveSquareIndex !== -1) {
@@ -78,18 +98,30 @@ const RainingSquares = () => {
                 }
 
                 const age = timestamp - sqState.birthTime;
-                sqState.y += sqState.speedY;
+                sqState.y += sqState.speedY; 
                 sqState.rotation += sqState.speedY * 0.05;
 
-                if (age > SQUARE_LIFESPAN || !isMouseInsideContainer) {
-                    const fadeDuration = 500;
-                    const timeToFade = !isMouseInsideContainer ? 0 : Math.max(0, SQUARE_LIFESPAN + fadeDuration - age);
-                    sqState.opacity = Math.max(0, (timeToFade / fadeDuration) * (0.8 + Math.random() * 0.2) );
+                if (age > SQUARE_LIFESPAN || !isMouseInsideParentContainer) {
+                    const fadeDuration = 400;
+                    const timeToFade = !isMouseInsideParentContainer ? 0 : Math.max(0, (SQUARE_LIFESPAN + fadeDuration) - age);
+                    sqState.opacity = Math.max(0, (timeToFade / fadeDuration) * sqState.opacity);
                 }
                 
-                if (sqState.y > window.innerHeight + sqState.size || sqState.opacity <= 0.01) {
+                
+                let outOfBounds = false;
+                if (bounds) {
+                    
+                    
+                    if (sqState.y - (sqState.size / 2) > bounds.bottom) outOfBounds = true;
+                    
+                    if (sqState.x + (sqState.size / 2) < bounds.left || sqState.x - (sqState.size / 2) > bounds.right) outOfBounds = true;
+                }
+
+
+                if (outOfBounds || sqState.opacity <= 0.01) {
                     sqState.active = false;
-                    squareElement.style.opacity = '0';
+                    squareElement.style.opacity = '0'; 
+                    
                     return;
                 }
 
@@ -98,7 +130,8 @@ const RainingSquares = () => {
                 squareElement.style.height = `${sqState.size}px`;
                 squareElement.style.backgroundColor = sqState.color;
                 squareElement.style.opacity = sqState.opacity.toFixed(2);
-                squareElement.style.transform = `translate(${sqState.x - sqState.size / 2}px, ${sqState.y - sqState.size / 2}px) rotate(${sqState.rotation}deg)`;
+                
+                squareElement.style.transform = `translate(${sqState.x}px, ${sqState.y}px) translate(-50%, -50%) rotate(${sqState.rotation}deg)`;
             });
 
             animationFrameIdRef.current = requestAnimationFrame(animateSquares);
@@ -108,29 +141,28 @@ const RainingSquares = () => {
 
         return () => {
             window.removeEventListener('mousemove', handleGlobalMouseMove);
-            if (parentAnimationContainer) {
-                parentAnimationContainer.removeEventListener('mouseenter', handleMouseEnterAnimationArea);
-                parentAnimationContainer.removeEventListener('mouseleave', handleMouseLeaveAnimationArea);
-            } else {
-                 document.documentElement.removeEventListener('mouseenter', handleMouseEnterAnimationArea);
-                 document.documentElement.removeEventListener('mouseleave', handleMouseLeaveAnimationArea);
-            }
+            window.removeEventListener('resize', updateBounds);
+            document.removeEventListener('scroll', updateBounds, true);
+
             if (animationFrameIdRef.current) {
                 cancelAnimationFrame(animationFrameIdRef.current);
             }
         };
-    }, [isMouseInsideContainer, initSquare]);
+    }, [isMouseInsideParentContainer, initSquare]); 
 
     return (
+        
+        
         <div className="rs-container-visual-only">
             <h1 className="rs-text">Raining Squares</h1>
+            
             <div className="rs-squares-wrapper">
                 {squaresRef.current.map((_, index) => (
                     <div
                         key={index}
                         ref={(el) => (squaresRef.current[index] = el)}
                         className="rs-square"
-                        style={{ opacity: 0, display: 'none' }}
+                        style={{ opacity: 0, display: 'none' }} 
                     ></div>
                 ))}
             </div>
