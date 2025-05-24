@@ -1,0 +1,39 @@
+.rs-container-visual-only {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+  }
+  
+  .rs-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    font-family: '"Roboto Mono", monospace';
+    color: #5dade2;
+    pointer-events: none;
+    z-index: 1;
+    text-align: center;
+  }
+  
+  .rs-squares-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999998;
+  }
+  
+  .rs-square {
+    position: absolute;
+    pointer-events: none;
+    will-change: transform, opacity;
+    background-color: rgba(72, 201, 176, 0.7);
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+  }
