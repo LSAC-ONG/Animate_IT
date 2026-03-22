@@ -40,13 +40,6 @@ function App() {
               scssDefaultCodeName="SnakeEdge.scss"
               scssDefaultCode={SnakeEdgeScss}
             />
-
-            <SandboxWrapper
-              jsxDefaultCodeName="FloatingBalls.jsx"
-              jsxDefaultCode={FloatingBallsJsx}
-              scssDefaultCodeName="FloatingBalls.css"
-              scssDefaultCode={FloatingBallsCss}
-            />
           </div>
         }
       />

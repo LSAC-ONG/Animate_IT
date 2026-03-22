@@ -26,11 +26,12 @@ function SandboxWrapper({
       files={{
         "/App.js": { code: "", hidden: true },
         "/index.js": {
-          code: `import { StrictMode } from "react";\n
-                 import { createRoot } from "react-dom/client";\n
-                 import ".${scssPath}";\n
-                 import App from ".${jsxPath}";\n\n
-                 
+          code: `import { StrictMode } from "react";
+                 import { createRoot } from "react-dom/client";
+                 import ".${scssPath}";
+                 import App from ".${jsxPath}";
+
+                 document.body.style.cssText = "margin: 0; padding: 0; background: #151515; display: grid; place-items: center; min-height: 100vh; overflow: hidden;";\n
                  const root = createRoot(document.getElementById("root"));\n
                  root.render(<StrictMode> <App /> </StrictMode>);`,
           hidden: true,
@@ -41,9 +42,10 @@ function SandboxWrapper({
       }}
     >
       <div className="sandbox-layout">
-        <div className="preview-top">
-          <SandpackLayout className="custom-sp-layout">
+        <div className="sandpack-container">
+          <SandpackLayout className="sandpack-layout">
             <SandpackPreview
+              className="sandpack-preview"
               showOpenInCodeSandbox={false}
               showRefreshButton={true}
             />
@@ -56,9 +58,10 @@ function SandboxWrapper({
           </button>
         </div>
 
-        {/* Un singur container nativ cu tab-uri */}
-        <div className={`editors-bottom ${showCode ? "open" : ""}`}>
-          <SandpackLayout className="custom-sp-layout editor-wrapper">
+        <div
+          className={`sandpack-container editors-container ${showCode ? "open" : ""}`}
+        >
+          <SandpackLayout className="sandpack-layout">
             <SandpackCodeEditor
               showTabs={true}
               showLineNumbers={true}
