@@ -3,46 +3,90 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  gap: 2rem; 
-  margin-top: 4rem;
+  min-height: 100vh;
+  gap: 3rem;
+  padding: 5rem 0;
+  background-image: 
+    linear-gradient(rgba(45, 30, 110, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45, 30, 110, 0.3) 1px, transparent 1px);
+  background-size: 45px 45px;
 }
 
-.sandpack-container {
-  width: 50rem; 
-  height: auto;
+.container {
+  width: 50rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #1e1e1e;
 }
 
-.sandpack-layout {
-  height: 100%;
-  width: 100%;
-  border-radius: 0 !important;
+.preview-container {
+  height: 30rem;
+  width: calc(2 * 50rem + 2rem);
+}
+
+.layout-reset {
+  height: 100% !important;
   border: none !important;
+  aspect-ratio: auto !important;
+  background: #1e1e1e !important;
+
+  .sp-preview,
+  .sp-preview-container,
+  .sp-stack,
+  iframe {
+    height: 100% !important;
+    background: #1e1e1e !important;
+  }
 }
 
-.code-btn {
-  background: transparent;
-  color: #fff;
-  border: 1px solid #fff;
-  cursor: pointer;
-  text-transform: uppercase;
-}
-
-.button-container {
+.editors-row {
   display: flex;
-  flex: row;
-  justify-content: center;
+  gap: 2rem;
   width: 100%;
+  max-width: 110rem;
+  justify-content: center;
+  height: 35rem;
+  transition: all 0.5s ease;
 }
 
-.editors-container {
+.custom-screen {
+  flex: 1;
+  max-width: 50rem;
   height: 100%;
-  overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.4s ease;
-  max-height: 0;
-  opacity: 0;
-}
+  display: flex;
+  flex-direction: column;
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
-.editors-container.open {
-  max-height: 1000px;
-  opacity: 1;
+  .screen-header {
+    background: #252525;
+    padding: 0.6rem 1.2rem;
+    color: white;
+    font-size: 18px;
+    font-family: monospace;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .editor-container {
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+
+    .cm-theme, .cm-editor {
+      height: 100%;
+      background-color: #1e1e1e !important;
+    }
+
+    .cm-editor {
+      font-size: 18px;
+    }
+
+    .cm-gutters {
+      background-color: #1e1e1e !important;
+      border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+
+    .cm-scroller {
+      overflow: auto;
+    }
+  }
 }
