@@ -1,4 +1,4 @@
-@import '../../scss/mixins';
+@import "../../scss/mixins";
 
 .cursors-container {
   .slider {
@@ -12,7 +12,7 @@
     height: 25rem;
     background-color: rgb(0, 0, 0, 0.5);
     border: 0.3rem solid;
-    border-image: linear-gradient(to right, #08D0FE, #FF007B) 1;
+    border-image: linear-gradient(to right, #08d0fe, #ff007b) 1;
 
     .animation-container {
       width: 100%;
@@ -44,7 +44,6 @@
   margin-bottom: 0.5rem;
 }
 
-
 .code-btn {
   @include code-btn-style;
   margin: 2rem auto 0 auto;
@@ -59,15 +58,17 @@
   gap: 2rem;
   margin: 3rem 0 2rem 0;
   overflow: hidden;
-  transition: max-height 0.6s cubic-bezier(0.4,0,0.2,1), opacity 0.4s;
+  transition:
+    max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.4s;
 }
 
 .code-square.css {
-  @include code-square-style(linear-gradient(to right, #08D0FE, #FF007B));
+  @include code-square-style(linear-gradient(to right, #08d0fe, #ff007b));
 }
 
 .code-square.jsx {
-  @include code-square-style(linear-gradient(to right, #FF007B, #08D0FE));
+  @include code-square-style(linear-gradient(to right, #ff007b, #08d0fe));
 }
 
 .copy-btn {
@@ -121,14 +122,16 @@
     width: 97vw;
     min-height: 0;
     box-sizing: border-box;
-    transition: padding 0.4s, min-height 0.4s;
+    transition:
+      padding 0.4s,
+      min-height 0.4s;
     scrollbar-width: thin;
-    scrollbar-color: #08D0FE #222;
+    scrollbar-color: #08d0fe #222;
   }
   .code-squares-wrapper.open {
     padding: 2rem 0 2rem 0 !important;
   }
-  
+
   .code-square.css,
   .code-square.jsx {
     margin-bottom: 0 !important;
@@ -158,6 +161,6 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    border-bottom: 1px solid rgba(8,208,254,0.2);
+    border-bottom: 1px solid rgba(8, 208, 254, 0.2);
   }
 }

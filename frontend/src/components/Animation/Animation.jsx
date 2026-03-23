@@ -1,54 +1,18 @@
-import "./Text.scss";
-import { useState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import "./Animation.scss";
+import Nav from "../Nav";
+import DancingShadowCode from "../Text/TextAnimations/DancingShadow/DancingShadow.jsx?raw";
+import DancingShadowCss from "../Text/TextAnimations/DancingShadow/DancingShadow.css?raw";
+import DancingShadow from "../Text/TextAnimations/DancingShadow/DancingShadow";
+import copyIcon from "../../assets/copy_simbol.png";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import copyIcon from "../../assets/copy_simbol.png";
-import Nav from "../Nav";
 
-import DancingShadow from "./TextAnimations/DancingShadow/DancingShadow";
-import MatrixGlitch from "./TextAnimations/MatrixGlitch/MatrixGlitch";
-import PulseText from "./TextAnimations/PulseText/PulseText";
-import GlitchEffect from "./TextAnimations/GlitchEffect/GlitchEffect";
-import BorderRevolve from "./TextAnimations/BorderRevolve/BorderRevolve";
-import LiquidFill from "./TextAnimations/LiquidFill/LiquidFill";
-import GooeyText from "./TextAnimations/GooeyText/GooeyText";
+const animations = ["DancingShadow"];
 
-import DancingShadowCode from "./TextAnimations/DancingShadow/DancingShadow.jsx?raw";
-import DancingShadowCss from "./TextAnimations/DancingShadow/DancingShadow.css?raw";
-import MatrixGlitchCode from "./TextAnimations/MatrixGlitch/MatrixGlitch.jsx?raw";
-import MatrixGlitchCss from "./TextAnimations/MatrixGlitch/MatrixGlitch.css?raw";
-import PulseTextCode from "./TextAnimations/PulseText/PulseText.jsx?raw";
-import PulseTextCss from "./TextAnimations/PulseText/PulseText.css?raw";
-import GlitchEffectCode from "./TextAnimations/GlitchEffect/GlitchEffect.jsx?raw";
-import GlitchEffectCss from "./TextAnimations/GlitchEffect/GlitchEffect.css?raw";
-import BorderRevolveCode from "./TextAnimations/BorderRevolve/BorderRevolve.jsx?raw";
-import BorderRevolveCss from "./TextAnimations/BorderRevolve/BorderRevolve.css?raw";
-import LiquidFillCode from "./TextAnimations/LiquidFill/LiquidFill.jsx?raw";
-import LiquidFillCss from "./TextAnimations/LiquidFill/LiquidFill.css?raw";
-import GooeyTextCode from "./TextAnimations/GooeyText/GooeyText.jsx?raw";
-import GooeyTextCss from "./TextAnimations/GooeyText/GooeyText.css?raw";
+const animationCodes = [{ jsx: DancingShadowCode, css: DancingShadowCss }];
 
-const animations = [
-  "DancingShadow",
-  "MatrixGlitch",
-  "PulseText",
-  "GlitchEffect",
-  "BorderRevolve",
-  "LiquidFill",
-  "GooeyText",
-];
-
-const animationCodes = [
-  { jsx: DancingShadowCode, css: DancingShadowCss },
-  { jsx: MatrixGlitchCode, css: MatrixGlitchCss },
-  { jsx: PulseTextCode, css: PulseTextCss },
-  { jsx: GlitchEffectCode, css: GlitchEffectCss },
-  { jsx: BorderRevolveCode, css: BorderRevolveCss },
-  { jsx: LiquidFillCode, css: LiquidFillCss },
-  { jsx: GooeyTextCode, css: GooeyTextCss },
-];
-
-function Text() {
+function Animation() {
   const [currentAnimation, setCurrentAnimation] = useState(0);
   const [isDoubled, setIsDoubled] = useState(false);
 
@@ -224,4 +188,4 @@ function Text() {
   );
 }
 
-export default Text;
+export default Animation;
