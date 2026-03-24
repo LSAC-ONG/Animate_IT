@@ -10,7 +10,7 @@ import { sass } from "@codemirror/lang-sass";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import "./SandboxWrapper.scss";
 
-const CustomTextboxScreen = ({ path, fileName, language }) => {
+const CustomEditorScreen = ({ path, fileName, language }) => {
   const { sandpack } = useSandpack();
 
   return (
@@ -59,11 +59,8 @@ function SandboxWrapper({
                    body { 
                      margin: 0; 
                      padding: 0; 
-                     background: #1e1e1e; 
                      min-height: 100vh; 
-                     display: flex; 
-                     align-items: center; 
-                     justify-content: center; 
+                     color: white;
                      overflow: hidden;
                    }
                    #root { 
@@ -85,7 +82,7 @@ function SandboxWrapper({
       }}
     >
       <div className="sandbox-layout">
-        <div className="container preview-container">
+        <div className="preview-container">
           <SandpackLayout className="layout-reset">
             <SandpackPreview
               showRefreshButton={true}
@@ -95,12 +92,12 @@ function SandboxWrapper({
         </div>
 
         <div className="editors-row">
-          <CustomTextboxScreen
+          <CustomEditorScreen
             path={jsxPath}
             fileName={jsxDefaultCodeName}
             language="jsx"
           />
-          <CustomTextboxScreen
+          <CustomEditorScreen
             path={scssPath}
             fileName={scssDefaultCodeName}
             language="scss"
