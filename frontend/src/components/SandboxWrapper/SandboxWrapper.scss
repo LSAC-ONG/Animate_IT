@@ -11,7 +11,7 @@ $text: white;
 
 .preview-container {
   height: 30rem;
-  width: calc(2 * 50rem + 2rem);
+  width: 100rem;
 }
 
 .layout-reset {
@@ -29,6 +29,7 @@ $text: white;
 
 .editors-row {
   display: flex;
+  justify-content: center;
   gap: 2rem;
   width: 100%;
   height: 30rem;
@@ -36,7 +37,7 @@ $text: white;
 
 .custom-screen {
   flex: 1;
-  max-width: 50rem;
+  max-width: calc(calc(100rem - 2rem) / 2);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -54,6 +55,8 @@ $text: white;
     flex: 1;
     overflow: hidden;
     min-height: 0;
+    scrollbar-width: thin;
+    scrollbar-color: #424242 transparent;
 
     .cm-theme, .cm-editor {
       height: 100%;
