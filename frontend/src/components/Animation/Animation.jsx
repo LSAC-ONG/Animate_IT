@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Animation.scss";
 import Nav from "../Nav";
 import DancingShadowCode from "../Text/TextAnimations/DancingShadow/DancingShadow.jsx?raw";
@@ -18,34 +18,6 @@ function Animation() {
 
   const animationRef = useRef(null);
   const codeRef = useRef(null);
-
-  const prevSlide = () => {
-    setCurrentAnimation(
-      (prev) => (prev - 1 + animations.length) % animations.length,
-    );
-    setIsDoubled(false);
-    setTimeout(() => {
-      if (animationRef.current) {
-        animationRef.current.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    }, 100);
-  };
-
-  const nextSlide = () => {
-    setCurrentAnimation((prev) => (prev + 1) % animations.length);
-    setIsDoubled(false);
-    setTimeout(() => {
-      if (animationRef.current) {
-        animationRef.current.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    }, 100);
-  };
 
   const handleCodeClick = () => {
     setIsDoubled((prev) => {
@@ -103,14 +75,8 @@ function Animation() {
           </div>
         </div>
         <div className="arrows-row">
-          <button className="prev" onClick={prevSlide}>
-            ❮
-          </button>
           <button className="code-btn" onClick={handleCodeClick}>
             {isDoubled ? "ANIMATION" : "CODE"}
-          </button>
-          <button className="next" onClick={nextSlide}>
-            ❯
           </button>
         </div>
       </div>
