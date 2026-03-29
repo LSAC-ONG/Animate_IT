@@ -1,18 +1,15 @@
-import { useState } from "react";
 import "./App.scss";
-import Homepage from "./components/Homepage";
 import { Routes, Route } from "react-router-dom";
+import Homepage from "./components/Homepage";
 import Backgrounds from "./components/Backgrounds/Backgrounds";
 import Buttons from "./components/Buttons/Buttons";
 import Cursors from "./components/Cursors/Cursors";
 import Text from "./components/Text/Text";
 import Forms from "./components/Forms/Forms";
 import CarouselTest from "./components/Carousel/CarouselTest";
-import Animation from "./components/Animation/Animation";
+import SandboxWrapperTest from "./components/SandboxWrapper/SandboxWrapperTest";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
@@ -22,7 +19,7 @@ function App() {
       <Route path="/text" element={<Text />} />
       <Route path="/forms" element={<Forms />} />
       <Route path="/carousel-test" element={<CarouselTest />} />
-      <Route path="/animation" element={<Animation />} />
+      <Route path="/sandbox-test" element={<SandboxWrapperTest />} />
     </Routes>
   );
 }
