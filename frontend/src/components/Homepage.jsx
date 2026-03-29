@@ -41,14 +41,56 @@ function Homepage() {
   });
 
   const innerRef = useRef(null);
+  const westRectangleRef = useRef(null);
+  const northRectangleRef = useRef(null);
+  const eastRectangleRef = useRef(null);
+  const southRectangleRef = useRef(null);
+
+  const loadingDuration = 1;
+  const startingDuration = 1.5;
+  const movement = 600;
 
   useGSAP(() => {
-    gsap.to(innerRef.current, {
+
+    // aici incepe loading-ul simulat
+    let tl = gsap.timeline();
+    tl.to(innerRef.current, {
       rotation: 360,
-      duration: 1.5,
-      ease: 'power2.inOut',
-      repeat: -1
-    });
+      duration: loadingDuration,
+      transformOrigin: "center",
+      ease: "power2.inOut",
+      repeat: 1,
+    }, "loading") // label ce marcheaza etapa din animatie. toate tween-urile cu label-ul "loading" vor incepe in acelasi timp
+
+    // aici incepe deschiderea
+    tl.to(innerRef.current, {
+      autoAlpha: 0,
+      duration: startingDuration,
+    }, "starting")
+
+    tl.to(westRectangleRef.current, {
+      duration: startingDuration,
+      x: -movement,
+      ease: "power2.inOut"
+    }, "starting")
+
+    tl.to(northRectangleRef.current, {
+      duration: startingDuration,
+      y: -movement,
+      ease: "power2.inOut"
+    }, "starting")
+
+    tl.to(eastRectangleRef.current, {
+      duration: startingDuration,
+      x: movement,
+      ease: "power2.inOut"
+    }, "starting")
+
+    tl.to(southRectangleRef.current, {
+      duration: startingDuration,
+      y: movement,
+      ease: "power2.inOut"
+    }, "starting")
   });
 
   return (
@@ -75,10 +117,10 @@ function Homepage() {
   
         <svg viewBox="0 0 100 100" className="preloader-svg">
           
-          <polygon className="retracting-shape shape-top" points="50,50 -2000,-2000 2100,-2000" />
-          <polygon className="retracting-shape shape-right" points="50,50 2100,-2000 2100,2100" />
-          <polygon className="retracting-shape shape-bottom" points="50,50 2100,2100 -2000,2100" />
-          <polygon className="retracting-shape shape-left" points="50,50 -2000,2100 -2000,-2000" />
+          <polygon ref={northRectangleRef} className="retracting-shape shape-top" points="50,50 -2000,-2000 2100,-2000" />
+          <polygon ref={eastRectangleRef} className="retracting-shape shape-right" points="50,50 2100,-2000 2100,2100" />
+          <polygon ref={southRectangleRef} className="retracting-shape shape-bottom" points="50,50 2100,2100 -2000,2100" />
+          <polygon ref={westRectangleRef} className="retracting-shape shape-left" points="50,50 -2000,2100 -2000,-2000" />
 
           <g id="center-circle" ref={innerRef}>
             <circle cx="50" cy="50" r="15" className="center-bg" />
