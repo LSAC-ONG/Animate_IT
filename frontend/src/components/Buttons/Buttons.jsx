@@ -1,39 +1,38 @@
-import './Buttons.scss';
-import { useState, useRef } from 'react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import copyIcon from '../../assets/copy_simbol.png';
+import "./Buttons.scss";
+import { useState, useRef } from "react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import copyIcon from "../../assets/copy_simbol.png";
 import Nav from "../Nav";
 
 // Uncomment and import your animations and code when available
-import SnakeEdge from './ButtonAnimations/SnakeEdge/SnakeEdge';
-import CursorAware from './ButtonAnimations/CursorAware/CursorAware';
-import ThinLine from './ButtonAnimations/ThinLIne/ThinLine';
-import ZoneIn from './ButtonAnimations/ZoneIn/ZoneIn';
-import LoadCheck from './ButtonAnimations/LoadCheck/LoadCheck';
+import SnakeEdge from "./ButtonAnimations/SnakeEdge/SnakeEdge";
+import CursorAware from "./ButtonAnimations/CursorAware/CursorAware";
+import ThinLine from "./ButtonAnimations/ThinLine/ThinLine";
+import ZoneIn from "./ButtonAnimations/ZoneIn/ZoneIn";
+import LoadCheck from "./ButtonAnimations/LoadCheck/LoadCheck";
 
-import SnakeEdgeCode from './ButtonAnimations/SnakeEdge/SnakeEdge.jsx?raw';
-import SnakeEdgeCss from './ButtonAnimations/SnakeEdge/SnakeEdge.scss?raw';
+import SnakeEdgeCode from "./ButtonAnimations/SnakeEdge/SnakeEdge.jsx?raw";
+import SnakeEdgeCss from "./ButtonAnimations/SnakeEdge/SnakeEdge.scss?raw";
 
-import CursorAwareCode from './ButtonAnimations/CursorAware/CursorAware.jsx?raw';
-import CursorAwareCss from './ButtonAnimations/CursorAware/CursorAware.scss?raw';
+import CursorAwareCode from "./ButtonAnimations/CursorAware/CursorAware.jsx?raw";
+import CursorAwareCss from "./ButtonAnimations/CursorAware/CursorAware.scss?raw";
 
+import ThinLineCode from "./ButtonAnimations/ThinLine/ThinLine.jsx?raw";
+import ThinLineCss from "./ButtonAnimations/ThinLine/ThinLine.scss?raw";
 
-import ThinLineCode from './ButtonAnimations/ThinLIne/ThinLine.jsx?raw';
-import ThinLineCss from './ButtonAnimations/ThinLIne/ThinLine.scss?raw';
+import ZoneInCode from "./ButtonAnimations/ZoneIn/ZoneIn.jsx?raw";
+import ZoneInCss from "./ButtonAnimations/ZoneIn/ZoneIn.scss?raw";
 
-import ZoneInCode from './ButtonAnimations/ZoneIn/ZoneIn.jsx?raw';
-import ZoneInCss from './ButtonAnimations/ZoneIn/ZoneIn.scss?raw';
-
-import LoadCheckCode from './ButtonAnimations/LoadCheck/LoadCheck.jsx?raw';
-import LoadCheckCss from './ButtonAnimations/LoadCheck/LoadCheck.scss?raw';
+import LoadCheckCode from "./ButtonAnimations/LoadCheck/LoadCheck.jsx?raw";
+import LoadCheckCss from "./ButtonAnimations/LoadCheck/LoadCheck.scss?raw";
 
 const animations = [
-  'CursorAware',
-  'SnakeEdge',
-  'ThinLine',
-  'ZoneIn',
-  'LoadCheck'
+  "CursorAware",
+  "SnakeEdge",
+  "ThinLine",
+  "ZoneIn",
+  "LoadCheck",
 ];
 
 const animationCodes = [
@@ -41,7 +40,7 @@ const animationCodes = [
   { jsx: SnakeEdgeCode, css: SnakeEdgeCss },
   { jsx: ThinLineCode, css: ThinLineCss },
   { jsx: ZoneInCode, css: ZoneInCss },
-  { jsx: LoadCheckCode, css: LoadCheckCss }
+  { jsx: LoadCheckCode, css: LoadCheckCss },
 ];
 
 function Buttons() {
@@ -52,11 +51,16 @@ function Buttons() {
   const codeRef = useRef(null);
 
   const prevSlide = () => {
-    setCurrentAnimation((prev) => (prev - 1 + animations.length) % animations.length);
+    setCurrentAnimation(
+      (prev) => (prev - 1 + animations.length) % animations.length,
+    );
     setIsDoubled(false);
     setTimeout(() => {
       if (animationRef.current) {
-        animationRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        animationRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
       }
     }, 100);
   };
@@ -66,7 +70,10 @@ function Buttons() {
     setIsDoubled(false);
     setTimeout(() => {
       if (animationRef.current) {
-        animationRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        animationRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
       }
     }, 100);
   };
@@ -76,14 +83,20 @@ function Buttons() {
       const next = !prev;
       setTimeout(() => {
         if (next && codeRef.current) {
-          codeRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          codeRef.current.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
           setTimeout(() => {
-            window.scrollBy({ top: 300, left: 0, behavior: 'smooth' });
+            window.scrollBy({ top: 300, left: 0, behavior: "smooth" });
           }, 600);
         } else if (!next && animationRef.current) {
-          animationRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          animationRef.current.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
           setTimeout(() => {
-            window.scrollBy({ top: -200, left: 0, behavior: 'smooth' });
+            window.scrollBy({ top: -200, left: 0, behavior: "smooth" });
           }, 600);
         }
       }, 100);
@@ -93,7 +106,7 @@ function Buttons() {
 
   const handleCopy = (text) => {
     navigator.clipboard.writeText(text);
-    window.alert('Text copied!');
+    window.alert("Text copied!");
   };
 
   return (
@@ -104,46 +117,54 @@ function Buttons() {
         <div className="slider">
           <div className="animation-container">
             {animations.length === 0 ? (
-              <div style={{
-                width: '100%',
-                height: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '2rem',
-                color: '#08D0FE',
-                fontFamily: '"Roboto Mono", monospace',
-                textAlign: 'center'
-              }}>
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "2rem",
+                  color: "#08D0FE",
+                  fontFamily: '"Roboto Mono", monospace',
+                  textAlign: "center",
+                }}
+              >
                 No animations found. Start creating!
               </div>
             ) : (
               <>
-                {animations[currentAnimation] === 'CursorAware' && <CursorAware />}
-                {animations[currentAnimation] === 'SnakeEdge' && <SnakeEdge />}
-                {animations[currentAnimation] === 'ThinLine' && <ThinLine />}
-                {animations[currentAnimation] === 'ZoneIn' && <ZoneIn />}
-                {animations[currentAnimation] === 'LoadCheck' && <LoadCheck />}
+                {animations[currentAnimation] === "CursorAware" && (
+                  <CursorAware />
+                )}
+                {animations[currentAnimation] === "SnakeEdge" && <SnakeEdge />}
+                {animations[currentAnimation] === "ThinLine" && <ThinLine />}
+                {animations[currentAnimation] === "ZoneIn" && <ZoneIn />}
+                {animations[currentAnimation] === "LoadCheck" && <LoadCheck />}
               </>
             )}
           </div>
         </div>
         <div className="arrows-row">
-            <button className="prev" onClick={prevSlide}>❮</button>
-            <button className="code-btn" onClick={handleCodeClick}>
-              {isDoubled ? 'ANIMATION' : 'CODE'}
-            </button>
-            <button className="next" onClick={nextSlide}>❯</button>
-          </div>
+          <button className="prev" onClick={prevSlide}>
+            ❮
+          </button>
+          <button className="code-btn" onClick={handleCodeClick}>
+            {isDoubled ? "ANIMATION" : "CODE"}
+          </button>
+          <button className="next" onClick={nextSlide}>
+            ❯
+          </button>
+        </div>
       </div>
       <div
         ref={codeRef}
-        className={`code-squares-wrapper${isDoubled ? ' open' : ''}`}
+        className={`code-squares-wrapper${isDoubled ? " open" : ""}`}
         style={{
-          maxHeight: isDoubled ? '1000px' : '0',
+          maxHeight: isDoubled ? "1000px" : "0",
           opacity: isDoubled ? 1 : 0,
-          overflow: 'hidden',
-          transition: 'max-height 0.6s cubic-bezier(0.4,0,0.2,1), opacity 0.4s'
+          overflow: "hidden",
+          transition: "max-height 0.6s cubic-bezier(0.4,0,0.2,1), opacity 0.4s",
         }}
       >
         {isDoubled && animations.length > 0 && (
@@ -153,7 +174,9 @@ function Buttons() {
                 CSS
                 <button
                   className="copy-btn"
-                  onClick={() => handleCopy(animationCodes[currentAnimation].css)}
+                  onClick={() =>
+                    handleCopy(animationCodes[currentAnimation].css)
+                  }
                   title="Copy CSS"
                 >
                   <img src={copyIcon} alt="Copy" />
@@ -163,11 +186,11 @@ function Buttons() {
                 language="css"
                 style={vscDarkPlus}
                 customStyle={{
-                  background: 'transparent',
-                  height: '100%',
+                  background: "transparent",
+                  height: "100%",
                   margin: 0,
-                  fontSize: '1.1rem',
-                  fontFamily: '"Fira Mono", "Roboto Mono", monospace'
+                  fontSize: "1.1rem",
+                  fontFamily: '"Fira Mono", "Roboto Mono", monospace',
                 }}
               >
                 {animationCodes[currentAnimation].css}
@@ -178,7 +201,9 @@ function Buttons() {
                 JSX
                 <button
                   className="copy-btn"
-                  onClick={() => handleCopy(animationCodes[currentAnimation].jsx)}
+                  onClick={() =>
+                    handleCopy(animationCodes[currentAnimation].jsx)
+                  }
                   title="Copy JSX"
                 >
                   <img src={copyIcon} alt="Copy" />
@@ -188,11 +213,11 @@ function Buttons() {
                 language="jsx"
                 style={vscDarkPlus}
                 customStyle={{
-                  background: 'transparent',
-                  height: '100%',
+                  background: "transparent",
+                  height: "100%",
                   margin: 0,
-                  fontSize: '1.1rem',
-                  fontFamily: '"Fira Mono", "Roboto Mono", monospace'
+                  fontSize: "1.1rem",
+                  fontFamily: '"Fira Mono", "Roboto Mono", monospace',
                 }}
               >
                 {animationCodes[currentAnimation].jsx}
