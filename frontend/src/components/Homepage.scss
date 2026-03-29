@@ -9,6 +9,39 @@ body,html {
   background-size: 60px 60px, 60px 60px, cover;
 }
 
+.preloader-wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background: transparent;
+
+  .preloader-svg {
+    width: 200px;
+    height: 200px;
+    overflow: visible;
+
+    .retracting-shape {
+      fill: #333;
+    }
+
+    .center-bg {
+      fill: #fff;
+      stroke: #111;
+      stroke-width: 3;
+    }
+
+    .center-dot {
+      fill: red;
+    }
+  }
+}
+
 .homepage-container {
   position: relative;
   top: 0;

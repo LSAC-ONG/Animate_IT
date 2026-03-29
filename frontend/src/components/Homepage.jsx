@@ -1,8 +1,10 @@
 import './Homepage.scss'
 import title from '../assets/title_new.png'
 import Nav from "./Nav";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Carousel from './Carousel/Carousel'
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 function Homepage() {
   const [isMobile, setIsMobile] = useState(
@@ -37,25 +39,56 @@ function Homepage() {
     // cleanup
     return () => mq.removeEventListener('change', handler);
   });
+
+  const innerRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.to(innerRef.current, {
+      rotation: 360,
+      duration: 1.5,
+      ease: 'power2.inOut',
+      repeat: -1
+    });
+  });
+
   return (
-    <div className="homepage-container">
-      <div className="title" style={{ display: 'flex', alignItems: 'center' }}>
-        <img src={title} alt="title-home" />
-        <div className="center">
-          <h1>
-            IT
-          </h1>
+    <>
+      <div className="homepage-container">
+        <div className="title">
+          <img src={title} alt="title-home" />
+          <div className="center">
+            <h1>
+              IT
+            </h1>
+          </div>
+        </div>{
+          isDesktop?<Carousel VISIBLE={5} MAX_HEIGHT={'40vh'} />:(isTablet?
+            (isMobile?<Carousel VISIBLE={1} MAX_HEIGHT={'30vh'} />:
+            <Carousel VISIBLE={3} MAX_HEIGHT={'40vh'} />)
+          :<Carousel VISIBLE={5} MAX_HEIGHT={'40vh'} />)
+        }
+        <div className="welcome">
+          <p>Pick a category suitable for your project!</p>
         </div>
-      </div>{
-        isDesktop?<Carousel VISIBLE={5} MAX_HEIGHT={'40vh'} />:(isTablet?
-          (isMobile?<Carousel VISIBLE={1} MAX_HEIGHT={'30vh'} />:
-          <Carousel VISIBLE={3} MAX_HEIGHT={'40vh'} />)
-        :<Carousel VISIBLE={5} MAX_HEIGHT={'40vh'} />)
-      }
-      <div className="welcome">
-        <p>Pick a category suitable for your project!</p>
       </div>
-    </div>
+      <div id="preloader" className="preloader-wrapper">
+  
+        <svg viewBox="0 0 100 100" className="preloader-svg">
+          
+          <polygon className="retracting-shape shape-top" points="50,50 -2000,-2000 2100,-2000" />
+          <polygon className="retracting-shape shape-right" points="50,50 2100,-2000 2100,2100" />
+          <polygon className="retracting-shape shape-bottom" points="50,50 2100,2100 -2000,2100" />
+          <polygon className="retracting-shape shape-left" points="50,50 -2000,2100 -2000,-2000" />
+
+          <g id="center-circle" ref={innerRef}>
+            <circle cx="50" cy="50" r="15" className="center-bg" />
+            <circle cx="50" cy="50" r="3" className="center-dot" />
+          </g>
+
+        </svg>
+
+      </div>
+    </>
   )
 }
 
