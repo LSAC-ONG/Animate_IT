@@ -50,68 +50,72 @@ function Homepage() {
 
   const loadingDuration = 5;
   const startingDuration = 2;
-  const fadeDuration = 1;
+  const fadeDuration = 0.75;
   const movement = 560;
   const strokeWidth = 2;
   const strokeColor = "#000000";
-  const firstColor = "#00246c";
-  const secondColor = "#FF00B3";
+  const firstColor = "hsl(220, 100%, 25%)";
+  const secondColor = "hsl(318, 90%, 45%)";
   const gradientSpeed = 4;
   const scaleFactor = 2;
   useGSAP(() => {
-
-    // aici incepe loading-ul simulat
-
-    const middleRotation = gsap.to(waveBorderRef.current, {
-      rotation: 5000,
-      duration: loadingDuration + startingDuration,
-      ease: "power4.out",
-      transformOrigin: "center",
-    });
-
-    let tl = gsap.timeline();
-
-    tl.to(waveBorderRef.current, {
-      duration: loadingDuration,
-    }, "loading") // label ce marcheaza etapa din animatie. toate tween-urile cu label-ul "loading" vor incepe in acelasi timp
-
-
-    tl.to(westRectangleRef.current, {
-      duration: startingDuration,
-      x: -movement,
-      ease: "power1.inOut"
-    }, "starting")
-
-    tl.to(northRectangleRef.current, {
-      duration: startingDuration,
-      y: -movement,
-      ease: "power1.inOut"
-    }, "starting")
-
-    tl.to(eastRectangleRef.current, {
-      duration: startingDuration,
-      x: movement,
-      ease: "power1.inOut"
-    }, "starting")
-
-    tl.to(southRectangleRef.current, {
-      duration: startingDuration,
-      y: movement,
-      ease: "power1.inOut"
-    }, "starting")
-
-    tl.to(waveBorderRef.current, {
-      autoAlpha: 0,
-      duration: fadeDuration,
-      ease: "none"
-    }, "fade")
-
-    tl.to(innerRef.current, {
-      autoAlpha: 0,
-      duration: fadeDuration,
-      ease: "none"
-    }, "fade")
+  const middleRotation = gsap.to(waveBorderRef.current, {
+    rotation: 5000,
+    duration: loadingDuration + startingDuration + 2,
+    ease: "power4.out",
+    transformOrigin: "center",
   });
+
+  let tl = gsap.timeline();
+
+  tl.to(waveBorderRef.current, {
+    duration: loadingDuration,
+  }, "loading")
+
+  tl.to(
+    [
+      northRectangleRef.current,
+      eastRectangleRef.current,
+      southRectangleRef.current,
+      westRectangleRef.current
+    ],
+    {
+      duration: startingDuration,
+      ease: "power1.inOut",
+      stagger: 0.1,
+      x: (index) => {
+        if (index === 1) return movement;   // east
+        if (index === 3) return -movement;  // west
+        return 0;
+      },
+      y: (index) => {
+        if (index === 0) return -movement;  // north
+        if (index === 2) return movement;   // south
+        return 0;
+      },
+    },
+    "starting"
+  )
+
+  tl.to(waveBorderRef.current, {
+    autoAlpha: 0,
+    duration: fadeDuration,
+    ease: "none"
+  }, "fade")
+
+  tl.to ([
+    northRectangleRef.current,
+    eastRectangleRef.current,
+    southRectangleRef.current,
+    westRectangleRef.current,
+    innerRef.current,
+    '.preloader-wrapper'
+  ], {
+    autoAlpha: 0,
+    duration: fadeDuration,
+    ease: "none"
+  }, "fade")
+});
 
   return (
     <>
