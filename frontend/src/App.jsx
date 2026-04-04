@@ -8,7 +8,8 @@ import Text from "./components/Text/Text";
 import Forms from "./components/Forms/Forms";
 import CarouselTest from "./components/Carousel/CarouselTest";
 import SandboxWrapperTest from "./components/SandboxWrapper/SandboxWrapperTest";
-import Animation from "./components/Animation/Animation"
+import Animation from "./components/Animation/Animation";
+import ZoomAnimation from "./components/ZoomAnimation/ZoomAnimation";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/forms" element={<Forms />} />
       <Route path="/carousel-test" element={<CarouselTest />} />
       <Route path="/sandbox-test" element={<SandboxWrapperTest />} />
+      <Route path="/zoom-anim" element={<ZoomAnimation />} />
       <Route path="/animation" element={<Animation />} />
     </Routes>
   );
