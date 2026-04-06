@@ -10,11 +10,19 @@ import Forms from './components/Forms/Forms'
 import CarouselTest from './components/Carousel/CarouselTest'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [hasPlayedHomepageLoader, setHasPlayedHomepageLoader] = useState(false)
 
   return (
     <Routes>
-      <Route path="/" element={<Homepage />} />
+      <Route
+        path="/"
+        element={(
+          <Homepage
+            shouldShowLoading={!hasPlayedHomepageLoader}
+            onLoadingComplete={() => setHasPlayedHomepageLoader(true)}
+          />
+        )}
+      />
       <Route path="/backgrounds" element={<Backgrounds />} />
       <Route path="/buttons" element={<Buttons />} />
       <Route path="/cursors" element={<Cursors />} />

@@ -34,7 +34,7 @@ export default function LoadingAnimation({
   const spinUpDuration = 0;
   const swellDuration = Math.max(fadeDuration * 0.18, 0.12);
   const drainDuration = Math.max(fadeDuration * 0.28, 0.2);
-  const logoTiltDegrees = -10;
+  const logoTiltDegrees = -30;
   const logoDrainSpinDegrees = 540;
 
   useGSAP(() => {
@@ -102,12 +102,12 @@ export default function LoadingAnimation({
         'starting',
       );
 
-      timeline.add('drain', 'starting+=1.2');
+      timeline.add('drain', 'starting+=1');
 
       timeline.to(
         [innerFillRef.current, waveBorderRef.current],
         {
-          scale: 1.08,
+          scale: 1.12,
           svgOrigin: '50 50',
           duration: swellDuration,
           ease: 'power2.out',
@@ -118,7 +118,7 @@ export default function LoadingAnimation({
       timeline.to(
         innerRef.current,
         {
-          scale: 1.08,
+          scale: 1.12,
           rotation: logoTiltDegrees,
           svgOrigin: '50 50',
           duration: swellDuration,

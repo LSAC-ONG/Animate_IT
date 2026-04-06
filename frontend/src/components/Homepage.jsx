@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Carousel from './Carousel/Carousel'
 import LoadingAnimation from './LoadingAnimation/LoadingAnimation';
 
-function Homepage() {
+function Homepage({ shouldShowLoading = true, onLoadingComplete }) {
   const [isMobile, setIsMobile] = useState(
     () => window.innerWidth <= 400
   );
@@ -14,6 +14,7 @@ function Homepage() {
   const [isDesktop, setIsDesktop] = useState(
     () => window.innerWidth > 700
   );
+  const [showLoading, setShowLoading] = useState(() => shouldShowLoading);
   useEffect(() => {
     const mq = window.matchMedia(`(max-width: 700px)`);
     const mq2 = window.matchMedia(`(max-width: 400px)`);
@@ -42,6 +43,11 @@ function Homepage() {
     };
   }, []);
 
+  const handleLoadingComplete = () => {
+    setShowLoading(false);
+    onLoadingComplete?.();
+  };
+
   return (
     <>
       <div className="homepage-container">
@@ -62,7 +68,7 @@ function Homepage() {
           <p>Pick a category suitable for your project!</p>
         </div>
       </div>
-      <LoadingAnimation />
+      {showLoading && <LoadingAnimation onComplete={handleLoadingComplete} />}
     </>
   )
 }
