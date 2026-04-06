@@ -10,6 +10,7 @@ import CarouselTest from "./components/Carousel/CarouselTest";
 import SandboxWrapperTest from "./components/SandboxWrapper/SandboxWrapperTest";
 import Animation from "./components/Animation/Animation";
 import ZoomAnimation from "./components/ZoomAnimation/ZoomAnimation";
+import HorizontalGalleryDemo from "./components/HorizontalGallery/HorizontalGalleryDemo";
 
 function App() {
   return (
