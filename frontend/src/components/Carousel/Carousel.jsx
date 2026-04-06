@@ -12,6 +12,7 @@ const slides = [
   { src: '/carousel_images/cursors.png', alt: 'Cursors', label: 'cursors!', link: '/cursors' },
   { src: '/carousel_images/texts.png', alt: 'Text', label: 'text!', link: '/text' },
   { src: '/carousel_images/forms.png', alt: 'Forms', label: 'forms!', link: '/forms' },
+  { src: '/carousel_images/', alt: 'Horizontal Gallery', label: 'horizontal-gallery!', link: '/horizontal-gallery' },
 ];
 
 
@@ -20,7 +21,7 @@ export default function Carousel({ VISIBLE, MAX_HEIGHT }) {
   const containerRef = useRef(null);
   const slideRefs = useRef([]);
   const snapTween = useRef(null);
-  const GAP_PX = VISIBLE==1?5:30
+  const GAP_PX = VISIBLE == 1 ? 5 : 30
   console.log(GAP_PX)
   const widthCalc = `min(calc((100% - ${VISIBLE - 1} * ${GAP_PX}px) / ${VISIBLE}))`;
   // Ajustează lățimea containerului
@@ -57,37 +58,37 @@ export default function Carousel({ VISIBLE, MAX_HEIGHT }) {
   };
 
   // înlocuiește vechea funcție navigate() cu aceasta
-const navigate = (dir) => {
-  const { cont, spacing, totalWidth, minScroll, maxScroll } = calc();
+  const navigate = (dir) => {
+    const { cont, spacing, totalWidth, minScroll, maxScroll } = calc();
 
-  // 1️⃣  indicele slide-ului dorit
-  const offset  = cont.scrollLeft - minScroll;
-  const index   = Math.round(offset / spacing) + dir;
+    // 1️⃣  indicele slide-ului dorit
+    const offset = cont.scrollLeft - minScroll;
+    const index = Math.round(offset / spacing) + dir;
 
-  // 2️⃣  destinația „brută” (poate ieși din domeniu)
-  let dest = minScroll + index * spacing;
+    // 2️⃣  destinația „brută” (poate ieși din domeniu)
+    let dest = minScroll + index * spacing;
 
-  /* 3️⃣  dacă depășește domeniul,
-         relocăm INSTANT *și* poziția curentă, *și* destinația,
-         cu aceeași lungime de pistă (totalWidth) */
-  if (cont.scrollLeft < minScroll) {
-    dest            += totalWidth;   // mutăm ținta
-    cont.scrollLeft += totalWidth;   // mutăm conținutul la fel ⇒ invizibil
-  }
-   if (dest >= maxScroll) {
-    dest            -= totalWidth;
-    cont.scrollLeft -= totalWidth;
-  }
+    /* 3️⃣  dacă depășește domeniul,
+           relocăm INSTANT *și* poziția curentă, *și* destinația,
+           cu aceeași lungime de pistă (totalWidth) */
+    if (cont.scrollLeft < minScroll) {
+      dest += totalWidth;   // mutăm ținta
+      cont.scrollLeft += totalWidth;   // mutăm conținutul la fel ⇒ invizibil
+    }
+    if (dest >= maxScroll) {
+      dest -= totalWidth;
+      cont.scrollLeft -= totalWidth;
+    }
 
-  // 4️⃣  oprim tween-ul precedent și pornim unul nou – nu mai avem onUpdate!
-  snapTween.current?.kill();
-  snapTween.current = gsap.to(cont, {
-    scrollTo: { x: dest },
-    duration : 0.5,
-    ease     : 'power3.out',
-    onUpdate : updateScales            // doar scale/zIndex
-  });
-};
+    // 4️⃣  oprim tween-ul precedent și pornim unul nou – nu mai avem onUpdate!
+    snapTween.current?.kill();
+    snapTween.current = gsap.to(cont, {
+      scrollTo: { x: dest },
+      duration: 0.5,
+      ease: 'power3.out',
+      onUpdate: updateScales            // doar scale/zIndex
+    });
+  };
 
 
 
@@ -132,7 +133,7 @@ const navigate = (dir) => {
       checkBounds();
       updateScales();
     };
-    
+
     const getX = e =>
       // la pointer events e.pageX există, dar păstrăm fallback
       e.pageX ?? (e.touches && e.touches[0].pageX) ?? 0;
@@ -141,21 +142,21 @@ const navigate = (dir) => {
       isDown = true;
       snapTween.current?.kill();
       cont.classList.add('dragging');
-      startX      = getX(e) - cont.offsetLeft;
+      startX = getX(e) - cont.offsetLeft;
       scrollStart = cont.scrollLeft;
     };
-    
+
     const onPointerMove = e => {
       if (!isDown) return;
       e.preventDefault();                     // ✨ oprește scroll-ul nativ pe touch
-      const walk      = getX(e) - cont.offsetLeft - startX;
-      let newScroll   = scrollStart - walk;
-      if (newScroll < 0)           newScroll += totalWidth;
-      if (newScroll > maxScroll)   newScroll -= totalWidth;
+      const walk = getX(e) - cont.offsetLeft - startX;
+      let newScroll = scrollStart - walk;
+      if (newScroll < 0) newScroll += totalWidth;
+      if (newScroll > maxScroll) newScroll -= totalWidth;
       cont.scrollLeft = newScroll;
       updateScales();
     };
-    
+
     const onPointerUp = () => {
       if (!isDown) return;
       isDown = false;
@@ -206,9 +207,9 @@ const navigate = (dir) => {
         className="carousel-btn prev"
         onClick={() => navigate(-1)}
       >
-          <svg viewBox="0 0 16 16">
-            <path d="M11 3 l-5 5 l5 5" stroke="currentColor" stroke-width="1.3" fill="none" />
-          </svg>
+        <svg viewBox="0 0 16 16">
+          <path d="M11 3 l-5 5 l5 5" stroke="currentColor" stroke-width="1.3" fill="none" />
+        </svg>
       </button>
       <div className={`carousel-nav ${VISIBLE === 1 ? 'single' : ''}`} ref={containerRef}>
         {all.map((s, i) => (

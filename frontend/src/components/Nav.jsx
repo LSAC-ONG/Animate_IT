@@ -19,6 +19,7 @@ function Nav() {
           <Link to="/cursors" onClick={() => setOpen(false)}>Cursors</Link>
           <Link to="/text" onClick={() => setOpen(false)}>Text</Link>
           <Link to="/forms" onClick={() => setOpen(false)}>Forms</Link>
+          <Link to="/horizontal-gallery" onClick={() => setOpen(false)}>Horizontal Gallery</Link>
         </div>
       )}
     </div>

@@ -1,0 +1,19 @@
+.blur-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+
+	.blur-text {
+		font-size: 3.5rem;
+		font-weight: 700;
+		color: #c8b8ff;
+		letter-spacing: 0.06em;
+		text-shadow: 0 0 30px rgba(200, 184, 255, 0.4);
+
+		.char {
+			display: inline-block;
+		}
+	}
+}
