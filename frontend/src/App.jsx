@@ -24,6 +24,7 @@ function App() {
       <Route path="/sandbox-test" element={<SandboxWrapperTest />} />
       <Route path="/zoom-anim" element={<ZoomAnimation />} />
       <Route path="/animation" element={<Animation />} />
+      <Route path="/horizontal-gallery" element={<HorizontalGalleryDemo />} />
     </Routes>
   );
 }
