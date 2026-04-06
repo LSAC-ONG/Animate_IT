@@ -9,41 +9,6 @@ body,html {
   background-size: 60px 60px, 60px 60px, cover;
 }
 
-.preloader-wrapper {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  background: transparent;
-
-  .preloader-svg {
-    width: 200px;
-    height: 200px;
-    overflow: visible;
-
-    .center-bg {
-      fill: #fff;
-      stroke: #111;
-      stroke-width: 3;
-    }
-
-    .center-dot {
-      fill: red;
-    }
-
-    .wave-border {
-      stroke: black;
-      fill: transparent;
-      stroke-width: 10;
-    }
-  }
-}
-
 .homepage-container {
   position: relative;
   top: 0;
@@ -140,6 +105,7 @@ body,html {
         background: repeating-linear-gradient(-45deg, red 0%, yellow 7.14%, rgb(0, 255, 0) 14.28%, rgb(0, 255, 255) 21.4%, cyan 28.56%, blue 35.7%, magenta 42.84%, red 50%);
         animation: slide 2s linear infinite forwards;
         background-size: 600vw 600vw;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
         -webkit-background-clip: text;
         animation: slide 10s linear infinite forwards;

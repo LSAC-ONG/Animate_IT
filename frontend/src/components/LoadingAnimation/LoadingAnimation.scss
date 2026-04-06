@@ -1,0 +1,38 @@
+.loading-animation {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+
+  &__intro-cover {
+    position: absolute;
+    inset: 0;
+    background: #000;
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  &__svg {
+    width: 200px;
+    height: 200px;
+    overflow: visible;
+    position: relative;
+    z-index: 3;
+  }
+
+  &__wave-border {
+    stroke: black;
+    fill: transparent;
+    stroke-width: 10;
+  }
+
+  &__center-fill {
+    pointer-events: none;
+  }
+}
