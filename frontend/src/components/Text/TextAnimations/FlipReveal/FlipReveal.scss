@@ -1,0 +1,19 @@
+.flip-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	perspective: 800px;
+
+	.flip-text {
+		font-size: 3.5rem;
+		font-weight: 900;
+		color: #ff6b35;
+		letter-spacing: 0.05em;
+
+		.char {
+			display: inline-block;
+		}
+	}
+}

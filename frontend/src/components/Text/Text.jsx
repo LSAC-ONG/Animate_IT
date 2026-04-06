@@ -12,6 +12,11 @@ import GlitchEffect from "./TextAnimations/GlitchEffect/GlitchEffect";
 import BorderRevolve from "./TextAnimations/BorderRevolve/BorderRevolve";
 import LiquidFill from "./TextAnimations/LiquidFill/LiquidFill";
 import GooeyText from "./TextAnimations/GooeyText/GooeyText";
+import FadeUpReveal from "./TextAnimations/FadeUpReveal/FadeUpReveal";
+import WaveText from "./TextAnimations/WaveText/WaveText";
+import BlurReveal from "./TextAnimations/BlurReveal/BlurReveal";
+import FlipReveal from "./TextAnimations/FlipReveal/FlipReveal";
+import NeonFlicker from "./TextAnimations/NeonFlicker/NeonFlicker";
 
 import DancingShadowCode from "./TextAnimations/DancingShadow/DancingShadow.jsx?raw";
 import DancingShadowCss from "./TextAnimations/DancingShadow/DancingShadow.css?raw";
@@ -27,6 +32,16 @@ import LiquidFillCode from "./TextAnimations/LiquidFill/LiquidFill.jsx?raw";
 import LiquidFillCss from "./TextAnimations/LiquidFill/LiquidFill.css?raw";
 import GooeyTextCode from "./TextAnimations/GooeyText/GooeyText.jsx?raw";
 import GooeyTextCss from "./TextAnimations/GooeyText/GooeyText.css?raw";
+import FadeUpRevealCode from "./TextAnimations/FadeUpReveal/FadeUpReveal.jsx?raw";
+import FadeUpRevealScss from "./TextAnimations/FadeUpReveal/FadeUpReveal.scss?raw";
+import WaveTextCode from "./TextAnimations/WaveText/WaveText.jsx?raw";
+import WaveTextScss from "./TextAnimations/WaveText/WaveText.scss?raw";
+import BlurRevealCode from "./TextAnimations/BlurReveal/BlurReveal.jsx?raw";
+import BlurRevealScss from "./TextAnimations/BlurReveal/BlurReveal.scss?raw";
+import FlipRevealCode from "./TextAnimations/FlipReveal/FlipReveal.jsx?raw";
+import FlipRevealScss from "./TextAnimations/FlipReveal/FlipReveal.scss?raw";
+import NeonFlickerCode from "./TextAnimations/NeonFlicker/NeonFlicker.jsx?raw";
+import NeonFlickerScss from "./TextAnimations/NeonFlicker/NeonFlicker.scss?raw";
 
 const animations = [
 	"DancingShadow",
@@ -36,6 +51,11 @@ const animations = [
 	"BorderRevolve",
 	"LiquidFill",
 	"GooeyText",
+	"FadeUpReveal",
+	"WaveText",
+	"BlurReveal",
+	"FlipReveal",
+	"NeonFlicker",
 ];
 
 const animationCodes = [
@@ -46,6 +66,11 @@ const animationCodes = [
 	{ jsx: BorderRevolveCode, css: BorderRevolveCss },
 	{ jsx: LiquidFillCode, css: LiquidFillCss },
 	{ jsx: GooeyTextCode, css: GooeyTextCss },
+	{ jsx: FadeUpRevealCode, css: FadeUpRevealScss },
+	{ jsx: WaveTextCode, css: WaveTextScss },
+	{ jsx: BlurRevealCode, css: BlurRevealScss },
+	{ jsx: FlipRevealCode, css: FlipRevealScss },
+	{ jsx: NeonFlickerCode, css: NeonFlickerScss },
 ];
 
 function Text() {
@@ -136,6 +161,11 @@ function Text() {
 						)}
 						{animations[currentAnimation] === "LiquidFill" && <LiquidFill />}
 						{animations[currentAnimation] === "GooeyText" && <GooeyText />}
+						{animations[currentAnimation] === "FadeUpReveal" && <FadeUpReveal />}
+						{animations[currentAnimation] === "WaveText" && <WaveText />}
+						{animations[currentAnimation] === "BlurReveal" && <BlurReveal />}
+						{animations[currentAnimation] === "FlipReveal" && <FlipReveal />}
+						{animations[currentAnimation] === "NeonFlicker" && <NeonFlicker />}
 					</div>
 				</div>
 				<div className="arrows-row">
