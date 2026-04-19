@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 import {
   SandpackProvider,
@@ -62,6 +63,8 @@ function SandboxWrapper({
 }) {
   const jsxPath = `/${jsxDefaultCodeName}`;
   const scssPath = `/${scssDefaultCodeName}`;
+
+  const navigate = useNavigate();
 
   const [isDoubled, setIsDoubled] = useState(false);
   const animationRef = useRef(null);
@@ -139,10 +142,17 @@ function SandboxWrapper({
           </SandpackLayout>
         </div>
 
-        <div className="arrows-row">
-          <button className="code-btn" onClick={handleCodeClick}>
-            {isDoubled ? "ANIMATION" : "CODE"}
-          </button>
+        <div className="button-row">
+          <div className="arrows-row">
+            <button className="code-btn" onClick={() => navigate(-1)}>
+              BACK
+            </button>
+          </div>
+          <div className="arrows-row">
+            <button className="code-btn" onClick={handleCodeClick}>
+              {isDoubled ? "ANIMATION" : "CODE"}
+            </button>
+          </div>
         </div>
 
         <div

@@ -74,7 +74,6 @@ import GooeyTextJsx from "../Text/TextAnimations/GooeyText/GooeyText.jsx?raw";
 import GooeyTextCss from "../Text/TextAnimations/GooeyText/GooeyText.css?raw";
 
 import SandboxWrapper from "./SandboxWrapper/SandboxWrapper";
-import Nav from "../Nav";
 
 function GalleryAnimation() {
   const { id } = useParams();

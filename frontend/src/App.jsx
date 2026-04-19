@@ -8,7 +8,6 @@ import Cursors from "./components/Cursors/Cursors";
 import Text from "./components/Text/Text";
 import Forms from "./components/Forms/Forms";
 import CarouselTest from "./components/Carousel/CarouselTest";
-import Animation from "./components/Animation/Animation";
 import ZoomAnimation from "./components/ZoomAnimation/ZoomAnimation";
 import HorizontalGalleryDemo from "./components/HorizontalGallery/HorizontalGalleryDemo";
 import GalleryAnimation from "./components/Animation/GalleryAnimation";
@@ -34,7 +33,6 @@ function App() {
       <Route path="/forms" element={<Forms />} />
       <Route path="/carousel-test" element={<CarouselTest />} />
       <Route path="/zoom-anim" element={<ZoomAnimation />} />
-      <Route path="/animation" element={<Animation />} />
       <Route path="/horizontal-gallery" element={<HorizontalGalleryDemo />} />
       <Route path="/gallery-animation/:id?" element={<GalleryAnimation />} />
     </Routes>
