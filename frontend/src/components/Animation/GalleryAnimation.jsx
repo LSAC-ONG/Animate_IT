@@ -1,3 +1,5 @@
+import { useParams, useNavigate } from "react-router-dom";
+
 // --- BACKGROUNDS ---
 import FloatingBallsJsx from "../Backgrounds/BackgroundAnimations/FloatingBalls/FloatingBalls.jsx?raw";
 import FloatingBallsCss from "../Backgrounds/BackgroundAnimations/FloatingBalls/FloatingBalls.css?raw";
@@ -68,185 +70,217 @@ import LiquidFillCss from "../Text/TextAnimations/LiquidFill/LiquidFill.css?raw"
 import GooeyTextJsx from "../Text/TextAnimations/GooeyText/GooeyText.jsx?raw";
 import GooeyTextCss from "../Text/TextAnimations/GooeyText/GooeyText.css?raw";
 
-import SandboxWrapper from "./SandboxWrapper";
+import SandboxWrapper from "./SandboxWrapper/SandboxWrapper";
 
-function SandboxWrapperTest() {
+function GalleryAnimation() {
+  const { id } = useParams();
+
   const componentsList = [
     {
+      id: "floating-balls",
       jsxName: "FloatingBalls.jsx",
       jsxCode: FloatingBallsJsx,
       styleName: "FloatingBalls.css",
       styleCode: FloatingBallsCss,
     },
     {
+      id: "shooting-stars",
       jsxName: "ShootingStars.jsx",
       jsxCode: ShootingStarsJsx,
       styleName: "ShootingStars.css",
       styleCode: ShootingStarsCss,
     },
     {
+      id: "wavy-bg",
       jsxName: "WavyBackground.jsx",
       jsxCode: WavyBackgroundJsx,
       styleName: "WavyBackground.css",
       styleCode: WavyBackgroundCss,
     },
     {
+      id: "eyes",
       jsxName: "Eyes.jsx",
       jsxCode: EyesJsx,
       styleName: "Eyes.css",
       styleCode: EyesCss,
     },
     {
+      id: "square-to-octagon",
       jsxName: "SquareToOctagon.jsx",
       jsxCode: SquareToOctagonJsx,
       styleName: "SquareToOctagon.css",
       styleCode: SquareToOctagonCss,
     },
     {
+      id: "retro-style",
       jsxName: "RetroStyle.jsx",
       jsxCode: RetroStyleJsx,
       styleName: "RetroStyle.css",
       styleCode: RetroStyleCss,
     },
     {
+      id: "bubbles",
       jsxName: "Bubble.jsx",
       jsxCode: BubbleJsx,
       styleName: "Bubble.css",
       styleCode: BubbleCss,
     },
     {
+      id: "noise",
       jsxName: "Noise.jsx",
       jsxCode: NoiseJsx,
       styleName: "Noise.css",
       styleCode: NoiseCss,
     },
     {
+      id: "shapes",
       jsxName: "Shapes.jsx",
       jsxCode: ShapesJsx,
       styleName: "Shapes.css",
       styleCode: ShapesCss,
     },
     {
+      id: "floating-dots",
       jsxName: "FloatingDots.jsx",
       jsxCode: FloatingDotsJsx,
       styleName: "FloatingDots.css",
       styleCode: FloatingDotsCss,
     },
     {
+      id: "snake-edge",
       jsxName: "SnakeEdge.jsx",
       jsxCode: SnakeEdgeJsx,
       styleName: "SnakeEdge.scss",
       styleCode: SnakeEdgeScss,
     },
     {
+      id: "cursor-aware",
       jsxName: "CursorAware.jsx",
       jsxCode: CursorAwareJsx,
       styleName: "CursorAware.scss",
       styleCode: CursorAwareScss,
     },
     {
+      id: "thin-line",
       jsxName: "ThinLine.jsx",
       jsxCode: ThinLineJsx,
       styleName: "ThinLine.scss",
       styleCode: ThinLineScss,
     },
     {
+      id: "zone-in",
       jsxName: "ZoneIn.jsx",
       jsxCode: ZoneInJsx,
       styleName: "ZoneIn.scss",
       styleCode: ZoneInScss,
     },
     {
+      id: "load-check",
       jsxName: "LoadCheck.jsx",
       jsxCode: LoadCheckJsx,
       styleName: "LoadCheck.scss",
       styleCode: LoadCheckScss,
     },
     {
+      id: "dot-trail",
       jsxName: "DotTrail.jsx",
       jsxCode: DotTrailJsx,
       styleName: "DotTrail.scss",
       styleCode: DotTrailScss,
     },
     {
+      id: "color-circles",
       jsxName: "ColorCircles.jsx",
       jsxCode: ColorCirclesJsx,
       styleName: "ColorCircles.scss",
       styleCode: ColorCirclesScss,
     },
     {
+      id: "rainbow-aura",
       jsxName: "RainbowAura.jsx",
       jsxCode: RainbowAuraJsx,
       styleName: "RainbowAura.scss",
       styleCode: RainbowAuraScss,
     },
     {
+      id: "trailing-dots",
       jsxName: "TrailingDots.jsx",
       jsxCode: TrailingDotsJsx,
       styleName: "TrailingDots.scss",
       styleCode: TrailingDotsScss,
     },
     {
+      id: "raining-squares",
       jsxName: "RainingSquares.jsx",
       jsxCode: RainingSquaresJsx,
       styleName: "RainingSquares.scss",
       styleCode: RainingSquaresScss,
     },
     {
+      id: "dancing-shadow",
       jsxName: "DancingShadow.jsx",
       jsxCode: DancingShadowJsx,
       styleName: "DancingShadow.css",
       styleCode: DancingShadowCss,
     },
     {
+      id: "matrix-glitch",
       jsxName: "MatrixGlitch.jsx",
       jsxCode: MatrixGlitchJsx,
       styleName: "MatrixGlitch.css",
       styleCode: MatrixGlitchCss,
     },
     {
+      id: "pulse-text",
       jsxName: "PulseText.jsx",
       jsxCode: PulseTextJsx,
       styleName: "PulseText.css",
       styleCode: PulseTextCss,
     },
     {
+      id: "glitch",
       jsxName: "GlitchEffect.jsx",
       jsxCode: GlitchEffectJsx,
       styleName: "GlitchEffect.css",
       styleCode: GlitchEffectCss,
     },
     {
+      id: "border-revolve",
       jsxName: "BorderRevolve.jsx",
       jsxCode: BorderRevolveJsx,
       styleName: "BorderRevolve.css",
       styleCode: BorderRevolveCss,
     },
     {
+      id: "liquid-fill",
       jsxName: "LiquidFill.jsx",
       jsxCode: LiquidFillJsx,
       styleName: "LiquidFill.css",
       styleCode: LiquidFillCss,
     },
     {
+      id: "gooey-text",
       jsxName: "GooeyText.jsx",
       jsxCode: GooeyTextJsx,
       styleName: "GooeyText.css",
       styleCode: GooeyTextCss,
     },
     {
+      id: "wavy-login",
       jsxName: "WavyLogin.jsx",
       jsxCode: WavyLoginJsx,
       styleName: "WavyLogin.css",
       styleCode: WavyLoginCss,
     },
     {
+      id: "blocky-form",
       jsxName: "BlockyForm.jsx",
       jsxCode: BlockyFormJsx,
       styleName: "BlockyForm.css",
       styleCode: BlockyFormCss,
     },
     {
+      id: "simple-registration-form",
       jsxName: "SimpleRegistrationForm.jsx",
       jsxCode: SimpleRegJsx,
       styleName: "SimpleRegistrationForm.css",
@@ -254,25 +288,22 @@ function SandboxWrapperTest() {
     },
   ];
 
+  const currentAnimation = componentsList.find((comp) => comp.id === id);
+
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "10rem",
-      }}
-    >
-      {componentsList.map((comp, index) => (
+    <div className="">
+      {currentAnimation ? (
         <SandboxWrapper
-          key={index}
-          jsxDefaultCodeName={comp.jsxName}
-          jsxDefaultCode={comp.jsxCode}
-          scssDefaultCodeName={comp.styleName}
-          scssDefaultCode={comp.styleCode}
+          jsxDefaultCodeName={currentAnimation.jsxName}
+          jsxDefaultCode={currentAnimation.jsxCode}
+          scssDefaultCodeName={currentAnimation.styleName}
+          scssDefaultCode={currentAnimation.styleCode}
         />
-      ))}
+      ) : (
+        "Animation not found!"
+      )}
     </div>
   );
 }
 
-export default SandboxWrapperTest;
+export default GalleryAnimation;
