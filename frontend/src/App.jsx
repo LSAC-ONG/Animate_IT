@@ -13,6 +13,7 @@ import Animation from "./components/Animation/Animation";
 import ZoomAnimation from "./components/ZoomAnimation/ZoomAnimation";
 import HorizontalGalleryDemo from "./components/HorizontalGallery/HorizontalGalleryDemo";
 import ParallaxGalleryPage from "./components/ParallaxGallery/ParallaxPage";
+import WipePage from "./components/WipeGallery/WipePage";
 
 function App() {
   const [hasPlayedHomepageLoader, setHasPlayedHomepageLoader] = useState(false)
@@ -39,6 +40,7 @@ function App() {
       <Route path="/animation" element={<Animation />} />
       <Route path="/horizontal-gallery" element={<HorizontalGalleryDemo />} />
       <Route path="/parallax-gallery" element={<ParallaxGalleryPage />} />
+      <Route path="/wipe-gallery" element={<WipePage />} />
     </Routes>
   )
 }
