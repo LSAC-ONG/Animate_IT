@@ -1,12 +1,12 @@
 import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import styles from './ParallaxGallery.module.scss';
+import styles from './VerticalParallaxGallery.module.scss';
 import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function ParallaxGallery({ items = [], className = '' }) {
+export default function VerticalParallaxGallery({ items = [], className = '' }) {
   const containerRef = useRef(null);
 
   useGSAP(() => {

@@ -1,5 +1,5 @@
-import ParallaxGallery from './ParallaxGallery';
-import styles from './ParallaxPage.module.scss';
+import VerticalParallaxGallery from './VerticalParallaxGallery';
+import styles from './VerticalParallaxPage.module.scss';
 import Nav from '../Nav';
 
 import ShootingStars from '../Backgrounds/BackgroundAnimations/ShootingStars/ShootingStars';
@@ -30,12 +30,12 @@ const galleryItems = [
   { id: 'cursor-aware',   label: 'Cursor Aware',    content: <CursorAware />,   dataSpeed: 0.5 },
 ];
 
-export default function ParallaxGalleryPage() {
+export default function VerticalParallaxGalleryPage() {
   return (
     <div className={styles.galleryDemo}>
       <Nav />
 
-      <ParallaxGallery items={galleryItems} />
+      <VerticalParallaxGallery items={galleryItems} />
 
     </div>
   );
