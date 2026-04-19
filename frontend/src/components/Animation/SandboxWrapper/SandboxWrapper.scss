@@ -1,5 +1,11 @@
+@import '../../../scss/mixins';
+
 $main: #252525;
 $text: white;
+
+$cyan: #08D0FE;
+$pink: #FF007B;
+$dark-gray: #424242;
 
 .sandbox-layout {
   display: flex;
@@ -7,11 +13,15 @@ $text: white;
   align-items: center;
   width: 100%;
   gap: 2rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .preview-container {
-  height: 30rem;
-  width: 100rem;
+  height: 25rem;
+  width: 60rem;
+  border: 0.3rem solid;
+  border-image: linear-gradient(to right, $cyan, $pink) 1;
 }
 
 .layout-reset {
@@ -30,25 +40,44 @@ $text: white;
 .editors-row {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  flex-wrap: wrap;
+  gap: 3rem;
   width: 100%;
-  height: 30rem;
+  height: 35rem;
 }
 
 .custom-screen {
   flex: 1;
-  max-width: calc(calc(100rem - 2rem) / 2);
+  max-width: 40rem;
   height: 100%;
   display: flex;
   flex-direction: column;
   font-size: 18px;
   font-family: monospace;
 
+  &:nth-child(1) {
+    @include code-square-style(linear-gradient(to right, $cyan, $pink));
+  }
+  
+  &:nth-child(2) {
+    @include code-square-style(linear-gradient(to right, $pink, $cyan));
+  }
+
   .screen-header {
-    background: $main;
-    padding: 0.5rem 1rem;
-    color: $text; 
-    font-size: 18px;
+    background: transparent; 
+    padding: 0; 
+    color: $cyan; 
+    font-size: 1.5rem; 
+    font-family: "Roboto Mono", monospace; 
+    font-weight: bold; 
+    letter-spacing: 0.1em; 
+    text-align: left; 
+    border-bottom: 2px solid $cyan; 
+    padding-bottom: 0.5rem; 
+    margin-bottom: 1rem; 
+    text-transform: uppercase; 
+
+    display: flex;
   }
 
   .editor-container {
@@ -56,10 +85,16 @@ $text: white;
     overflow: hidden;
     min-height: 0;
     scrollbar-width: thin;
-    scrollbar-color: #424242 transparent;
+    scrollbar-color: $dark-gray transparent;
 
     .cm-theme, .cm-editor {
+      font-size: 14px;
       height: 100%;
+      background-color: transparent;
+    }
+
+    .cm-gutters {
+      background-color: transparent;
     }
   }
 }

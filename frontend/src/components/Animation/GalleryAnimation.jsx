@@ -1,4 +1,7 @@
+import React, { useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+
+import "./GalleryAnimation.scss";
 
 // --- BACKGROUNDS ---
 import FloatingBallsJsx from "../Backgrounds/BackgroundAnimations/FloatingBalls/FloatingBalls.jsx?raw";
@@ -71,6 +74,7 @@ import GooeyTextJsx from "../Text/TextAnimations/GooeyText/GooeyText.jsx?raw";
 import GooeyTextCss from "../Text/TextAnimations/GooeyText/GooeyText.css?raw";
 
 import SandboxWrapper from "./SandboxWrapper/SandboxWrapper";
+import Nav from "../Nav";
 
 function GalleryAnimation() {
   const { id } = useParams();
@@ -291,7 +295,7 @@ function GalleryAnimation() {
   const currentAnimation = componentsList.find((comp) => comp.id === id);
 
   return (
-    <div className="">
+    <div className="text-container">
       {currentAnimation ? (
         <SandboxWrapper
           jsxDefaultCodeName={currentAnimation.jsxName}
