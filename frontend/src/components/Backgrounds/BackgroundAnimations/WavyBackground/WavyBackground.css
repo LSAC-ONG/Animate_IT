@@ -6,7 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 120vh;
+    min-height: 100%;
 }
 
 .wavy-container .wave {
@@ -22,8 +22,8 @@
 .wavy-container .wave span {
     content: "";
     position: absolute;
-    width: 325vh;
-    height: 325vh;
+    width: 400%;
+    height: 400%;
     top: 0;
     left: 50%;
     transform: translate(-50%, -75%);
