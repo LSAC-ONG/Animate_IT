@@ -11,6 +11,7 @@ gsap.registerPlugin(Flip, ScrollTrigger);
 export default function HorizontalGallery({ items = [], className = '', onItemSelect }) {
   const wrapperRef = useRef(null);
   const trackRef = useRef(null);
+  const navigate = useNavigate();
 
   const overlayRef = useRef(null);
   const stRef = useRef(null);
@@ -54,12 +55,12 @@ export default function HorizontalGallery({ items = [], className = '', onItemSe
 
     const tween = gsap.to(track, {
       x: getScrollAmount,
-      ease: 'none',
+      ease: "none",
       scrollTrigger: {
         trigger: wrapper,
         pin: true,
         scrub: 1,
-        start: 'top top',
+        start: "top top",
         end: () => `+=${-getScrollAmount()}`,
         invalidateOnRefresh: true,
       },

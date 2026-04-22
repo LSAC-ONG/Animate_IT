@@ -1,4 +1,6 @@
 import HorizontalGallery from './HorizontalGallery';
+import ParallaxGallery from './ParallaxGallery/ParallaxGallery';
+import SkewGallery from './SkewGallery/SkewGallery';
 import './HorizontalGalleryDemo.scss';
 import Nav from '../Nav';
 
@@ -69,7 +71,26 @@ export default function HorizontalGalleryDemo() {
         </div>
       </section>
 
+      <section className="variation-intro">
+        <h2>00 — Basic Scroll</h2>
+        <p>The foundation — pure horizontal translation.</p>
+      </section>
+
       <HorizontalGallery items={galleryItems} />
+
+      <section className="variation-intro">
+        <h2>01 — Inner Parallax Pan</h2>
+        <p>Card windows reveal layered depth as you scroll.</p>
+      </section>
+
+      <ParallaxGallery items={galleryItems} />
+
+      <section className="variation-intro">
+        <h2>02 — Velocity Skew</h2>
+        <p>Momentum bends the cards — scroll fast to feel it.</p>
+      </section>
+
+      <SkewGallery items={galleryItems} />
 
       <section className="gallery-outro">
         <h2>The end!</h2>
