@@ -1,11 +1,12 @@
 import { useRef, useLayoutEffect, useState, useEffect } from 'react';
 import { gsap } from 'gsap';
+import { Flip } from 'gsap/flip';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import './HorizontalGallery.scss';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(Flip, ScrollTrigger);
 
 export default function HorizontalGallery({ items = [], className = '', onItemSelect }) {
   const wrapperRef = useRef(null);
@@ -72,6 +73,7 @@ export default function HorizontalGallery({ items = [], className = '', onItemSe
     };
   }, [items]);
 
+  /* ── Flip expand animation ── */
   useLayoutEffect(() => {
     if (!expandedItem || !overlayRef.current || !pendingRectRef.current) return;
 
@@ -79,6 +81,10 @@ export default function HorizontalGallery({ items = [], className = '', onItemSe
     const rect = pendingRectRef.current;
     pendingRectRef.current = null;
 
+    const header = overlay.querySelector('.gallery-overlay-header');
+    if (header) gsap.set(header, { autoAlpha: 0 });
+
+    // 1. Position overlay at the card's rect (starting state)
     gsap.set(overlay, {
       top: rect.top,
       left: rect.left,
@@ -86,16 +92,23 @@ export default function HorizontalGallery({ items = [], className = '', onItemSe
       height: rect.height,
     });
 
-    const header = overlay.querySelector('.gallery-overlay-header');
-    if (header) gsap.set(header, { autoAlpha: 0 });
+    // 2. Capture the card-sized state with Flip
+    const state = Flip.getState(overlay);
 
-    gsap.to(overlay, {
+    // 3. Set overlay to its fullscreen destination
+    gsap.set(overlay, {
       top: 0,
       left: 0,
-      width: window.innerWidth,
-      height: window.innerHeight,
+      width: '100vw',
+      height: '100vh',
+    });
+
+    // 4. Flip.from animates from saved card-sized state → current fullscreen
+    Flip.from(state, {
+      targets: overlay,
       duration: 0.6,
       ease: 'power2.inOut',
+      absolute: true,
       onComplete: () => {
         if (header) gsap.to(header, { autoAlpha: 1, duration: 0.3 });
         isAnimatingRef.current = false;
@@ -115,6 +128,8 @@ export default function HorizontalGallery({ items = [], className = '', onItemSe
 
   const handleCardClick = (item, e) => {
     if (expandedItem || isAnimatingRef.current) return;
+    if (!stRef.current?.isActive) return;
+
     isAnimatingRef.current = true;
 
     const card = e.currentTarget;
@@ -150,17 +165,28 @@ export default function HorizontalGallery({ items = [], className = '', onItemSe
 
     const rect = card.getBoundingClientRect();
     const header = overlay.querySelector('.gallery-overlay-header');
+
     gsap.to(header, {
       autoAlpha: 0,
       duration: 0.2,
       onComplete: () => {
-        gsap.to(overlay, {
+        // 1. Capture the fullscreen state with Flip
+        const state = Flip.getState(overlay);
+
+        // 2. Set overlay to the card's rect (destination)
+        gsap.set(overlay, {
           top: rect.top,
           left: rect.left,
           width: rect.width,
           height: rect.height,
+        });
+
+        // 3. Flip.from animates from saved fullscreen state -> current card-sized
+        Flip.from(state, {
+          targets: overlay,
           duration: 0.6,
           ease: 'power2.inOut',
+          absolute: true,
           onComplete: () => {
             card.style.opacity = '1';
             sourceCardRef.current = null;
@@ -176,6 +202,7 @@ export default function HorizontalGallery({ items = [], className = '', onItemSe
   const handleCopy = (text) => {
     navigator.clipboard.writeText(text);
   };
+
   return (
     <section
       ref={wrapperRef}

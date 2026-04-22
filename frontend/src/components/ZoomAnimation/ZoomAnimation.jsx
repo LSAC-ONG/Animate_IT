@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import gsap from 'gsap';
-import { Flip } from 'gsap/Flip';
+import { Flip } from 'gsap/flip';
 import { useGSAP } from '@gsap/react';
 import './ZoomAnimation.scss';
 
