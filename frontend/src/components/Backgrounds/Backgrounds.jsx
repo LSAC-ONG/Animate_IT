@@ -43,6 +43,10 @@ import FloatingDots from './BackgroundAnimations/FloatingDots/FloatingDots';
 import FloatingDotsCode from './BackgroundAnimations/FloatingDots/FloatingDots.jsx?raw';
 import FloatingDotsCss from './BackgroundAnimations/FloatingDots/FloatingDots.css?raw';
 
+import FluidGrid from './BackgroundAnimations/FluidGrid/FluidGrid';
+import FluidGridCode from './BackgroundAnimations/FluidGrid/FluidGrid.jsx?raw';
+import FluidGridCss from './BackgroundAnimations/FluidGrid/FluidGrid.scss?raw';
+
 const animations = [
   'Shapes',
   'RetroStyle',
@@ -54,6 +58,7 @@ const animations = [
   'WavyBackground',
   'Eyes',
   'SquareToOctagon',
+  'FluidGrid'
 ];
 
 const animationCodes = [
@@ -67,6 +72,7 @@ const animationCodes = [
   { jsx: WavyBackgroundCode, css: WavyBackgroundCss },
   { jsx: EyesCode, css: EyesCss },
   { jsx: SquareToOctagonCode, css: SquareToOctagonCss },
+  { jsx: FluidGridCode, css: FluidGridCss },
 ];
 
 function Backgrounds() {
@@ -138,6 +144,7 @@ function Backgrounds() {
             {animations[currentAnimation] === 'Noise' && <Noise />}
             {animations[currentAnimation] === 'Shapes' && <Shapes />}
             {animations[currentAnimation] === 'FloatingDots' && <FloatingDots />}
+            {animations[currentAnimation] === 'FluidGrid' && <FluidGrid />}
           </div>
         </div>
         <div className="arrows-row">
