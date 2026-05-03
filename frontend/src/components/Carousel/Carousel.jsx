@@ -13,6 +13,7 @@ const slides = [
   { src: '/carousel_images/texts.png', alt: 'Text', label: 'text!', link: '/text' },
   { src: '/carousel_images/forms.png', alt: 'Forms', label: 'forms!', link: '/forms' },
   { src: '/carousel_images/', alt: 'Horizontal Gallery', label: 'horizontal-gallery!', link: '/horizontal-gallery' },
+  { src: '/carousel_images/', alt: 'Gallery', label: 'gallery!', link: '/gallery' }
 ];
 
 

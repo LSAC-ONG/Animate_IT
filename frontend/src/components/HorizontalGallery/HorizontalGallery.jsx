@@ -11,7 +11,6 @@ gsap.registerPlugin(Flip, ScrollTrigger);
 export default function HorizontalGallery({ items = [], className = '', onItemSelect }) {
   const wrapperRef = useRef(null);
   const trackRef = useRef(null);
-  const navigate = useNavigate();
 
   const overlayRef = useRef(null);
   const stRef = useRef(null);
@@ -129,7 +128,7 @@ export default function HorizontalGallery({ items = [], className = '', onItemSe
 
   const handleCardClick = (item, e) => {
     if (expandedItem || isAnimatingRef.current) return;
-    if (!stRef.current?.isActive) return;
+    if (!stRef.current?.isActive && !stRef.current) return;
 
     isAnimatingRef.current = true;
 
