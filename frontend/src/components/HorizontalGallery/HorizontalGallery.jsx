@@ -8,7 +8,7 @@ import './HorizontalGallery.scss';
 
 gsap.registerPlugin(Flip, ScrollTrigger);
 
-export default function HorizontalGallery({ items = [], className = '', onItemSelect }) {
+export default function HorizontalGallery({ items = [], className = '', onItemSelect, expandable = true }) {
   const wrapperRef = useRef(null);
   const trackRef = useRef(null);
 
@@ -127,8 +127,9 @@ export default function HorizontalGallery({ items = [], className = '', onItemSe
   }, [expandedItem]);
 
   const handleCardClick = (item, e) => {
+    if (!expandable) return;
     if (expandedItem || isAnimatingRef.current) return;
-    if (!stRef.current?.isActive && !stRef.current) return;
+    if (!stRef.current?.isActive) return;
 
     isAnimatingRef.current = true;
 

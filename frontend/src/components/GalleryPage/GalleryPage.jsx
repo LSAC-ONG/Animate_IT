@@ -108,14 +108,6 @@ export default function GalleryPage() {
       <WipeGallery items={wipeItems} />
 
       <section className="section-intro">
-        <span className="section-number">02</span>
-        <h2>Velocity Skew</h2>
-        <p>Momentum bends the cards — scroll fast to feel it.</p>
-      </section>
-
-      <SkewGallery items={skewItems} />
-
-      <section className="section-intro">
         <span className="section-number">03</span>
         <h2>Inner Parallax Pan</h2>
         <p>Card windows reveal layered depth as you scroll.</p>
@@ -124,9 +116,17 @@ export default function GalleryPage() {
       <ParallaxGallery items={parallaxItems} />
 
       <section className="section-intro">
+        <span className="section-number">02</span>
+        <h2>Velocity Skew</h2>
+        <p>Momentum bends the cards — scroll fast to feel it.</p>
+      </section>
+
+      <SkewGallery items={skewItems} />
+
+      <section className="section-intro">
         <span className="section-number">04</span>
         <h2>Classic Scroll</h2>
-        <p>The foundation — smooth horizontal translation. Click any card to view full-screen.</p>
+        <p>The foundation — smooth horizontal translation.</p>
       </section>
 
       <HorizontalGallery items={basicItems} />
