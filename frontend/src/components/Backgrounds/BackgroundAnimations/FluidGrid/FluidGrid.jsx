@@ -24,40 +24,43 @@ class Particle {
         this.y = this.y0 = y;
         this.vx = 0;
         this.vy = 0;
+        
         this.sizePx = sizePx;
+        this.cursorRadius = 80;
+        this.friction = 0.9;
+        this.springStrngth = 0.05;
+        this.pushForce = 0.02;
     }
 
-    update(mouseX, mouseY) {
+    update(mouseX, mouseY, deltaRatio) {
 
         const dx = this.x - mouseX;
         const dy = this.y - mouseY;
         const dist = Math.sqrt(dx*dx + dy*dy);
 
-        // TODO
-        if (dist < 80) {
+        if (dist < this.cursorRadius) {
             let angle = Math.atan2(dy, dx);
-            let force = (80 - dist) * 0.02;
+            let force = (this.cursorRadius - dist) * this.pushForce;
             this.vx += Math.cos(angle) * force;
             this.vy += Math.sin(angle) * force;
         }
 
         
-        this.vx += (this.x0 - this.x) * 0.05;
-        this.vy += (this.y0 - this.y) * 0.05;
+        this.vx += (this.x0 - this.x) * this.springStrngth;
+        this.vy += (this.y0 - this.y) * this.springStrngth;
 
         
         this.vx *= 0.9;
         this.vy *= 0.9;
 
-        this.x += this.vx;
-        this.y += this.vy;
+        this.x += this.vx * deltaRatio;
+        this.y += this.vy * deltaRatio;
     
     }
 }
 
 function updateDotGrid(width, height, ctx, particles) {
     if (!ctx) {
-        // console.log("X");
         return; 
 
     }
@@ -68,7 +71,6 @@ function updateDotGrid(width, height, ctx, particles) {
         ctx.fillRect(particle.x, particle.y, particle.sizePx, particle.sizePx);
     }
 
-    // console.log("grid updated!");
 }
 
 
@@ -81,7 +83,6 @@ const FluidGrid = () => {
     
 
     function handleMouseMove(e) {
-        // console.log('Mouse position:', event.clientX, event.clientY);
         const canvas = canvasRef.current;
         if (!canvas)
             return;
@@ -110,24 +111,22 @@ const FluidGrid = () => {
         ctx.clearRect(0, 0, rect.width, rect.height);
 
         ctx.fillStyle = '#e5e7eb';
-        particlesRef.current = initDotGrid(rect.width, rect.height, 5, 10, 10, ctx);
+        particlesRef.current = initDotGrid(rect.width, rect.height, 3, 10, 10, ctx);
 
-        const tick = () => {
+        const tick = (time, deltaTime, frame) => {
             const particles = particlesRef.current;
             const mouse = mouseRef.current;
-            // console.log(particles);
+            const deltaRatio = gsap.ticker.deltaRatio(60);
 
             if (particles.length > 0) {
                 for (let particle of particles) {
-                    particle.update(mouse.x, mouse.y);
-                    // console.log("particle updated!");
+                    particle.update(mouse.x, mouse.y, deltaRatio);
                 }
             }
             updateDotGrid(canvas.width, canvas.height, ctxRef.current, particlesRef.current);
-            requestAnimationFrame(tick);
         }
+        gsap.ticker.add(tick);
 
-        requestAnimationFrame(tick);
 
     }, []);
     
@@ -139,9 +138,9 @@ const FluidGrid = () => {
             </canvas>
 
 
-            {/* <div className="center">
-                <h1>Wavy Animation</h1>
-            </div> */}
+             <div className="center">
+                <h1>Fluid Grid (move cursor over)</h1>
+            </div> 
         </div>
     );
 };
