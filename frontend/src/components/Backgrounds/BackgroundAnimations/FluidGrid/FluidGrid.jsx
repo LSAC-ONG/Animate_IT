@@ -27,22 +27,16 @@ class Particle {
         this.sizePx = sizePx;
     }
 
-    update(mouseEvent, canvas) {
-        const rect = canvas.getBoundingClientRect();
-
-        // translate pointer coords to canvas
-        const mouseX = mouseEvent.clientX - rect.left;
-        const mouseY = mouseEvent.clientY - rect.top;
-
+    update(mouseX, mouseY) {
 
         const dx = this.x - mouseX;
         const dy = this.y - mouseY;
         const dist = Math.sqrt(dx*dx + dy*dy);
 
         // TODO
-        if (dist < 150) {
+        if (dist < 80) {
             let angle = Math.atan2(dy, dx);
-            let force = (150 - dist) * 0.02;
+            let force = (80 - dist) * 0.02;
             this.vx += Math.cos(angle) * force;
             this.vy += Math.sin(angle) * force;
         }
@@ -83,19 +77,19 @@ const FluidGrid = () => {
     const canvasRef = useRef(null);
     const ctxRef = useRef(null);
     const particlesRef = useRef([]);
+    const mouseRef = useRef({x: -100, y: -100});
+    
 
-    function handleMouseMove(event) {
+    function handleMouseMove(e) {
         // console.log('Mouse position:', event.clientX, event.clientY);
-        const particles = particlesRef.current;
-        // console.log(particles);
+        const canvas = canvasRef.current;
+        if (!canvas)
+            return;
+        // translate pointer coords to canvas
 
-        if (particles.length > 0) {
-            for (let particle of particles) {
-                particle.update(event, canvasRef.current);
-                // console.log("particle updated!");
-            }
-        }
-        updateDotGrid(canvasRef.current.width, canvasRef.current.height, ctxRef.current, particlesRef.current);
+        const rect = canvas.getBoundingClientRect();
+        mouseRef.current.x = e.clientX - rect.left;
+        mouseRef.current.y = e.clientY - rect.top;
     }
 
     useEffect(() => {
@@ -116,7 +110,24 @@ const FluidGrid = () => {
         ctx.clearRect(0, 0, rect.width, rect.height);
 
         ctx.fillStyle = '#e5e7eb';
-        particlesRef.current = initDotGrid(rect.width, rect.height, 10, 10, 10, ctx);
+        particlesRef.current = initDotGrid(rect.width, rect.height, 5, 10, 10, ctx);
+
+        const tick = () => {
+            const particles = particlesRef.current;
+            const mouse = mouseRef.current;
+            // console.log(particles);
+
+            if (particles.length > 0) {
+                for (let particle of particles) {
+                    particle.update(mouse.x, mouse.y);
+                    // console.log("particle updated!");
+                }
+            }
+            updateDotGrid(canvas.width, canvas.height, ctxRef.current, particlesRef.current);
+            requestAnimationFrame(tick);
+        }
+
+        requestAnimationFrame(tick);
 
     }, []);
     
