@@ -24,7 +24,7 @@ class Particle {
         this.y = this.y0 = y;
         this.vx = 0;
         this.vy = 0;
-        
+
         this.sizePx = sizePx;
         this.cursorRadius = 80;
         this.friction = 0.9;
@@ -127,7 +127,9 @@ const FluidGrid = () => {
         }
         gsap.ticker.add(tick);
 
-
+        return () => {
+            gsap.ticker.remove(tick);
+        }
     }, []);
     
 

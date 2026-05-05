@@ -1,0 +1,60 @@
+.diagonal-marquee-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    gap: 0;
+
+    .rotated {
+        position: absolute;
+        inset: -60%;
+        display: grid;
+        place-items: center;
+        transform: rotate(-15deg);
+
+    }
+
+    .track {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%); 
+        display: flex;
+        width: max-content;
+        animation: marquee-scroll 5s linear infinite;
+    }
+
+    .group {
+        display: flex;
+        flex-direction: row;
+        flex: 0 0 auto;
+        gap: 0;
+}
+
+
+    div.center {
+        color:white;
+    }
+
+    .star {
+        stroke:white;
+
+        flex: 0 0 auto;
+        width: 120px;              
+        height: 120px;
+    
+    }
+
+    @keyframes marquee-scroll {
+        from {
+            translate: 0;
+        }
+
+        to {
+            translate: -50%;
+
+        }
+    }
+
+}
+

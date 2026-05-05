@@ -47,6 +47,14 @@ import FluidGrid from './BackgroundAnimations/FluidGrid/FluidGrid';
 import FluidGridCode from './BackgroundAnimations/FluidGrid/FluidGrid.jsx?raw';
 import FluidGridCss from './BackgroundAnimations/FluidGrid/FluidGrid.scss?raw';
 
+import DiagonalMarquee from './BackgroundAnimations/DiagonalMarquee/DiagonalMarquee';
+import DiagonalMarqueeCode from './BackgroundAnimations/DiagonalMarquee/DiagonalMarquee.jsx?raw';
+import DiagonalMarqueeCss from './BackgroundAnimations/DiagonalMarquee/DiagonalMarquee.scss?raw';
+
+import GlowingSpotlight from './BackgroundAnimations/GlowingSpotlight/GlowingSpotlight';
+import GlowingSpotlightCode from './BackgroundAnimations/GlowingSpotlight/GlowingSpotlight.jsx?raw';
+import GlowingSpotlightCss from './BackgroundAnimations/GlowingSpotlight/GlowingSpotlight.scss?raw';
+
 const animations = [
   'Shapes',
   'RetroStyle',
@@ -58,7 +66,9 @@ const animations = [
   'WavyBackground',
   'Eyes',
   'SquareToOctagon',
-  'FluidGrid'
+  'FluidGrid',
+  'DiagonalMarquee',
+  'GlowingSpotlight',
 ];
 
 const animationCodes = [
@@ -73,6 +83,8 @@ const animationCodes = [
   { jsx: EyesCode, css: EyesCss },
   { jsx: SquareToOctagonCode, css: SquareToOctagonCss },
   { jsx: FluidGridCode, css: FluidGridCss },
+  { jsx: DiagonalMarqueeCode, css: DiagonalMarqueeCss },
+  { jsx: GlowingSpotlightCode, css: GlowingSpotlightCss }
 ];
 
 function Backgrounds() {
@@ -145,6 +157,8 @@ function Backgrounds() {
             {animations[currentAnimation] === 'Shapes' && <Shapes />}
             {animations[currentAnimation] === 'FloatingDots' && <FloatingDots />}
             {animations[currentAnimation] === 'FluidGrid' && <FluidGrid />}
+            {animations[currentAnimation] === 'DiagonalMarquee' && <DiagonalMarquee />}
+            {animations[currentAnimation] === 'GlowingSpotlight' && <GlowingSpotlight />}
           </div>
         </div>
         <div className="arrows-row">
