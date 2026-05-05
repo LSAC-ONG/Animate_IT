@@ -113,6 +113,8 @@ const FluidGrid = () => {
         ctx.fillStyle = '#e5e7eb';
         particlesRef.current = initDotGrid(rect.width, rect.height, 3, 10, 10, ctx);
 
+        globalThis.addEventListener("mousemove", handleMouseMove);
+
         const tick = (time, deltaTime, frame) => {
             const particles = particlesRef.current;
             const mouse = mouseRef.current;
@@ -129,6 +131,7 @@ const FluidGrid = () => {
 
         return () => {
             gsap.ticker.remove(tick);
+            globalThis.removeEventListener("mousemove", handleMouseMove);
         }
     }, []);
     
