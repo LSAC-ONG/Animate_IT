@@ -1,14 +1,17 @@
-import { useRef, useLayoutEffect, useState, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { Flip } from 'gsap/Flip';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import './HorizontalGallery.scss';
+import { useRef, useLayoutEffect, useState, useEffect } from "react";
+import { gsap } from "gsap";
+import { Flip } from "gsap/Flip";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import "./HorizontalGallery.scss";
+import { useNavigate } from "react-router-dom";
 
 gsap.registerPlugin(Flip, ScrollTrigger);
 
-export default function HorizontalGallery({ items = [], className = '', onItemSelect }) {
+export default function HorizontalGallery({
+  items = [],
+  className = "",
+  onItemSelect,
+}) {
   const wrapperRef = useRef(null);
   const trackRef = useRef(null);
   const navigate = useNavigate();
@@ -20,24 +23,33 @@ export default function HorizontalGallery({ items = [], className = '', onItemSe
   const isAnimatingRef = useRef(false);
   const scrollBlocker = useRef(null);
   const [expandedItem, setExpandedItem] = useState(null);
-  const [showCode, setShowCode] = useState(false);
 
   const lockScroll = () => {
+    unlockScroll();
+    document.body.style.overflow = "hidden";
     const prevent = (e) => {
-      if (e.target.closest?.('.gallery-code-view')) return;
       e.preventDefault();
     };
     const preventKeys = (e) => {
-      const keys = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '];
+      const keys = [
+        "ArrowUp",
+        "ArrowDown",
+        "PageUp",
+        "PageDown",
+        "Home",
+        "End",
+        " ",
+      ];
       if (keys.includes(e.key)) e.preventDefault();
     };
-    window.addEventListener('wheel', prevent, { passive: false });
-    window.addEventListener('touchmove', prevent, { passive: false });
-    window.addEventListener('keydown', preventKeys, { passive: false });
+    window.addEventListener("wheel", prevent, { passive: false });
+    window.addEventListener("touchmove", prevent, { passive: false });
+    window.addEventListener("keydown", preventKeys, { passive: false });
     scrollBlocker.current = () => {
-      window.removeEventListener('wheel', prevent);
-      window.removeEventListener('touchmove', prevent);
-      window.removeEventListener('keydown', preventKeys);
+      document.body.style.overflow = "";
+      window.removeEventListener("wheel", prevent);
+      window.removeEventListener("touchmove", prevent);
+      window.removeEventListener("keydown", preventKeys);
     };
   };
 
@@ -45,6 +57,32 @@ export default function HorizontalGallery({ items = [], className = '', onItemSe
     scrollBlocker.current?.();
     scrollBlocker.current = null;
   };
+
+  useEffect(() => {
+    if (expandedItem) lockScroll();
+    return () => unlockScroll();
+  }, [expandedItem]);
+
+  useEffect(() => {
+    const savedId = sessionStorage.getItem("galleryExpandedId");
+    if (savedId && items.length > 0) {
+      const item = items.find((i) => i.id === savedId);
+      if (item) {
+        setExpandedItem(item);
+        lockScroll();
+
+        setTimeout(() => {
+          const index = items.findIndex((i) => i.id === savedId);
+          const cards = document.querySelectorAll(".gallery-item");
+          if (cards[index]) {
+            sourceCardRef.current = cards[index];
+            cards[index].style.opacity = "0";
+          }
+        }, 0);
+      }
+      sessionStorage.removeItem("galleryExpandedId");
+    }
+  }, [items]);
 
   useLayoutEffect(() => {
     if (!items.length) return;
@@ -74,18 +112,28 @@ export default function HorizontalGallery({ items = [], className = '', onItemSe
     };
   }, [items]);
 
-  /* ── Flip expand animation ── */
   useLayoutEffect(() => {
-    if (!expandedItem || !overlayRef.current || !pendingRectRef.current) return;
+    if (!expandedItem || !overlayRef.current) return;
 
     const overlay = overlayRef.current;
+    const header = overlay.querySelector(".gallery-overlay-header");
+
+    if (!pendingRectRef.current) {
+      if (header) gsap.set(header, { autoAlpha: 1 });
+      gsap.set(overlay, {
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+      });
+      return;
+    }
+
     const rect = pendingRectRef.current;
     pendingRectRef.current = null;
 
-    const header = overlay.querySelector('.gallery-overlay-header');
     if (header) gsap.set(header, { autoAlpha: 0 });
 
-    // 1. Position overlay at the card's rect (starting state)
     gsap.set(overlay, {
       top: rect.top,
       left: rect.left,
@@ -93,22 +141,19 @@ export default function HorizontalGallery({ items = [], className = '', onItemSe
       height: rect.height,
     });
 
-    // 2. Capture the card-sized state with Flip
     const state = Flip.getState(overlay);
 
-    // 3. Set overlay to its fullscreen destination
     gsap.set(overlay, {
       top: 0,
       left: 0,
-      width: '100vw',
-      height: '100vh',
+      width: "100vw",
+      height: "100vh",
     });
 
-    // 4. Flip.from animates from saved card-sized state → current fullscreen
     Flip.from(state, {
       targets: overlay,
       duration: 0.6,
-      ease: 'power2.inOut',
+      ease: "power2.inOut",
       absolute: true,
       onComplete: () => {
         if (header) gsap.to(header, { autoAlpha: 1, duration: 0.3 });
@@ -121,10 +166,10 @@ export default function HorizontalGallery({ items = [], className = '', onItemSe
     if (!expandedItem) return;
 
     const onKey = (e) => {
-      if (e.key === 'Escape' && !isAnimatingRef.current) handleClose();
+      if (e.key === "Escape" && !isAnimatingRef.current) handleClose();
     };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, [expandedItem]);
 
   const handleCardClick = (item, e) => {
@@ -146,11 +191,10 @@ export default function HorizontalGallery({ items = [], className = '', onItemSe
 
     lockScroll();
 
-    card.style.opacity = '0';
+    card.style.opacity = "0";
 
     onItemSelect?.(item.id);
 
-    setShowCode(false);
     setExpandedItem(item);
   };
 
@@ -162,19 +206,15 @@ export default function HorizontalGallery({ items = [], className = '', onItemSe
     const overlay = overlayRef.current;
     if (!card || !overlay) return;
 
-    setShowCode(false);
-
     const rect = card.getBoundingClientRect();
-    const header = overlay.querySelector('.gallery-overlay-header');
+    const header = overlay.querySelector(".gallery-overlay-header");
 
     gsap.to(header, {
       autoAlpha: 0,
       duration: 0.2,
       onComplete: () => {
-        // 1. Capture the fullscreen state with Flip
         const state = Flip.getState(overlay);
 
-        // 2. Set overlay to the card's rect (destination)
         gsap.set(overlay, {
           top: rect.top,
           left: rect.left,
@@ -182,14 +222,13 @@ export default function HorizontalGallery({ items = [], className = '', onItemSe
           height: rect.height,
         });
 
-        // 3. Flip.from animates from saved fullscreen state -> current card-sized
         Flip.from(state, {
           targets: overlay,
           duration: 0.6,
-          ease: 'power2.inOut',
+          ease: "power2.inOut",
           absolute: true,
           onComplete: () => {
-            card.style.opacity = '1';
+            card.style.opacity = "1";
             sourceCardRef.current = null;
             setExpandedItem(null);
             unlockScroll();
@@ -198,10 +237,6 @@ export default function HorizontalGallery({ items = [], className = '', onItemSe
         });
       },
     });
-  };
-
-  const handleCopy = (text) => {
-    navigator.clipboard.writeText(text);
   };
 
   return (
@@ -224,70 +259,20 @@ export default function HorizontalGallery({ items = [], className = '', onItemSe
 
       {expandedItem && (
         <div ref={overlayRef} className="gallery-overlay">
-          {!showCode && (
-            <div className="gallery-overlay-content">
-              {expandedItem.content}
-            </div>
-          )}
-
-          {showCode && (
-            <div className="gallery-code-view">
-              <div className="gallery-code-panel">
-                <div className="gallery-code-title">
-                  JSX
-                  <button className="gallery-copy-btn" onClick={() => handleCopy(expandedItem.jsxCode)} title="Copy JSX">
-                    📋
-                  </button>
-                </div>
-                <SyntaxHighlighter
-                  language="jsx"
-                  style={vscDarkPlus}
-                  customStyle={{
-                    background: 'transparent',
-                    margin: 0,
-                    flex: 1,
-                    fontSize: '0.85rem',
-                    fontFamily: '"Fira Mono", "Roboto Mono", monospace',
-                  }}
-                >
-                  {expandedItem.jsxCode || '// No JSX source available'}
-                </SyntaxHighlighter>
-              </div>
-              <div className="gallery-code-panel">
-                <div className="gallery-code-title">
-                  CSS
-                  <button className="gallery-copy-btn" onClick={() => handleCopy(expandedItem.cssCode)} title="Copy CSS">
-                    📋
-                  </button>
-                </div>
-                <SyntaxHighlighter
-                  language="css"
-                  style={vscDarkPlus}
-                  customStyle={{
-                    background: 'transparent',
-                    margin: 0,
-                    flex: 1,
-                    fontSize: '0.85rem',
-                    fontFamily: '"Fira Mono", "Roboto Mono", monospace',
-                  }}
-                >
-                  {expandedItem.cssCode || '/* No CSS source available */'}
-                </SyntaxHighlighter>
-              </div>
-            </div>
-          )}
+          <div className="gallery-overlay-content">{expandedItem.content}</div>
 
           <div className="gallery-overlay-header">
             <h2 className="gallery-overlay-title">{expandedItem.label}</h2>
             <div className="gallery-overlay-actions">
-              {(expandedItem.jsxCode || expandedItem.cssCode) && (
-                <button
-                  className="gallery-code-btn"
-                  onClick={() => setShowCode((prev) => !prev)}
-                >
-                  {showCode ? 'ANIMATION' : 'CODE'}
-                </button>
-              )}
+              <button
+                className="gallery-code-btn"
+                onClick={() => {
+                  sessionStorage.setItem("galleryExpandedId", expandedItem.id);
+                  navigate(`/gallery-animation/${expandedItem.id}`);
+                }}
+              >
+                LIVE EDIT THIS COMPONENT
+              </button>
               <button className="gallery-back-btn" onClick={handleClose}>
                 ← Back
               </button>
