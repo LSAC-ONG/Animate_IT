@@ -29,6 +29,15 @@ import Shapes from "./components/Backgrounds/BackgroundAnimations/Shapes/Shapes.
 import FloatingDotsJsx from "./components/Backgrounds/BackgroundAnimations/FloatingDots/FloatingDots.jsx?raw";
 import FloatingDotsCss from "./components/Backgrounds/BackgroundAnimations/FloatingDots/FloatingDots.css?raw";
 import FloatingDots from "./components/Backgrounds/BackgroundAnimations/FloatingDots/FloatingDots.jsx";
+import FluidGridJsx from "./components/Backgrounds/BackgroundAnimations/FluidGrid/FluidGrid.jsx?raw";
+import FluidGridScss from "./components/Backgrounds/BackgroundAnimations/FluidGrid/FluidGrid.scss?raw";
+import FluidGrid from "./components/Backgrounds/BackgroundAnimations/FluidGrid/FluidGrid.jsx";
+import DiagonalMarqueeJsx from "./components/Backgrounds/BackgroundAnimations/DiagonalMarquee/DiagonalMarquee.jsx?raw";
+import DiagonalMarqueeScss from "./components/Backgrounds/BackgroundAnimations/DiagonalMarquee/DiagonalMarquee.scss?raw";
+import DiagonalMarquee from "./components/Backgrounds/BackgroundAnimations/DiagonalMarquee/DiagonalMarquee.jsx";
+import GlowingSpotlightJsx from "./components/Backgrounds/BackgroundAnimations/GlowingSpotlight/GlowingSpotlight.jsx?raw";
+import GlowingSpotlightScss from "./components/Backgrounds/BackgroundAnimations/GlowingSpotlight/GlowingSpotlight.scss?raw";
+import GlowingSpotlight from "./components/Backgrounds/BackgroundAnimations/GlowingSpotlight/GlowingSpotlight.jsx";
 
 // --- BUTTONS ---
 import SnakeEdgeJsx from "./components/Buttons/ButtonAnimations/SnakeEdge/SnakeEdge.jsx?raw";
@@ -110,6 +119,9 @@ export const animationsLibrary = [
 { name: "Noise", category: "Backgrounds", component: Noise, jsxCode: NoiseJsx, cssCode: NoiseCss },
 { name: "Shapes", category: "Backgrounds", component: Shapes, jsxCode: ShapesJsx, cssCode: ShapesCss },
 { name: "Floating Dots", category: "Backgrounds", component: FloatingDots, jsxCode: FloatingDotsJsx, cssCode: FloatingDotsCss },
+{ name: "Fluid Grid", category: "Backgrounds", component: FluidGrid, jsxCode: FluidGridJsx, cssCode: FluidGridScss },
+{ name: "Diagonal Marquee", category: "Backgrounds", component: DiagonalMarquee, jsxCode: DiagonalMarqueeJsx, cssCode: DiagonalMarqueeScss },
+{ name: "Glowing Spotlight", category: "Backgrounds", component: GlowingSpotlight, jsxCode: GlowingSpotlightJsx, cssCode: GlowingSpotlightScss },
 
 // BUTTONS
 { name: "Snake Edge", category: "Buttons", component: SnakeEdge, jsxCode: SnakeEdgeJsx, cssCode: SnakeEdgeScss },
