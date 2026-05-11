@@ -2,8 +2,6 @@ import { useRef, useLayoutEffect, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useNavigate } from "react-router-dom";
 import "./HorizontalGallery.scss";
 
@@ -13,10 +11,11 @@ export default function HorizontalGallery({
   items = [],
   className = "",
   onItemSelect,
+  expandable = true,
 }) {
+  const navigate = useNavigate();
   const wrapperRef = useRef(null);
   const trackRef = useRef(null);
-  const navigate = useNavigate();
 
   const overlayRef = useRef(null);
   const stRef = useRef(null);
@@ -175,6 +174,7 @@ export default function HorizontalGallery({
   }, [expandedItem]);
 
   const handleCardClick = (item, e) => {
+    if (!expandable) return;
     if (expandedItem || isAnimatingRef.current) return;
     if (!stRef.current?.isActive) return;
 

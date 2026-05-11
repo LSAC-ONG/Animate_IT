@@ -27,9 +27,9 @@ export default function ZoomAnimation() {
         ease: "power2.inOut",
         onComplete: () => {
           if (isOpening) {
-            gsap.to(content.current, { 
-                autoAlpha: 1, 
-                duration: 0.3
+            gsap.to(content.current, {
+              autoAlpha: 1,
+              duration: 0.3
             });
             gsap.to(".placeholder-text", { autoAlpha: 0, duration: 0.3 });
           }
@@ -46,7 +46,7 @@ export default function ZoomAnimation() {
       duration: 0.2,
       onComplete: () => {
         const state = Flip.getState(preview.current);
-        
+
         setExpanded(false);
 
         requestAnimationFrame(() => {
@@ -66,9 +66,9 @@ export default function ZoomAnimation() {
 
   return (
     <div ref={target} className="screen">
-      <div 
-        ref={preview} 
-        className={`item ${expanded ? 'is-fullscreen' : ''}`} 
+      <div
+        ref={preview}
+        className={`item ${expanded ? 'is-fullscreen' : ''}`}
         onClick={!expanded ? handleFlip : undefined}
       >
         {!expanded && <div className="placeholder-text" ref={previewText}>press to zoom</div>}
