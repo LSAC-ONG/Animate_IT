@@ -1,0 +1,3 @@
+# HOW TO EASILY TRANSITION TO THE NEW COMPONENTS
+
+There are 2 things you need, HorizontalGallery from HorizontalGallery.jsx in this folder and AnimationsLibrary.jsx from src folder, which has all the animations and some functions to help you extract just the ones you want (e.g. backgrounds, cursors, etc). To get the full component, import the 2 files mentioned above and add the component <HorizontalGallery items={filtered_items}>, where filtered_items are the specific items you want to get (e.g filtered_items = getAnimationsByCategory("Backgrounds")). That's it, good luck!
