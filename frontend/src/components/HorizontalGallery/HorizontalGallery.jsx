@@ -270,7 +270,7 @@ export default function HorizontalGallery({
                 className="gallery-code-btn"
                 onClick={() => {
                   sessionStorage.setItem("galleryExpandedId", expandedItem.id);
-                  navigate(`/gallery-animation/${expandedItem.id}`);
+                  navigate(`/gallery-animation/${expandedItem.slug ?? expandedItem.id}`);
                 }}
               >
                 LIVE EDIT THIS COMPONENT

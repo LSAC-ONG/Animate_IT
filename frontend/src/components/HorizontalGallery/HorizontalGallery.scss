@@ -15,8 +15,8 @@
 }
 
 .gallery-item {
-  flex: 0 0 clamp(300px, 28vw, 500px);
-  height: clamp(300px, 28vw, 500px);
+  flex: 0 0 clamp(350px, 32vw, 550px);
+  height: clamp(350px, 32vw, 550px);
   overflow: hidden;
   position: relative;
   background-color: rgb(0, 0, 0, 0.5);
@@ -60,11 +60,10 @@
   justify-content: center;
 
   > * {
-    width: 100% !important;
-    height: 100% !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
+    max-width: 100%;
+    max-height: 100%;
+    // We remove the aggressive !important to allow components (like Buttons)
+    // to maintain their natural dimensions while still centering them via flex.
   }
 }
 
@@ -103,13 +102,13 @@
   width: 100%;
   height: 100%;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   > * {
-    width: 100% !important;
-    height: 100% !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
+    max-width: 100%;
+    max-height: 100%;
   }
 }
 

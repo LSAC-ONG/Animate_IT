@@ -7,6 +7,12 @@ import VerticalParallaxGallery from '../VerticalParallaxGallery/VerticalParallax
 import { useEffect } from 'react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './GalleryPage.scss';
+import ShootingStars from '../Backgrounds/BackgroundAnimations/ShootingStars/ShootingStars';
+import WavyBackground from '../Backgrounds/BackgroundAnimations/WavyBackground/WavyBackground';
+import FloatingBalls from '../Backgrounds/BackgroundAnimations/FloatingBalls/FloatingBalls';
+import Bubble from '../Backgrounds/BackgroundAnimations/Bubble/Bubble';
+import Shapes from '../Backgrounds/BackgroundAnimations/Shapes/Shapes';
+import RetroStyle from '../Backgrounds/BackgroundAnimations/RetroStyle/RetroStyle';
 
 const GalleryImage = ({ src, alt }) => (
   <img
@@ -24,12 +30,12 @@ const GalleryImage = ({ src, alt }) => (
 );
 
 const wipeItems = [
-  { id: 'wipe-aurora',     label: 'Aurora Borealis',   content: <GalleryImage src="/gallery_images/aurora_borealis.jpg" alt="Aurora Borealis" /> },
-  { id: 'wipe-lightning',  label: 'Lightning Storm',   content: <GalleryImage src="/gallery_images/lightning_storm.jpg" alt="Lightning Storm" /> },
-  { id: 'wipe-nebula',     label: 'Nebula',            content: <GalleryImage src="/gallery_images/nebula_space.jpg" alt="Nebula" /> },
-  { id: 'wipe-northern',   label: 'Northern Lights',   content: <GalleryImage src="/gallery_images/northern_lights.jpg" alt="Northern Lights" /> },
-  { id: 'wipe-starry',     label: 'Starry Mountain',   content: <GalleryImage src="/gallery_images/starry_mountain.jpg" alt="Starry Mountain" /> },
-  { id: 'wipe-earth',      label: 'Earth from Space',  content: <GalleryImage src="/gallery_images/earth_space.jpg" alt="Earth from Space" /> },
+  { id: 'wipe-shooting-stars', label: 'Shooting Stars',  content: <ShootingStars /> },
+  { id: 'wipe-wavy-bg',        label: 'Wavy Background', content: <WavyBackground /> },
+  { id: 'wipe-floating-balls', label: 'Floating Balls',  content: <FloatingBalls /> },
+  { id: 'wipe-bubbles',        label: 'Bubbles',         content: <Bubble /> },
+  { id: 'wipe-shapes',         label: 'Shapes',          content: <Shapes /> },
+  { id: 'wipe-retro',          label: 'Retro Style',     content: <RetroStyle /> },
 ];
 
 const skewItems = [

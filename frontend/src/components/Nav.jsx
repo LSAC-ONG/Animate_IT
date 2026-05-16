@@ -20,9 +20,6 @@ function Nav() {
           <Link to="/text" onClick={() => setOpen(false)}>Text</Link>
           <Link to="/forms" onClick={() => setOpen(false)}>Forms</Link>
           <Link to="/gallery" onClick={() => setOpen(false)}>Gallery</Link>
-          <Link to="/horizontal-gallery" onClick={() => setOpen(false)}>Horizontal Gallery</Link>
-          <Link to="/vertical-parallax-gallery" onClick={() => setOpen(false)}>Vertical Parallax Gallery</Link>
-          <Link to="/wipe-gallery" onClick={() => setOpen(false)}>Wipe Gallery</Link>
         </div>
       )}
     </div>
