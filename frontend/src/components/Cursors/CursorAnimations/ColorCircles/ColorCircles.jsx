@@ -11,13 +11,14 @@ const colors = [
 const smoothing = 0.2; 
 
 const ColorCircles = () => {
+  const containerRef = useRef(null);
   const circlesRef = useRef([]);
   const coordsRef = useRef({ x: 0, y: 0 });
   const animationFrameRef = useRef();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const animationContainer = document.querySelector('.animation-container');
+    const animationContainer = containerRef.current;
     const containerRect = animationContainer?.getBoundingClientRect();
     
     circlesRef.current.forEach(circle => {
@@ -37,7 +38,6 @@ const ColorCircles = () => {
 
     let seeded = false;
     const handleMouseMove = (e) => {
-      const animationContainer = document.querySelector('.animation-container');
       if (animationContainer) {
         const rect = animationContainer.getBoundingClientRect();
         coordsRef.current.x = e.clientX - rect.left;
@@ -121,7 +121,7 @@ const ColorCircles = () => {
   }, []);
 
   return (
-    <div className="circles-container">
+    <div className="circles-container" ref={containerRef}>
       <div className="color-circles-text">Color Circles</div>
       {[...Array(22)].map((_, i) => (
         <div

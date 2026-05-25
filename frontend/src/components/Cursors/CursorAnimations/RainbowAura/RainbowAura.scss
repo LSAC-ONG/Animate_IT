@@ -31,33 +31,33 @@
 
         text-align: center;
       }
+}
 
-    .ra-cursor {
-        z-index: 9999999;
-        position: fixed;
-        background: #2696E8;
-        width: 24px;
-        height: 24px;
+.ra-cursor {
+    z-index: 9999999;
+    position: fixed;
+    background: #2696E8;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 20px #2696E8, 0 0 40px #2696E8, 0 0 60px #2696E8, 0 0 100px #2696E8;
+    transform: translate(-50%, -50%);
+    animation: colors 5s infinite;
+    display: none;
+
+    &::before {
+        content: "";
+        position: absolute;
+        width: 58px;
+        height: 58px;
         border-radius: 50%;
-        pointer-events: none;
-        box-shadow: 0 0 20px #2696E8, 0 0 40px #2696E8, 0 0 60px #2696E8, 0 0 100px #2696E8;
+        background: #2696E8;
+        opacity: 0.2;
+        left: 50%;
+        top: 50%;
         transform: translate(-50%, -50%);
-        animation: colors 5s infinite;
-        display: none;
-
-        &::before {
-            content: "";
-            position: absolute;
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            background: #2696E8;
-            opacity: 0.2;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            animation: aura-breath 3s infinite ease-in-out;
-        }
+        animation: aura-breath 3s infinite ease-in-out;
     }
 }
 

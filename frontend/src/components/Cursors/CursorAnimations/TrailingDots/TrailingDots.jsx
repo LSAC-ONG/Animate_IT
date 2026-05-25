@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import './TrailingDots.scss';
 
 const NUM_TRAIL_DOTS = 4;
 const SMOOTHING_FACTOR = 0.25;
 
 const TrailingDots = () => {
+    const containerRef = useRef(null);
     const mainDotRef = useRef(null);
     const trailDotsRef = useRef(new Array(NUM_TRAIL_DOTS).fill(null));
     const animationFrameIdRef = useRef(null);
@@ -24,7 +26,7 @@ const TrailingDots = () => {
     const hideTimeoutIdRef = useRef(null);
 
     useEffect(() => {
-        const parentAnimationContainer = document.querySelector('.cursors-container .animation-container');
+        const parentAnimationContainer = containerRef.current;
 
         const handleGlobalMouseMove = (e) => {
             mouseCoordsRef.current = { x: e.clientX, y: e.clientY };
@@ -51,6 +53,11 @@ const TrailingDots = () => {
         };
 
         window.addEventListener('mousemove', handleGlobalMouseMove);
+
+        const handleWindowScroll = () => {
+            setIsMouseInsideContainer(false);
+        };
+        window.addEventListener('scroll', handleWindowScroll, true);
 
         if (parentAnimationContainer) {
             parentAnimationContainer.addEventListener('mouseenter', handleMouseEnterAnimationArea);
@@ -113,6 +120,7 @@ const TrailingDots = () => {
 
         return () => {
             window.removeEventListener('mousemove', handleGlobalMouseMove);
+            window.removeEventListener('scroll', handleWindowScroll, true);
             if (parentAnimationContainer) {
                 parentAnimationContainer.removeEventListener('mouseenter', handleMouseEnterAnimationArea);
                 parentAnimationContainer.removeEventListener('mouseleave', handleMouseLeaveAnimationArea);
@@ -132,23 +140,26 @@ const TrailingDots = () => {
     }, [isMouseInsideContainer]);
 
     return (
-        <div className="tdc-container">
+        <div className="tdc-container" ref={containerRef}>
             <h1 className="tdc-text">Trailing Dots</h1>
-            <div className="tdc-cursor-wrapper">
-                <div
-                    ref={mainDotRef}
-                    className="tdc-dot tdc-main-dot"
-                    style={{ transform: 'translate(-200px, -200px) translate(-50%,-50%)', opacity: 0}}
-                ></div>
-                {Array(NUM_TRAIL_DOTS).fill(null).map((_, index) => (
+            {createPortal(
+                <div className="tdc-cursor-wrapper">
                     <div
-                        key={index}
-                        ref={(el) => (trailDotsRef.current[index] = el)}
-                        className={`tdc-dot tdc-trail-dot size-${index + 1}`}
+                        ref={mainDotRef}
+                        className="tdc-dot tdc-main-dot"
                         style={{ transform: 'translate(-200px, -200px) translate(-50%,-50%)', opacity: 0}}
                     ></div>
-                ))}
-            </div>
+                    {Array(NUM_TRAIL_DOTS).fill(null).map((_, index) => (
+                        <div
+                            key={index}
+                            ref={(el) => (trailDotsRef.current[index] = el)}
+                            className={`tdc-dot tdc-trail-dot size-${index + 1}`}
+                            style={{ transform: 'translate(-200px, -200px) translate(-50%,-50%)', opacity: 0}}
+                        ></div>
+                    ))}
+                </div>,
+                document.body
+            )}
         </div>
     );
 };

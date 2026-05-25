@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import './RainingSquares.scss';
 
 const NUM_SQUARES = 30;
@@ -23,8 +24,9 @@ const RainingSquares = () => {
     );
 
     const [isMouseInsideParentContainer, setIsMouseInsideParentContainer] = useState(false);
-    const parentAnimationContainerRef = useRef(null); 
-    const parentContainerBoundsRef = useRef(null); 
+    const containerRef = useRef(null);
+    const parentAnimationContainerRef = useRef(null);
+    const parentContainerBoundsRef = useRef(null);
 
     const initSquare = useCallback((squareState) => {
         squareState.active = true;
@@ -41,13 +43,10 @@ const RainingSquares = () => {
 
 
     useEffect(() => {
-        parentAnimationContainerRef.current = document.querySelector('.cursors-container .animation-container');
+        parentAnimationContainerRef.current = containerRef.current;
         const currentParentContainer = parentAnimationContainerRef.current;
 
-        if (!currentParentContainer) {
-            console.warn("RainingSquares: Parent '.animation-container' not found.");
-            return;
-        }
+        if (!currentParentContainer) return;
         
         parentContainerBoundsRef.current = currentParentContainer.getBoundingClientRect();
 
@@ -153,19 +152,21 @@ const RainingSquares = () => {
     return (
         
         
-        <div className="rs-container-visual-only">
+        <div className="rs-container-visual-only" ref={containerRef}>
             <h1 className="rs-text">Raining Squares</h1>
-            
-            <div className="rs-squares-wrapper">
-                {squaresRef.current.map((_, index) => (
-                    <div
-                        key={index}
-                        ref={(el) => (squaresRef.current[index] = el)}
-                        className="rs-square"
-                        style={{ opacity: 0, display: 'none' }} 
-                    ></div>
-                ))}
-            </div>
+            {createPortal(
+                <div className="rs-squares-wrapper">
+                    {squaresRef.current.map((_, index) => (
+                        <div
+                            key={index}
+                            ref={(el) => (squaresRef.current[index] = el)}
+                            className="rs-square"
+                            style={{ opacity: 0, display: 'none' }}
+                        ></div>
+                    ))}
+                </div>,
+                document.body
+            )}
         </div>
     );
 };

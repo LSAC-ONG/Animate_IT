@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import './DotTrail.scss';
 
 const DotTrail = () => {
@@ -48,6 +49,10 @@ const DotTrail = () => {
     currentContainer.addEventListener('mouseenter', handleMouseEnter);
     currentContainer.addEventListener('mouseleave', handleMouseLeave);
 
+    const handleWindowScroll = () => {
+      isMouseInsideRef.current = false;
+    };
+    window.addEventListener('scroll', handleWindowScroll, true);
     window.addEventListener('mousedown', handleGlobalMouseDown);
     window.addEventListener('mouseup', handleGlobalMouseUp);
 
@@ -73,6 +78,7 @@ const DotTrail = () => {
         currentContainer.removeEventListener('mouseenter', handleMouseEnter);
         currentContainer.removeEventListener('mouseleave', handleMouseLeave);
       }
+      window.removeEventListener('scroll', handleWindowScroll, true);
       window.removeEventListener('mousedown', handleGlobalMouseDown);
       window.removeEventListener('mouseup', handleGlobalMouseUp);
 
@@ -84,10 +90,13 @@ const DotTrail = () => {
 
   return (
     <div className="dt-container" ref={containerRef}>
-      <div
-        ref={cursorDotRef}
-        className="dt-cursor-dot"
-      ></div>
+      {createPortal(
+        <div
+          ref={cursorDotRef}
+          className="dt-cursor-dot"
+        ></div>,
+        document.body
+      )}
       <h1 className="dt-text">Goofy Dot</h1>
       <p></p>
       <h2>Hold Click</h2>
