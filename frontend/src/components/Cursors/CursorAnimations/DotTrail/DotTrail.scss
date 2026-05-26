@@ -25,31 +25,27 @@
         z-index: 1;
         text-align: center;
       }
+}
 
-      .dt-cursor-dot {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 20px;
-        height: 20px;
-        background-color: #ff7043;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999999;
-        opacity: 0;
-        transform: translate(-300px, -300px) translate(-75%, -75%) scale(2);
-        
-        transition: opacity 0.2s ease-out,
-                    width 0.15s cubic-bezier(0.2, 0, 0.2, 1),
-                    height 0.15s cubic-bezier(0.4, 0, 0.2, 1),
-                    transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-      
-        &.visible {
-          opacity: 0.85;
-        }
-      
-        &.pressed {
+.dt-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #ff7043;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999999;
+    opacity: 0;
+    transform: translate(-300px, -300px) translate(-75%, -75%) scale(2);
 
-    	}
+    transition: opacity 0.2s ease-out,
+                width 0.15s cubic-bezier(0.2, 0, 0.2, 1),
+                height 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.visible {
+      opacity: 0.85;
     }
 }

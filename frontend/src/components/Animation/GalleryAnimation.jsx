@@ -72,6 +72,16 @@ import LiquidFillJsx from "../Text/TextAnimations/LiquidFill/LiquidFill.jsx?raw"
 import LiquidFillCss from "../Text/TextAnimations/LiquidFill/LiquidFill.css?raw";
 import GooeyTextJsx from "../Text/TextAnimations/GooeyText/GooeyText.jsx?raw";
 import GooeyTextCss from "../Text/TextAnimations/GooeyText/GooeyText.css?raw";
+import FadeUpRevealJsx from "../Text/TextAnimations/FadeUpReveal/FadeUpReveal.jsx?raw";
+import FadeUpRevealScss from "../Text/TextAnimations/FadeUpReveal/FadeUpReveal.scss?raw";
+import WaveTextJsx from "../Text/TextAnimations/WaveText/WaveText.jsx?raw";
+import WaveTextScss from "../Text/TextAnimations/WaveText/WaveText.scss?raw";
+import BlurRevealJsx from "../Text/TextAnimations/BlurReveal/BlurReveal.jsx?raw";
+import BlurRevealScss from "../Text/TextAnimations/BlurReveal/BlurReveal.scss?raw";
+import FlipRevealJsx from "../Text/TextAnimations/FlipReveal/FlipReveal.jsx?raw";
+import FlipRevealScss from "../Text/TextAnimations/FlipReveal/FlipReveal.scss?raw";
+import NeonFlickerJsx from "../Text/TextAnimations/NeonFlicker/NeonFlicker.jsx?raw";
+import NeonFlickerScss from "../Text/TextAnimations/NeonFlicker/NeonFlicker.scss?raw";
 
 import SandboxWrapper from "./SandboxWrapper/SandboxWrapper";
 
@@ -267,6 +277,41 @@ function GalleryAnimation() {
       jsxCode: GooeyTextJsx,
       styleName: "GooeyText.css",
       styleCode: GooeyTextCss,
+    },
+    {
+      id: "fade-up-reveal",
+      jsxName: "FadeUpReveal.jsx",
+      jsxCode: FadeUpRevealJsx,
+      styleName: "FadeUpReveal.scss",
+      styleCode: FadeUpRevealScss,
+    },
+    {
+      id: "wave-text",
+      jsxName: "WaveText.jsx",
+      jsxCode: WaveTextJsx,
+      styleName: "WaveText.scss",
+      styleCode: WaveTextScss,
+    },
+    {
+      id: "blur-reveal",
+      jsxName: "BlurReveal.jsx",
+      jsxCode: BlurRevealJsx,
+      styleName: "BlurReveal.scss",
+      styleCode: BlurRevealScss,
+    },
+    {
+      id: "flip-reveal",
+      jsxName: "FlipReveal.jsx",
+      jsxCode: FlipRevealJsx,
+      styleName: "FlipReveal.scss",
+      styleCode: FlipRevealScss,
+    },
+    {
+      id: "neon-flicker",
+      jsxName: "NeonFlicker.jsx",
+      jsxCode: NeonFlickerJsx,
+      styleName: "NeonFlicker.scss",
+      styleCode: NeonFlickerScss,
     },
     {
       id: "wavy-login",

@@ -106,6 +106,21 @@ import LiquidFill from "./components/Text/TextAnimations/LiquidFill/LiquidFill.j
 import GooeyTextJsx from "./components/Text/TextAnimations/GooeyText/GooeyText.jsx?raw";
 import GooeyTextCss from "./components/Text/TextAnimations/GooeyText/GooeyText.css?raw";
 import GooeyText from "./components/Text/TextAnimations/GooeyText/GooeyText.jsx";
+import FadeUpRevealJsx from "./components/Text/TextAnimations/FadeUpReveal/FadeUpReveal.jsx?raw";
+import FadeUpRevealScss from "./components/Text/TextAnimations/FadeUpReveal/FadeUpReveal.scss?raw";
+import FadeUpReveal from "./components/Text/TextAnimations/FadeUpReveal/FadeUpReveal.jsx";
+import WaveTextJsx from "./components/Text/TextAnimations/WaveText/WaveText.jsx?raw";
+import WaveTextScss from "./components/Text/TextAnimations/WaveText/WaveText.scss?raw";
+import WaveText from "./components/Text/TextAnimations/WaveText/WaveText.jsx";
+import BlurRevealJsx from "./components/Text/TextAnimations/BlurReveal/BlurReveal.jsx?raw";
+import BlurRevealScss from "./components/Text/TextAnimations/BlurReveal/BlurReveal.scss?raw";
+import BlurReveal from "./components/Text/TextAnimations/BlurReveal/BlurReveal.jsx";
+import FlipRevealJsx from "./components/Text/TextAnimations/FlipReveal/FlipReveal.jsx?raw";
+import FlipRevealScss from "./components/Text/TextAnimations/FlipReveal/FlipReveal.scss?raw";
+import FlipReveal from "./components/Text/TextAnimations/FlipReveal/FlipReveal.jsx";
+import NeonFlickerJsx from "./components/Text/TextAnimations/NeonFlicker/NeonFlicker.jsx?raw";
+import NeonFlickerScss from "./components/Text/TextAnimations/NeonFlicker/NeonFlicker.scss?raw";
+import NeonFlicker from "./components/Text/TextAnimations/NeonFlicker/NeonFlicker.jsx";
 
 export const animationsLibrary = [
 // BACKGROUNDS
@@ -149,7 +164,12 @@ export const animationsLibrary = [
 { name: "Glitch Effect", category: "Text", component: GlitchEffect, jsxCode: GlitchEffectJsx, cssCode: GlitchEffectCss },
 { name: "Border Revolve", category: "Text", component: BorderRevolve, jsxCode: BorderRevolveJsx, cssCode: BorderRevolveCss },
 { name: "Liquid Fill", category: "Text", component: LiquidFill, jsxCode: LiquidFillJsx, cssCode: LiquidFillCss },
-{ name: "Gooey Text", category: "Text", component: GooeyText, jsxCode: GooeyTextJsx, cssCode: GooeyTextCss }
+{ name: "Gooey Text", category: "Text", component: GooeyText, jsxCode: GooeyTextJsx, cssCode: GooeyTextCss },
+{ name: "Fade Up Reveal", category: "Text", component: FadeUpReveal, jsxCode: FadeUpRevealJsx, cssCode: FadeUpRevealScss },
+{ name: "Wave Text", category: "Text", component: WaveText, jsxCode: WaveTextJsx, cssCode: WaveTextScss },
+{ name: "Blur Reveal", category: "Text", component: BlurReveal, jsxCode: BlurRevealJsx, cssCode: BlurRevealScss },
+{ name: "Flip Reveal", category: "Text", component: FlipReveal, jsxCode: FlipRevealJsx, cssCode: FlipRevealScss },
+{ name: "Neon Flicker", category: "Text", component: NeonFlicker, jsxCode: NeonFlickerJsx, cssCode: NeonFlickerScss }
 ];
 
 export const getAnimationsByCategory = (category) => {

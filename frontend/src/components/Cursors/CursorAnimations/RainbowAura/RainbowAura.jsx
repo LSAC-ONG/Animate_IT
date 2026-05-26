@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import './RainbowAura.scss';
 
 const RainbowAura = () => {
@@ -44,12 +45,14 @@ const RainbowAura = () => {
 
         currentContainer.addEventListener('mousemove', handleMouseMove);
         currentContainer.addEventListener('mouseleave', handleMouseLeave);
+        window.addEventListener('scroll', handleMouseLeave, true);
 
         return () => {
             if (currentContainer) {
                 currentContainer.removeEventListener('mousemove', handleMouseMove);
                 currentContainer.removeEventListener('mouseleave', handleMouseLeave);
             }
+            window.removeEventListener('scroll', handleMouseLeave, true);
             if (timeoutIdRef.current) {
                 clearTimeout(timeoutIdRef.current);
             }
@@ -58,8 +61,8 @@ const RainbowAura = () => {
 
     return (
         <div className="ra-container" ref={containerRef} style={{ width: '100%', height: '100%' }}>
-            <div className="ra-cursor" ref={cursorRef}></div>
             <h1 className="ra-text">Rainbow Aura</h1>
+            {createPortal(<div className="ra-cursor" ref={cursorRef}></div>, document.body)}
         </div>
     );
 };
